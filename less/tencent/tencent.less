@@ -5,6 +5,11 @@ html, body {
   min-width: 1030px;
 }
 
+em, i, u, s, strong, b {
+  font-weight: normal;
+  font-style: normal;
+}
+
 .transition(@property: all,@duration: .3s,@effect: linear,@delay: 0s) {
   -webkit-transition: @arguments;
   transition: @arguments;
@@ -33,3 +38,152 @@ html, body {
     margin: 0 auto;
   }
 }
+
+.figure_scroll {
+
+  .mod_figure {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    zoom: 1;
+    margin-bottom: 20px;
+    font-size: 0;
+    letter-spacing: -5px;
+
+    .figure_list {
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+
+      .list_item {
+        width: 167px;
+        position: relative;
+        display: inline-block;
+        margin: 5px 5px 0 0;
+        vertical-align: top;
+        font-size: 12px;
+        letter-spacing: normal;
+        color: #999;
+
+        .figure {
+          position: relative;
+          display: block;
+          width: 100%;
+          font-weight: 500;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          margin-bottom: 6px;
+          height: 234px;
+
+          &:hover .figure_pic {
+            -webkit-filter: saturate(1.15) contrast(1.15) brightness(1.1);
+            filter: saturate(1.15) contrast(1.15) brightness(1.1);
+            box-shadow: 0 4px 8px rgba(40, 40, 40, .2);
+          }
+
+          .figure_pic {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #ececec;
+            background-color: rgba(236,236,236,.1);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: box-shadow .15s linear,-webkit-filter .3s ease-out;
+          }
+          .mark_v {
+            position: absolute;
+            pointer-events: none;
+            right: 5px;
+            top: 5px;
+          }
+          .figure_count {
+            position: absolute;
+            left: 4px;
+            bottom: 4px;
+            padding: 0 4px;
+            background-color: rgba(17, 17, 17, .8);
+            font-size: 12px;
+            line-height: 20px;
+            color: #fff;
+          }
+          .figure_score {
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            width: 35px;
+            height: 28px;
+            text-align: center;
+            background-color: rgba(17, 17, 17, .8);
+            font-size: 0;
+            color: #fff;
+
+            .score_l {
+              font-size: 24px;
+              line-height: 28px;
+              font-weight: 400;
+              color: #ff5f33;
+            }
+            .score_s {
+              font-size: 14px;
+              line-height: 28px;
+              font-weight: 400;
+              color: #ff4f4a;
+            }
+          }
+        }
+
+        .figure_detail {
+          position: relative;
+          display: block;
+          height: 44px;
+          overflow: hidden;
+
+          .figure_title {
+            display: block;
+            width: auto;
+            padding: 0 3px 0 5px;
+            padding-right: 16px;
+            box-sizing: border-box;
+            height: auto;
+            max-height: 44px;
+            line-height: 22px;
+            font-size: 14px;
+
+            a {
+              display: block;
+              word-wrap: break-word;
+              word-break: break-all;
+              color: #202020;
+              .subText;
+            }
+          }
+
+          .figure_desc {
+            display: block;
+            width: 100%;
+            font-size: 13px;
+            line-height: 20px;
+            margin-top: 2px;
+            cursor: default;
+            padding: 0 3px 0 5px;
+            box-sizing: border-box;
+            .subText;
+          }
+        }
+
+        &:hover .figure_title a {
+          color: #ff6428;
+        }
+        &:hover .figure_desc {
+          color: #777;
+        }
+      }
+    }
+  }
+}
+
