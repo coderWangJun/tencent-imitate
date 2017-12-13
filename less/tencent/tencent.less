@@ -1,10 +1,35 @@
 @import "../../css/reset.min.css";
 
-html,body {
+@width: 1200px;
+html, body {
   min-width: 1030px;
 }
+
+.transition(@property: all,@duration: .3s,@effect: linear,@delay: 0s) {
+  -webkit-transition: @arguments;
+  transition: @arguments;
+}
+
+.center(@W,@H) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: unit(-@H/2, rem) 0 0 unit(-@W/2, rem);
+}
+
+.subText() {
+  text-overflow: ellipsis;;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .mod_row_box {
   position: relative;
   width: 100%;
   margin-bottom: 33px;
+
+  .mod_hd, .mod_bd {
+    width: @width;
+    margin: 0 auto;
+  }
 }
