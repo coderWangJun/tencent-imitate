@@ -3,6 +3,76 @@
  */
 // 杨波
 
+let tencentRender = (function () {
+    let $custommovie = $("#custommovie"),
+        $cus_figure_list = $custommovie.find('.figure_list'),
+        $timetable = $("#timetable"),
+        $tim_figure_list = $timetable.find('.figure_list');
+
+    let queryData = (data, context)=> {
+        let str = ``;
+        for (var i = 0; i < data.length; i++) {
+            var {id,mark,mark_msg,hot,text,update,score,img_src,video_title} = data[i];
+            str += `<li class="list_item" data-id="${id}">
+                        <a href="javascript:;" class="figure figure_mark" target="_blank" data-float="${id}">
+                            <img src="${img_src}" class="figure_pic" alt="${video_title.split(' ')[0]}">
+                            ${ mark ? `<i class="mark_v"><img src="images/yb/mark_${mark}.png" alt="${mark_msg}"></i>` : ``}
+                            ${ update ? `<div class="figure_count">${update}</div>` : ``}
+                            ${ score ? `<div class="figure_score">
+                                ${
+                score.split('.').map((item, index)=> {
+                    if (index === 0) {
+                        return `<em class="score_l">${item}</em>`
+                    }
+                    return `<em class="score_s">.${item}</em>`
+                }).join('')
+                }
+                            </div>` : ``}
+                            ${hot ? `<span class="figure_mask"></span><span class="figure_thermometer _animate0">
+                                <i class="icon_thermometer">
+                                    <i class="icon_thermometer_ball"></i>
+                                    <i class="icon_thermometer_progress" style="height: ${hot}%;">
+                                    </i>
+                                </i>
+                                <span class="add_num">+1</span>
+                                <span class="thermometer_info">
+                                    <span class="txt">期待指数</span>
+                                    <span class="txt">${hot}%</span>
+                                </span>
+                            </span>` : ''}
+                        </a>
+                        <div class="figure_detail">
+                            <strong class="figure_title">
+                                <a href="#" title="${video_title.split(' ')[0]}" data-id="${id}">${video_title.split(' ')[0]}</a>
+                            </strong>
+                            <div class="figure_desc" title="${text}">${text}</div>
+                        </div>
+                    </li>`;
+        }
+        context.html(str);
+    };
+
+    let requestFn = (url, context)=> {
+        $.ajax({
+            url     : url,
+            method  : 'get',
+            dataType: 'json',
+            cache   : false,
+            success : (data)=> {
+                queryData(data, context);
+            }
+        })
+    };
+
+    return {
+        init: function () {
+            requestFn('json/yb/custommovie.json', $cus_figure_list);
+            requestFn('json/yb/timetable.json', $tim_figure_list);
+        }
+    }
+})();
+tencentRender.init();
+
 (function (root, factory, plug) {
     factory(jQuery, plug);
 })(window, function (jQuery, plug) {
@@ -132,10 +202,10 @@
             if ($(item).hasClass('figure_mark')) {
                 // 获取当前事件源父级容器的id
                 let src_id = $(item).attr('data-float'),
-                    item_top = $(item).offset().top,
+                    item_Top = $(item).offset().top,
                     winH = $(window).scrollTop();
                 // 如果当前容器的offsetTop已经小于window.scrollTop 就不再触发展示容器的创建和显示
-                if (item_top < winH) return;
+                if (item_Top < winH) return;
                 // 如果已经创建过对应的展示容器 就直接展示
                 if ($(item).data('bind_id')) {
                     let item_posBox = $("#" + $(item).data('bind_id'));
@@ -145,7 +215,7 @@
                             item_top = $(item).parent().offset().top;
                         // 设置最新的定位
                         item_posBox.parent().parent().css({
-                            top: item_top - 20,
+                            top : item_top - 20,
                             left: item_left - 20
                         });
                     }
@@ -159,7 +229,7 @@
                             if (!$(item).data('bind_id')) {
                                 $(item).data({
                                     'bind_id': temp.port + temp.mini,
-                                    'index': i
+                                    'index'  : i
                                 });
                             }
                         }
@@ -184,7 +254,7 @@
                         <div class="poster_card_video">
                             <a href="#" class="figure_video_outlink" data-collect="${like}" id="${$(item).data('bind_id')}" style='height:${video_height + 20}px'>
                                 <div class="figure_video">
-                                    <video src="${video_src}" loop="loop" style="background: url('${video_bg}') center center / cover no-repeat transparent;">
+                                    <video src="${video_src}" loop="loop" preload='none' style="background: url('${video_bg}') center center / cover no-repeat transparent;">
                                         <img src="" class="figure_video_poster" alt="">
                                     </video>
                                     <div class="figure_video_start">
@@ -201,40 +271,29 @@
                             </a>
                             <div class="video_content">
                                 <div class="video_title" title="${video_title}">
-                                    ${
-                                        video_title.split(' ').map((item, index) => {
-                                            if (index === 0) {
-                                                return `<a href="" class="tit">${item}</a>`;
-                                            }
-                                            return `<span class="type">${item}</span>`
-                                        }).join(" ")
-                                    }
+                                    ${video_title.split(' ').map((item, index) => {
+            if (index === 0) {
+                return `<a href="" class="tit">${item}</a>`;
+            }
+            return `<span class="type">${item}</span>`
+        }).join(" ")}
                                 </div>
-                                <div class="video_tags" title="${video_tags}">
-                                        <span class="tag_tit">主演：</span>
-                                    ${
-                                        video_tags.split('/').map(function (item, index) {
-                                            if (index === 0) {
-                                                return `<span class="tag_tit">${item}</span>`
-                                            }
-                                            return `<span class="line">/</span><span class="tag_tit">${item}</span>`
-                                        }).join("")
-                                    }
-                                </div>
-                                <div class="video_recommend">
-                                    <span class="recommend_tit">推荐：</span>
-                                    <span class="recommend_txt" title="${recommend_txt}">
-                                        ${
-                                            recommend_txt.replace(/h1([\w\W]+)h1/i, (...arg)=> {
-                                                return `<span class="h1">${arg[1]}</span>`;
-                                            })
-                                        }
-                                    </sapn>
-                                </div>
-                                <div class="video_review">
+                                ${video_tags ? `<div class="video_tags" title="${video_tags}"><span class="tag_tit">主演：</span>
+                                    ${video_tags.split('/').map(function (item, index) {
+            if (index === 0) {
+                return `<span class="tag_tit">${item}</span>`
+            }
+            return `<span class="line">/</span><span class="tag_tit">${item}</span>`
+        }).join("")}
+                                </div>` : ``}
+                                    ${recommend_txt ? `<div class="video_recommend"><span class="recommend_tit">推荐：</span><span class="recommend_txt" title="${recommend_txt}">
+                                        ${recommend_txt.replace(/h1([\w\W]+)h1/i, (...arg)=> {
+            return `<span class="h1">${arg[1]}</span>`;
+        })}</sapn></div>` : ``}
+                                ${review_txt ? `<div class="video_review">
                                     <span class="review_name">点评：</span>
                                     <span class="review_txt" title="${review_txt}">${review_txt}</span>
-                                </div>
+                                </div>` : ``}
                                 <div class="video_btn">
                                     <span class="video_btn_half _follow">
                                     <a href="javascript:;" class="z_figure_collect" title="加入看单">
@@ -259,31 +318,56 @@
         $("#" + $(item).data('bind_id')).parent().parent().addClass('ani_x_card_hover').siblings().removeClass('ani_x_card_hover');
         $plan.fire(item);
     };
+
     $.fn[plug] = function (options) {
         $.extend(this, _default, options);
         let that = this;
         // 监控窗口的变换
         watchWidth();
         $.ajax({
-            url: that.url,
-            method: 'get',
+            url     : that.url,
+            method  : 'get',
             dataType: 'json',
-            async: false,
-            success: function (data) {
+            async   : true,
+            cache   : false,
+            success : function (data) {
                 $(that).on({
                     'mouseover': function (e) {
                         obtain(e, data);
                     }
                 })
             },
-            error: function (data) {
+            error   : function (data) {
 
             }
         });
-
     }
 }, 'imgOver');
 
-$(document).imgOver({
-    url: 'json/yb/custommovie.json'
+// 现在有一个bug，当鼠标第一次从最左边或者最右边进入容器的时候，在还没有绑定事件的时候就，达到了触发显示的事件，但是这是刚刚绑定事件委托，所以不能触发显示效果
+// 我的解决方案，如果能把页面中所有需要有这种鼠标经过就可以显示的效果请求的数据都存在一个地址，就可以解决这个问题
+$(document).on({
+    'mouseover': function (e) {
+        let $target = $(e.target);
+        // 查找事件源的所有父级元素中中符合条件的父级容器
+        $target.parents().each(function (index, item) {
+            if ($(item).attr('id') === 'custommovie') {
+                if (item.isBind) return;
+                item.isBind = true;
+                // 获取当前事件源父级容器的id
+                $(item).imgOver({
+                    url: 'json/yb/custommovie.json'
+                });
+            }
+            if ($(item).attr('id') === 'timetable') {
+                if (item.isBind) return;
+                item.isBind = true;
+                // 获取当前事件源父级容器的id
+                $(item).imgOver({
+                    url: 'json/yb/timetable.json'
+                });
+            }
+        });
+    }
 });
+
