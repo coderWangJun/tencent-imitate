@@ -91,7 +91,7 @@ em, i, u, s, strong, b {
     margin-right: -3px;
 
     .list_item {
-      width:172px;
+      width: 172px;
       display: inline-block;
       vertical-align: top;
       text-align: center;
@@ -342,6 +342,25 @@ em, i, u, s, strong, b {
         height: 44px;
         overflow: hidden;
 
+        &.figure_detail_collect .figure_title, &.figure_detail_collect .figure_desc {
+          padding-right: 45px;
+        }
+        &.figure_detail_collect .figure_collect {
+          position: absolute;
+          top: 2px;
+          right: 0;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          border-radius: 100%;
+          background-color: #f4f4f4;
+          cursor: pointer;
+          color: #ff6428;
+          text-align: center;
+          display: block;
+          .transition(@duration: .1s);
+        }
+
         .figure_title {
           display: block;
           width: auto;
@@ -372,6 +391,14 @@ em, i, u, s, strong, b {
           padding: 0 3px 0 5px;
           box-sizing: border-box;
           .subText;
+        }
+
+        .figure_collect {
+          display: none;
+        }
+        .figure_collect:hover {
+          background-color: #ff6428;
+          color: #fff;
         }
       }
 

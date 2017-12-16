@@ -9,10 +9,11 @@ let tencentRender = (function () {
         $timetable = $("#timetable"),
         $tim_figure_list = $timetable.find('.figure_list');
 
+    // 创建节点集合
     let queryData = (data, context)=> {
         let str = ``;
         for (var i = 0; i < data.length; i++) {
-            var {id,mark,mark_msg,hot,text,update,score,img_src,video_title} = data[i];
+            var {id,mark,mark_msg,hot,text,collect,modidx,update,score,img_src,video_title} = data[i];
             str += `<li class="list_item" data-id="${id}">
                         <a href="javascript:;" class="figure figure_mark" target="_blank" data-float="${id}">
                             <img src="${img_src}" class="figure_pic" alt="${video_title.split(' ')[0]}">
@@ -41,17 +42,25 @@ let tencentRender = (function () {
                                 </span>
                             </span>` : ''}
                         </a>
-                        <div class="figure_detail">
+                        <div class="figure_detail ${collect ? 'figure_detail_collect' : ''}">
                             <strong class="figure_title">
                                 <a href="#" title="${video_title.split(' ')[0]}" data-id="${id}">${video_title.split(' ')[0]}</a>
                             </strong>
                             <div class="figure_desc" title="${text}">${text}</div>
+                            ${collect ?`<a href="javascript:;" class="figure_collect" title="加入看单" data-followlist="${id}" data-modidx="${modidx}">
+                            <i class="icon iconfont icon_collect"></i>
+                            <i class="icon iconfont icon_collected"></i>
+                            </a>`:``}
                         </div>
                     </li>`;
         }
         context.html(str);
+        if(typeof  modidx !== 'undefined'){
+            collectControl();
+        }
     };
 
+    // 绑定数据
     let requestFn = (url, context)=> {
         $.ajax({
             url     : url,
@@ -62,6 +71,18 @@ let tencentRender = (function () {
                 queryData(data, context);
             }
         })
+    };
+    // 控制收藏
+    let collectControl = function () {
+        let $iControl = $timetable.find('.figure_collect');
+        for (var i = 0; i < $iControl.length; i++) {
+            var item = $iControl[i];
+            if($(item).data('modidx') ==  0){
+                $(item).children().eq(0).show().siblings().hide();
+            }else {
+                $(item).children().eq(1).show().siblings().hide();
+            }
+        }
     };
 
     return {
@@ -354,7 +375,7 @@ $(document).on({
             if ($(item).attr('id') === 'custommovie') {
                 if (item.isBind) return;
                 item.isBind = true;
-                // 获取当前事件源父级容器的id
+                // 获取当前事件源父级容器绑定事件
                 $(item).imgOver({
                     url: 'json/yb/custommovie.json'
                 });
@@ -362,7 +383,7 @@ $(document).on({
             if ($(item).attr('id') === 'timetable') {
                 if (item.isBind) return;
                 item.isBind = true;
-                // 获取当前事件源父级容器的id
+                // 获取当前事件源父级容器绑定事件
                 $(item).imgOver({
                     url: 'json/yb/timetable.json'
                 });
