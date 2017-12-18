@@ -62,8 +62,8 @@ let tencentRender = (function () {
                             </strong>
                             <div class="figure_desc" title="${text}">${text}</div>
                             ${collect ? `<a href="javascript:;" class="figure_collect" title="加入看单" data-followlist="${id}" data-modidx="${modidx}">
-                            <i class="icon iconfont icon_collect"></i>
-                            <i class="icon iconfont icon_collected"></i>
+                            <i class="icon iconfont_yb icon_collect"></i>
+                            <i class="icon iconfont_yb icon_collected"></i>
                             </a>` : ``}
                         </div>
                     </li>`;
@@ -310,8 +310,8 @@ tencentRender.init();
                                     <div class="figure_video_tools none">
                                         <span class="figure_info">0秒</span>
                                         <span class="figure_mute muted">
-                                            <i class='icon iconfont icon_novolume'></i>
-                                            <i class='icon iconfont icon_volume'></i>
+                                            <i class='icon iconfont_yb icon_novolume'></i>
+                                            <i class='icon iconfont_yb icon_volume'></i>
                                         </span>
                                     </div>
                                 </div>
@@ -344,15 +344,15 @@ tencentRender.init();
                                 <div class="video_btn">
                                     <span class="video_btn_half _follow">
                                     <a href="javascript:;" class="z_figure_collect" title="加入看单">
-                                        <i class="icon iconfont icon_collect"></i>
-                                        <i class="icon iconfont icon_collected"></i>
+                                        <i class="icon iconfont_yb icon_collect"></i>
+                                        <i class="icon iconfont_yb icon_collected"></i>
                                     </a>
                                     </span>
                                     <span class="link">|</span>
                                     <span class="video_btn_half _down" title="用客户端下载视频">
                                     <a href="javascript:;" class="z_figure_dl">
-                                        <i class="icon iconfont icon_dl"></i>
-                                        <i class="icon iconfont icon_dl_disabled"></i>
+                                        <i class="icon iconfont_yb icon_dl"></i>
+                                        <i class="icon iconfont_yb icon_dl_disabled"></i>
                                     </a>
                                     </span>
                                 </div>
@@ -466,10 +466,10 @@ $(document).on({
                         bindFn(item, 'json/yb/channelUnitedstates.json');
                     }
                     if ($(item).attr('id') === 'channelKarea') {
-                        bindFn(item, 'json/yb/channelKarea.json');
+                        bindFn(item, 'json/yb/channelChild.json');
                     }
-                    if ($(item).attr('id') === 'channelDoco') {
-                        bindFn(item, 'json/yb/channelDoco.json');
+                    if ($(item).attr('id') === 'channelChild') {
+                        bindFn(item, 'json/yb/channelChild.json');
                     }
                 });
                 break;
