@@ -7,7 +7,21 @@ let tencentRender = (function () {
     let $custommovie = $("#custommovie"),
         $cus_figure_list = $custommovie.find('.figure_list'),
         $timetable = $("#timetable"),
-        $tim_figure_list = $timetable.find('.figure_list');
+        $tim_figure_list = $timetable.find('.figure_list'),
+        $channelSeries = $("#channelSeries"),
+        $ser_figure_list = $channelSeries.find('.figure_list'),
+        $channelMovie = $("#channelMovie"),
+        $mov_figure_list = $channelMovie.find('.figure_list'),
+        $channelCartoon = $("#channelCartoon"),
+        $car_figure_list = $channelCartoon.find('.figure_list'),
+        $channelChild = $("#channelChild"),
+        $chi_figure_list = $channelChild.find('.figure_list'),
+        $channelUnitedstates = $("#channelUnitedstates"),
+        $uni_figure_list = $channelUnitedstates.find('.figure_list'),
+        $channelKarea = $("#channelKarea"),
+        $kar_figure_list = $channelKarea.find('.figure_list'),
+        $channelDoco = $("#channelDoco"),
+        $doc_figure_list = $channelDoco.find('.figure_list');
 
     // 创建节点集合
     let queryData = (data, context)=> {
@@ -47,15 +61,15 @@ let tencentRender = (function () {
                                 <a href="#" title="${video_title.split(' ')[0]}" data-id="${id}">${video_title.split(' ')[0]}</a>
                             </strong>
                             <div class="figure_desc" title="${text}">${text}</div>
-                            ${collect ?`<a href="javascript:;" class="figure_collect" title="加入看单" data-followlist="${id}" data-modidx="${modidx}">
+                            ${collect ? `<a href="javascript:;" class="figure_collect" title="加入看单" data-followlist="${id}" data-modidx="${modidx}">
                             <i class="icon iconfont icon_collect"></i>
                             <i class="icon iconfont icon_collected"></i>
-                            </a>`:``}
+                            </a>` : ``}
                         </div>
                     </li>`;
         }
         context.html(str);
-        if(typeof  modidx !== 'undefined'){
+        if (typeof  modidx !== 'undefined') {
             collectControl();
         }
     };
@@ -77,9 +91,9 @@ let tencentRender = (function () {
         let $iControl = $timetable.find('.figure_collect');
         for (var i = 0; i < $iControl.length; i++) {
             var item = $iControl[i];
-            if($(item).data('modidx') ==  0){
+            if ($(item).data('modidx') == 0) {
                 $(item).children().eq(0).show().siblings().hide();
-            }else {
+            } else {
                 $(item).children().eq(1).show().siblings().hide();
             }
         }
@@ -87,8 +101,16 @@ let tencentRender = (function () {
 
     return {
         init: function () {
+            // 封装函数，方便以后做延迟加载；
             requestFn('json/yb/custommovie.json', $cus_figure_list);
             requestFn('json/yb/timetable.json', $tim_figure_list);
+            requestFn('json/yb/channelSeries.json', $ser_figure_list);
+            requestFn('json/yb/channelMovie.json', $mov_figure_list);
+            requestFn('json/yb/channelCartoon.json', $car_figure_list);
+            requestFn('json/yb/channelChild.json', $chi_figure_list);
+            requestFn('json/yb/channelUnitedstates.json', $uni_figure_list);
+            requestFn('json/yb/channelKarea.json', $kar_figure_list);
+            requestFn('json/yb/channelDoco.json', $doc_figure_list);
         }
     }
 })();
@@ -150,6 +172,7 @@ tencentRender.init();
             },
             mouseleave: function (e) {
                 $(this).removeClass('ani_x_card_hover').find('video')[0].pause();
+
             }
         })
     };
@@ -259,6 +282,9 @@ tencentRender.init();
                 }
             }
         });
+        if (!$target.parents().hasClass('figure_mark')) {
+            x_poster_card.children().removeClass('ani_x_card_hover');
+        }
     };
     // 存储展示区域的地方
     let x_poster_card = $('.x_poster_card');
@@ -354,6 +380,14 @@ tencentRender.init();
             success : function (data) {
                 $(that).on({
                     'mouseover': function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        obtain(e, data);
+                    }
+                    ,
+                    'mousemove': (e)=> {
+                        e.stopPropagation();
+                        e.preventDefault();
                         obtain(e, data);
                     }
                 })
@@ -369,26 +403,77 @@ tencentRender.init();
 // 我的解决方案，如果能把页面中所有需要有这种鼠标经过就可以显示的效果请求的数据都存在一个地址，就可以解决这个问题
 $(document).on({
     'mouseover': function (e) {
-        let $target = $(e.target);
+        let target = e.target;
+
+        let bindFn = (ele, url_src)=> {
+            if ($(ele).isBind) return;
+            $(ele).isBind = true;
+            // 获取当前事件源父级容器绑定事件
+            $(ele).imgOver({
+                url: url_src
+            });
+        };
         // 查找事件源的所有父级元素中中符合条件的父级容器
-        $target.parents().each(function (index, item) {
-            if ($(item).attr('id') === 'custommovie') {
-                if (item.isBind) return;
-                item.isBind = true;
-                // 获取当前事件源父级容器绑定事件
-                $(item).imgOver({
-                    url: 'json/yb/custommovie.json'
+        switch ($(target).attr('id')) {
+            case 'custommovie':
+                bindFn(target, 'json/yb/custommovie.json');
+                break;
+            case 'timetable':
+                bindFn(target, 'json/yb/timetable.json');
+                break;
+            case 'channelSeries':
+                bindFn(target, 'json/yb/channelSeries.json');
+                break;
+            case  'channelMovie':
+                bindFn(target, 'json/yb/channelMovie.json');
+                break;
+            case  'channelCartoon':
+                bindFn(target, 'json/yb/channelCartoon.json');
+                break;
+            case  'channelChild':
+                bindFn(target, 'json/yb/channelChild.json');
+                break;
+            case  'channelUnitedstates':
+                bindFn(target, 'json/yb/channelUnitedstates.json');
+                break;
+            case  'channelKarea':
+                bindFn(target, 'json/yb/channelKarea.json');
+                break;
+            case  'channelDoco':
+                bindFn(target, 'json/yb/channelDoco.json');
+                break;
+            default :
+                $(target).parents().each(function (index, item) {
+                    if ($(item).attr('id') === 'custommovie') {
+                        bindFn(item, 'json/yb/custommovie.json');
+                    }
+                    if ($(item).attr('id') === 'timetable') {
+                        bindFn(item, 'json/yb/timetable.json');
+                    }
+                    if ($(item).attr('id') === 'channelSeries') {
+                        bindFn(item, 'json/yb/channelSeries.json');
+                    }
+                    if ($(item).attr('id') === 'channelMovie') {
+                        bindFn(item, 'json/yb/channelMovie.json');
+                    }
+                    if ($(item).attr('id') === 'channelCartoon') {
+                        bindFn(item, 'json/yb/channelCartoon.json');
+                    }
+                    if ($(item).attr('id') === 'channelChild') {
+                        bindFn(item, 'json/yb/channelChild.json');
+                    }
+                    if ($(item).attr('id') === 'channelUnitedstates') {
+                        bindFn(item, 'json/yb/channelUnitedstates.json');
+                    }
+                    if ($(item).attr('id') === 'channelKarea') {
+                        bindFn(item, 'json/yb/channelKarea.json');
+                    }
+                    if ($(item).attr('id') === 'channelDoco') {
+                        bindFn(item, 'json/yb/channelDoco.json');
+                    }
                 });
-            }
-            if ($(item).attr('id') === 'timetable') {
-                if (item.isBind) return;
-                item.isBind = true;
-                // 获取当前事件源父级容器绑定事件
-                $(item).imgOver({
-                    url: 'json/yb/timetable.json'
-                });
-            }
-        });
+                break;
+        }
     }
 });
 

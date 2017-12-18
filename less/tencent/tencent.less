@@ -56,22 +56,89 @@ em, i, u, s, strong, b {
     font-weight: 500;
     color: #202020;
 
-    .title_pic {
+    .title_pic_link {
       position: relative;
-      padding-left: 46px;
+      display: inline-block;
+      vertical-align: top;
+      color: #202020;
 
-      img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 36px;
-        height: 36px;
+      &:hover {
+        color: #ff6428;
+      }
+      .title_pic {
+        position: relative;
+        padding-left: 46px;
+
+        img {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 36px;
+          height: 36px;
+        }
       }
     }
+
     .sub_tit {
       margin-left: 5px;
       font-size: 14px;
       color: #999;
+    }
+  }
+
+  .title_action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 14px;
+
+    .mod_link_list {
+      display: inline-block;
+      font-size: 0;
+
+      .item {
+        position: relative;
+        float: left;
+        vertical-align: top;
+        margin-left: 26px;
+        font-size: 14px;
+
+        &:nth-of-type(1):after {
+          display: none;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          left: -15px;
+          top: 7px;
+          width: 4px;
+          height: 4px;
+          border-radius: 100%;
+          background-color: #afafaf;
+        }
+        &.item_ad {
+          top: 4px;
+          width: 1px;
+          height: 12px;
+          border-radius: 0;
+          border-left: 1px solid #afafaf;
+          padding-left: 0;
+          margin: 0 13px;
+
+          &:after {
+            display: none;
+          }
+        }
+
+        a {
+          color: #202020;
+
+          &:hover {
+            color: #ff6428;
+          }
+        }
+
+      }
     }
   }
 }
@@ -704,8 +771,8 @@ em, i, u, s, strong, b {
   display: block;
   visibility: visible;
   opacity: 1;
-  -webkit-animation: ani_x_card_hover .1s ease both;
-  animation: ani_x_card_hover .1s ease both;
+  -webkit-animation: ani_x_card_hover .1s ease backwards;
+  animation: ani_x_card_hover .1s ease backwards;
 }
 
 @keyframes ani_x_card_hover {
