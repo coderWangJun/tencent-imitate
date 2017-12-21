@@ -73,7 +73,6 @@ let tencentRender = (function () {
             collectControl();
         }
     };
-
     // 绑定数据
     let requestFn = (url, context)=> {
         $.ajax({
@@ -394,13 +393,11 @@ tencentRender.init();
                 $(that).on({
                     'mouseover': function (e) {
                         e.stopPropagation();
-                        e.preventDefault();
                         obtain(e, data);
                     }
                     ,
                     'mousemove': (e)=> {
                         e.stopPropagation();
-                        e.preventDefault();
                         obtain(e, data);
                     }
                 })
