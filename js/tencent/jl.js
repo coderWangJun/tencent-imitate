@@ -4,34 +4,26 @@
 /*姬利*/
 
 //顶部宣传
-let gitRender=(function () {
+~function(){
+    let $site_head_drawer=$('.site_head_drawer '),
+        $head_drawer_bait=$('.head_drawer_bait'),
+        $head_drawer_inner_wrap=$('.head_drawer_inner_wrap'),
+        $head_drawer_inner=$('.head_drawer_inner'),
+        $close=$('#close '),//关闭右侧X按钮
 
-    let topRender=function () {
-       let $site_head_drawer=$('.site_head_drawer '),
-           $head_drawer_bait=$('.head_drawer_bait'),
-           $head_drawer_inner_wrap=$('.head_drawer_inner_wrap'),
-           $head_drawer_inner=$('.head_drawer_inner'),
-           $close=$('#close '),//关闭右侧X按钮
+        $site_head_drawer_hide=$('.site_head_drawer_hide'),
 
-           $site_head_drawer_hide=$('.site_head_drawer_hide'),
+        $drawer_switch=$('.drawer_switch'),
+        $drawer_item=$('.drawer_item '),
+        $drawer_btn_prev=$('.drawer_btn_prev'),//右按钮
+        $drawer_btn_next=$('.drawer_btn_next');//左按钮
 
-           $drawer_switch=$('.drawer_switch'),
-           $drawer_item=$('.drawer_item '),
-           $drawer_btn_prev=$('.drawer_btn_prev'),//右按钮
-           $drawer_btn_next=$('.drawer_btn_next');//左按钮
-
-
-        $head_drawer_bait.on('mouseenter',function () {
-            $site_head_drawer_hide.addClass("js_hover");
-        }).on('mouseleave',function () {
-            $site_head_drawer_hide.removeClass("js_hover");
-        });
         //下箭头
         $head_drawer_bait.on('click',function () {
-            $head_drawer_inner_wrap.css('height','372px');
             $(this).css('height','0');
             $head_drawer_inner.css('marginTop','-20px');
-
+            $head_drawer_inner_wrap.css('height','372px');
+            $site_head_drawer_hide.removeClass('js_hover');
         });
 
         // 上箭头处理
@@ -41,41 +33,35 @@ let gitRender=(function () {
             $head_drawer_inner.css('marginTop','-260px');
         });
 
+        $head_drawer_bait.on('mouseover',function () {
+            $site_head_drawer_hide.addClass("js_hover").removeClass('js_leave');
+
+        }).on('mouseout',function () {
+            $site_head_drawer_hide.addClass('js_leave').removeClass("js_hover");
+
+        });
 
 
+        //顶部轮播切换
+        $drawer_btn_next.on('click',function () {
+            $(".drawer_item:lt(6)").css('display','none');
+            $(this).css('visibility','hidden');
+            $drawer_btn_prev.css('visibility','visible');
+            $drawer_btn_prev.css('opacity','1');
 
-       //顶部轮播切换
-            $drawer_btn_next.on('click',function () {
-                $(".drawer_item:lt(6)").css('display','none');
-                $(this).css('visibility','hidden');
-                $drawer_btn_prev.css('visibility','visible');
-                $drawer_btn_prev.css('opacity','1');
-
-            });
-            $drawer_btn_prev.on('click',function () {
-                $(".drawer_item:lt(6)").css('display','inline-block');
-                $(this).css('visibility','hidden');
-                $drawer_btn_next.css('visibility','visible');
-
-
-            });
-
-
-
-
+        });
+        $drawer_btn_prev.on('click',function () {
+            $(".drawer_item:lt(6)").css('display','inline-block');
+            $(this).css('visibility','hidden');
+            $drawer_btn_next.css('visibility','visible');
+        });
 
         //关闭按钮处理
         $close.on('click',function () {
             $site_head_drawer.css('display','none');
         });
-    };
-    return{
-        init:function () {
-            topRender();
-        }
-    }
-})();
-gitRender.init();
+}();
+
 
 //轮播
 let bannerRender=(function () {
@@ -90,7 +76,7 @@ let bannerRender=(function () {
         let initIndex=-1,
             autoSetTimer=null,//定时器
             auto=null,
-            autoTimer=2000;
+            autoTimer=3000;
 
         let $plan=$.Callbacks();
         //获取数据
@@ -146,7 +132,7 @@ let bannerRender=(function () {
         };
             function move() {
             initIndex++;
-            if(initIndex===$slideList.length){
+            if(initIndex===10){
                 initIndex=0;
             }
             change();
