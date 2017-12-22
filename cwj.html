@@ -4,20 +4,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Tencent Video</title>
+    <link rel="stylesheet" href="font/css/iconfont.css">
     <link rel="stylesheet/less" href="less/tencent/tencent.less">
     <link rel="stylesheet/less" href="less/tencent/cwj.less">
-    <script src="js/less-2.5.3.min.js"></script>
+    <link rel="stylesheet/less" href="less/tencent/jl.less">
     <link rel="stylesheet" href="icomoon/style.css">
+    <script src="js/less-2.5.3.min.js"></script>
 </head>
 <body>
 
 <!--我的追剧节目单-->
-<div class="site_head_drawer">
+<div class="site_head_drawer site_head_drawer_hide">
+    <!-- sprite svg -->
+    <svg class="txp_svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="svg_arrow_next_xs" viewBox="0 0 10 10">
+            <path d="M3.2 1.6c-.3.4-.2 1 .2 1.3L5.3 5 3.4 7.1c-.4.3-.5.8-.2 1.2.4.3.9.2 1.2-.2l2.4-2.6c.2-.2.3-.6.1-.9l-.1-.1-2.4-2.7c-.3-.3-.8-.4-1.2-.2z"></path>
+        </symbol>
 
+        <symbol id="svg_triangle_next_xs" viewBox="0 0 10 10">
+            <path d="M2 9l6-4-6-4v8z"></path>
+        </symbol>
+
+        <symbol id="svg_icon_user_lg" viewBox="0 0 36 36">
+            <path d="M1 34.98c.382.351.774.691 1.178 1.019A20.033 20.033 0 0 1 18 28.29a20.036 20.036 0 0 1 15.822 7.709c.403-.327.796-.668 1.178-1.019-4.17-5.126-10.241-8.355-17-8.355S5.17 29.854 1 34.98zm6.143-22.503c0-5.975 4.86-10.819 10.857-10.819s10.857 4.844 10.857 10.819c0 5.975-4.861 10.819-10.857 10.819S7.143 18.452 7.143 12.477zm23.384.005C30.527 5.588 24.918-.001 18-.001c-6.919 0-12.528 5.589-12.528 12.483S11.081 24.965 18 24.965c6.918 0 12.527-5.589 12.527-12.483z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_next_lg" viewBox="0 0 36 36">
+            <path d="M11.7 32.7c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4L23.5 18 10.3 4.7c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l14 14c.4.4.4 1-.2 1.5z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_prev_lg" viewBox="0 0 36 36">
+            <path d="M24.3 3.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L12.5 18l13.2 13.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-14-14c-.4-.4-.4-1 .2-1.5z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_up_lg" viewBox="0 0 36 36">
+            <path d="M18 10.9c-.2 0-.4.1-.5.3L5.8 22.7c-.4.6-.4 1.4 0 2 .6.4 1.4.4 2 0L18 14.8l10.2 9.8c.6.4 1.4.4 2 0 .4-.6.4-1.4 0-2L18.5 11.1c-.1-.1-.3-.2-.5-.2z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_down_sm" viewBox="0 0 16 16">
+            <path d="M8 12l6-6V4h-2L8 8 4 4H2v2l6 6z"></path>
+        </symbol>
+        <symbol id="svg_arrow_down_xs" viewBox="0 0 10 10">
+            <path d="M8.4 3.1c-.4-.2-1-.1-1.3.2L5 5.3l-2.1-2c-.3-.3-.8-.4-1.2-.2-.3.4-.2 1 .2 1.2l2.6 2.4c.2.3.6.4.9.2l.1-.1 2.6-2.4c.4-.3.5-.9.3-1.3zz"></path>
+        </symbol>
+
+        <symbol id="svg_icon_play_step" viewBox="0 0 20 20">
+            <path style="opacity:.3;fill:#fff;" d="M14 2c-1.2-.6-2.6-1-4-1-5 0-9 4-9 9 0 1.4.3 2.8 1 4 0 0 1.5 1.1 1.7-1.1C3.2 12 3 11 3 10c0-3.9 3.1-7 7-7 1.1 0 2.2.3 3.1.7 0 0 1.6.1.9-1.7z"></path>
+            <path style="opacity:.3;fill:#fff;" d="M8 7v6l5-3z"></path>
+            <path style="opacity:.8;fill:#ff6428;" d="M14 2l-.9 1.8C15.4 4.9 17 7.3 17 10c0 3.9-3.1 7-7 7-2.8 0-5.3-1.7-6.4-4.1L2 14c1.5 2.9 4.5 5 8.1 5 5 0 9-4 9-9C19 6.5 17 3.4 14 2z"></path>
+        </symbol>
+        <symbol id="svg_icon_follow" viewBox="0 0 20 20">
+            <path d="M19.2 7l-5.6-1.1L11 1.1c-.2-.3-.5-.6-.9-.6s-.7.2-.9.6L6.4 5.9.7 7c-.4.2-.7.6-.7 1 0 .3.1.6.4.8l3.7 4-.6 5.5v.1c0 .6.5 1 1 1 .2 0 .3 0 .5-.1l5.1-2.2 5.1 2.3c.1.1.3.1.4.1.6 0 1-.5 1-1v-.2l-.5-4c0-.6-.5-1.1-1.1-1.1s-1 .4-1 1l.2 2.5-4.2-1.9-4.3 1.9.6-4.7-3.1-3.3 4.6-.9L10 3.7l2.2 4.1 4.6.9-1.5 1.6-.1.1c-.2.2-.3.5-.3.8 0 .6.5 1.1 1.1 1.1.3 0 .5-.1.7-.3l2.9-3.2c.3-.2.4-.5.4-.8 0-.5-.4-.9-.8-1z"></path>
+        </symbol>
+        <symbol id="svg_icon_followed" viewBox="0 0 20 20">
+            <path d="M15 8.5c1.4 0 2.7.5 3.7 1.3l.9-1c.2-.1.3-.4.3-.6.1-.5-.2-1.1-.8-1.2l-5.5-1.1L11 1.1c-.1-.2-.3-.3-.4-.4-.6-.3-1.3-.1-1.5.4L6.4 5.9.8 7c-.3.1-.4.2-.6.4-.4.4-.3 1.1.1 1.4l3.7 4-.6 5.5v.1c0 .2 0 .3.1.5.3.5.9.7 1.4.4l4.7-2.1c-.3-.7-.6-1.7-.6-2.7 0-3.3 2.7-6 6-6zm-.1.8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.3-5-5-5zM18 14l-3.2 3.2c-.2.2-.4.3-.7.3-.2 0-.5-.1-.6-.3L12.1 16c-.3-.3-.3-.9 0-1.2.3-.3.9-.3 1.2 0l.7.7 2.7-2.7c.3-.3.9-.3 1.2 0 .4.3.4.8.1 1.2z"></path>
+        </symbol>
+        <symbol id="svg_icon_ellipsis" viewBox="0 0 20 20">
+            <path d="M8.5 16c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5zm0-6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5zm0-6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5z"></path>
+        </symbol>
+
+    </svg>
+
+    <!--关闭-->
+    <div class="head_drawer_bait">
+        <div class="drawer_bait_inner">
+            <i class="icon icon_play_step"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_play_step"></use></svg></i>
+            <span class="bait_text" id="top_followSeries_title">我的追剧节目单</span>
+            <i class="icon_sm arrow_down_sm"><svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_down_sm"></use></svg></i>
+            <div class="bait_poptips" id="top_followSeries_shut">
+                <div class="bait_poptips_content">3天内将不再出现追剧版块</div>
+                <i class="icon_xs icon_close_xs" id="close">
+                    <svg class="svg_icon" viewBox="0 0 10 10" width="10" height="10">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_close_xs">
+                            <svg id="svg_icon_close_xs" viewBox="0 0 10 10" width="100%" height="100%">
+                                <path d="M9.4 8.9l-.5.5-3.9-4-3.9 4-.5-.5 4-3.9-4-3.9.4-.4 4 3.9L8.9.7l.4.4L5.4 5l4 3.9z"></path>
+                            </svg>
+                        </use>
+                    </svg>
+                </i>
+            </div>
+        </div>
+        <!--<div class="drawer_bait_collapse_inner">-->
+        <!--<i class="icon_xs arrow_down_xs"><svg class="svg_icon" viewBox="0 0 10 10"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_down_xs"></use></svg></i>-->
+        <!--</div>-->
+    </div>
+
+    <!--打开-->
+    <div class="head_drawer_inner_wrap">
+        <div class="head_drawer_inner">
+            <div class="drawer_watch_list cf">
+
+                <div class="drawer_item drawer_item_login drawer_item_1">
+                    <a class="item_link" href="javascript:;" id="top_followSeries_login" _stat="top-followSeries:login">
+                        <span class="item_pic"><img src="//puui.qpic.cn/vcover_vt_pic/0/wze0f9voi6x1r9s1511754260/0" alt="登录" class="pic"></span>
+                        <div class="item_login">
+                            <i class="icon_lg icon_user_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_user_lg"></use></svg></i>
+                            <span class="login_hint">登录查看你感兴趣的内容</span>
+                            <span class="login_btn">登录</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_2">
+                    <div class="drawer_item_headline">也许你还喜欢看</div>
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/05r9c4oyuz1tp1o.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="我的！体育老师">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/05r9c4oyuz1tp1o1510283884/220" alt="我的！体育老师" class="pic" onerror="picerr(this,'v')">
+
+                    <span class="item_score">8<em class="ss">.8</em></span>
+                </span>
+                        <span class="item_name">我的！体育老师</span>
+
+                        <span class="item_desc">更新至00集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_3">
+                    <a class="item_link" href="https://v.qq.com/x/cover/41dicgms0277zoz.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="致我们单纯的小美好">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/41dicgms0277zoz1509076237/220" alt="致我们单纯的小美好" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">9<em class="ss">.1</em></span>
+                        </span>
+                        <span class="item_name">致我们单纯的小美好</span>
+
+                        <span class="item_desc">全23集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_4">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/641dgjmod92qq07.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="柒个我" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/641dgjmod92qq071511946838/220" alt="柒个我" class="pic">
+                    <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                    <span class="item_score">7<em class="ss">.2</em></span>
+                </span>
+                        <span class="item_name">柒个我</span>
+
+                        <span class="item_desc">更新至12集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_5">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/bzfkv5se8qaqel2.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="小猪佩奇全集" _stat="top-followSeries:item-4-106">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/bzfkv5se8qaqel2t1466571646.jpg/220" alt="小猪佩奇全集" class="pic">
+
+                    <span class="item_score">9<em class="ss">.7</em></span>
+                </span>
+                        <span class="item_name">小猪佩奇全集</span>
+
+                        <span class="item_desc" title="萌萌小猪佩奇">萌萌小猪佩奇</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_6">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/edaiel3h0k28p3d.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="东风破" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/edaiel3h0k28p3d1512459286/220" alt="东风破" class="pic">
+
+                    <span class="item_score">7<em class="ss">.0</em></span>
+                </span>
+                        <span class="item_name">东风破</span>
+
+                        <span class="item_desc">更新至00集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_7">
+                    <a class="item_link" href="https://v.qq.com/x/cover/i5w51tl7vbl5mid.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="猎场" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/i5w51tl7vbl5mid1513148800/220" alt="猎场" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">8<em class="ss">.3</em></span>
+                        </span>
+                        <span class="item_name">猎场</span>
+
+                        <span class="item_desc">全58集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_8">
+                    <a class="item_link" href="https://v.qq.com/x/cover/jb6wejrvi609u6f.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="花谢花飞花满天" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/jb6wejrvi609u6f1506499744/220" alt="花谢花飞花满天" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">7<em class="ss">.8</em></span>
+                        </span>
+                        <span class="item_name">花谢花飞花满天</span>
+                        <span class="item_desc">更新至26集</span>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_9">
+                    <a class="item_link" href="https://v.qq.com/x/cover/lg1nc5g8poyfuu8.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="吐槽大会 第2季" _stat="top-followSeries:item-4-10">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/lg1nc5g8poyfuu81513305215/220" alt="吐槽大会 第2季" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_4.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_4@2x.png 2x" alt="腾讯出品"></i>
+                            <span class="item_score">7<em class="ss">.5</em></span>
+                        </span>
+                        <span class="item_name">吐槽大会 第2季</span>
+                        <span class="item_desc" title="papi酱爆笑模仿叶璇">papi酱爆笑模仿叶璇</span>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_10">
+                    <a class="item_link" href="https://v.qq.com/x/cover/qg67m04ckextp6j.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="九州·海上牧云记" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/qg67m04ckextp6j1513149039/220" alt="九州·海上牧云记" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">9<em class="ss">.3</em></span>
+                        </span>
+                        <span class="item_name">九州·海上牧云记</span>
+
+                        <span class="item_desc">更新至50集</span>
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_11">
+                    <a class="item_link" href="https://v.qq.com/x/cover/vu9sw3n7yrh7qwm.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="极光之恋" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/vu9sw3n7yrh7qwm1511663240/220" alt="极光之恋" class="pic">
+
+                    <span class="item_score">6<em class="ss">.3</em></span>
+                </span>
+                        <span class="item_name">极光之恋</span>
+
+                        <span class="item_desc">更新至24集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_12">
+                    <a class="item_link" href="https://v.qq.com/x/cover/wze0f9voi6x1r9s.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="熊出没之探险日记" _stat="top-followSeries:item-4-106">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/wze0f9voi6x1r9s1511754260/220" alt="熊出没之探险日记" class="pic">
+
+                    <span class="item_score">7<em class="ss">.7</em></span>
+                </span>
+                        <span class="item_name">熊出没之探险日记</span>
+
+                        <span class="item_desc" title="两熊两人的森林大冒险">两熊两人的森林大冒险</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <a href="javascript:;" class="drawer_btn_prev drawer_btn_disabled" aria-label="向前" title="向前">
+                <i class="icon_lg arrow_prev_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_prev_lg"></use></svg></i>
+            </a>
+            <a href="javascript:;" class="drawer_btn_next" aria-label="向后" title="向后" _stat="top-followSeries:next">
+                <i class="icon_lg arrow_next_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_next_lg"></use></svg></i>
+            </a>
+
+            <div class="drawer_switch" id="top_followSeries_close">
+                <i class="icon_lg arrow_up_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_up_lg"></use></svg></i>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--banner 和 search-->
 <div class="site_channel_top">
+    <!--search-->
+    <div class="site_head">
+
+    </div>
     <!--site_boxs-->
     <div class="site_boxs">
         <!--search-->
@@ -76,22 +348,22 @@
                                 <div class="default_res default">
                                     <ol class="default_res_box">
                                         <!--<li class="default_res_head">-->
-                                            <!--<p class="clearfix">-->
-                                                <!--<span>热门搜索</span>-->
-                                                <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
-                                            <!--</p>-->
+                                        <!--<p class="clearfix">-->
+                                        <!--<span>热门搜索</span>-->
+                                        <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
+                                        <!--</p>-->
                                         <!--</li>-->
                                         <!--<li class="default_res_content">-->
-                                            <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
-                                            <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
-                                            <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
-                                            <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
-                                            <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
-                                            <!--<a href="#" class="default_link"> <span>6</span>柒个我</a>-->
-                                            <!--<a href="#" class="default_link"> <span>7</span>致我们单纯的小美好</a>-->
-                                            <!--<a href="#" class="default_link"> <span>8</span>演员的诞生 第1季</a>-->
-                                            <!--<a href="#" class="default_link"> <span>9</span>极光之恋</a>-->
-                                            <!--<a href="#" class="default_link"> <span>10</span>我的！体育老师</a>-->
+                                        <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
+                                        <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
+                                        <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
+                                        <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
+                                        <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
+                                        <!--<a href="#" class="default_link"> <span>6</span>柒个我</a>-->
+                                        <!--<a href="#" class="default_link"> <span>7</span>致我们单纯的小美好</a>-->
+                                        <!--<a href="#" class="default_link"> <span>8</span>演员的诞生 第1季</a>-->
+                                        <!--<a href="#" class="default_link"> <span>9</span>极光之恋</a>-->
+                                        <!--<a href="#" class="default_link"> <span>10</span>我的！体育老师</a>-->
 
                                         <!--</li>-->
                                     </ol>
@@ -100,107 +372,107 @@
                                     <ol class="search_result">
                                         <!--&lt;!&ndash;电视剧&ndash;&gt;-->
                                         <!--<li class="search_result_content">-->
-                                            <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电视剧</span><i-->
-                                                    <!--class="icon-arrow-up"></i></a>-->
-                                            <!--<div class="sb_richbox">-->
-                                                <!--<div class="sb_item clearfix">-->
-                                                    <!--<a class="sb_img_box">-->
-                                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
-                                                    <!--</a>-->
-                                                    <!--&lt;!&ndash;电视剧&ndash;&gt;-->
-                                                    <!--<div class="sb_text_box TV">-->
-                                                        <!--<div class="look_title">-->
-                                                            <!--<h6>全集39集</h6>-->
-                                                            <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
-                                                        <!--</div>-->
-                                                        <!--<a href="#" class="look tv_look">-->
-                                                            <!--立即播放-->
-                                                        <!--</a>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电视剧</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;电视剧&ndash;&gt;-->
+                                        <!--<div class="sb_text_box TV">-->
+                                        <!--<div class="look_title">-->
+                                        <!--<h6>全集39集</h6>-->
+                                        <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
+                                        <!--</div>-->
+                                        <!--<a href="#" class="look tv_look">-->
+                                        <!--立即播放-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <!--</li>-->
                                         <!--&lt;!&ndash;电影&ndash;&gt;-->
                                         <!--<li class="search_result_content">-->
-                                            <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
-                                                    <!--class="icon-arrow-up"></i></a>-->
-                                            <!--<div class="sb_richbox">-->
-                                                <!--<div class="sb_item clearfix">-->
-                                                    <!--<a class="sb_img_box">-->
-                                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
-                                                    <!--</a>-->
-                                                    <!--&lt;!&ndash;电影&ndash;&gt;-->
-                                                    <!--<div class="sb_text_box movie">-->
-                                                        <!--<div class="look_title">-->
-                                                            <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
-                                                        <!--</div>-->
-                                                        <!--<a href="#" class="look movie_look">-->
-                                                            <!--立即播放-->
-                                                        <!--</a>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;电影&ndash;&gt;-->
+                                        <!--<div class="sb_text_box movie">-->
+                                        <!--<div class="look_title">-->
+                                        <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
+                                        <!--</div>-->
+                                        <!--<a href="#" class="look movie_look">-->
+                                        <!--立即播放-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <!--</li>-->
                                         <!--&lt;!&ndash;综艺&ndash;&gt;-->
                                         <!--<li class="search_result_content">-->
-                                            <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
-                                                    <!--class="icon-arrow-up"></i></a>-->
-                                            <!--<div class="sb_richbox">-->
-                                                <!--<div class="sb_item clearfix">-->
-                                                    <!--<a class="sb_img_box">-->
-                                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
-                                                    <!--</a>-->
-                                                    <!--&lt;!&ndash;综艺&ndash;&gt;-->
-                                                    <!--<div class="sb_text_box" data-zy="zy">-->
-                                                        <!--<div class="zy">-->
-                                                            <!--<a href="#">2016-06-05 第12期：大结局！周冬雨泪崩吻上余文乐</a>-->
-                                                            <!--<a href="#">2016-08-06 第16期：大结局！周冬雨泪崩吻上余文乐</a>-->
-                                                        <!--</div>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;综艺&ndash;&gt;-->
+                                        <!--<div class="sb_text_box" data-zy="zy">-->
+                                        <!--<div class="zy">-->
+                                        <!--<a href="#">2016-06-05 第12期：大结局！周冬雨泪崩吻上余文乐</a>-->
+                                        <!--<a href="#">2016-08-06 第16期：大结局！周冬雨泪崩吻上余文乐</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
                                         <!--</li>-->
                                         <!--&lt;!&ndash;没有图片&ndash;&gt;-->
                                         <!--<li class="default_res_content">-->
-                                            <!--<a href="#" class="default_res_content"> 柒个我</a>-->
+                                        <!--<a href="#" class="default_res_content"> 柒个我</a>-->
                                         <!--</li>-->
 
                                     </ol>
                                 </div>
                                 <div class="history_res ">
                                     <!--<ul class="history_add">-->
-                                        <!--<li class="history_add_head">-->
-                                            <!--<p class="clearfix">-->
-                                                <!--<span>历史记录</span>-->
-                                                <!--<a href="#" class="more_search"> <i class="icon-trash-bin"></i>清除记录</a>-->
-                                            <!--</p>-->
-                                        <!--</li>-->
-                                        <!--<li class="history_add_content clearfix">-->
-                                            <!--<a href="#" class="default_link"> 柒个我</a>-->
-                                            <!--<a href="#" class="default_link"> 柒个我</a>-->
-                                            <!--<a href="#" class="default_link"> 致我们单纯的小美好</a>-->
-                                            <!--<a href="#" class="default_link"> 演员的诞生 第1季</a>-->
-                                            <!--<a href="#" class="default_link"> 极光之恋</a>-->
-                                            <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
-                                            <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
+                                    <!--<li class="history_add_head">-->
+                                    <!--<p class="clearfix">-->
+                                    <!--<span>历史记录</span>-->
+                                    <!--<a href="#" class="more_search"> <i class="icon-trash-bin"></i>清除记录</a>-->
+                                    <!--</p>-->
+                                    <!--</li>-->
+                                    <!--<li class="history_add_content clearfix">-->
+                                    <!--<a href="#" class="default_link"> 柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> 柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> 致我们单纯的小美好</a>-->
+                                    <!--<a href="#" class="default_link"> 演员的诞生 第1季</a>-->
+                                    <!--<a href="#" class="default_link"> 极光之恋</a>-->
+                                    <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
+                                    <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
 
-                                        <!--</li>-->
+                                    <!--</li>-->
                                     <!--</ul>-->
                                     <!--<ol class="default_res_box">-->
-                                        <!--<li class="default_res_head">-->
-                                            <!--<p class="clearfix">-->
-                                                <!--<span>热门搜索</span>-->
-                                                <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
-                                            <!--</p>-->
-                                        <!--</li>-->
-                                        <!--<li class="default_res_content">-->
-                                            <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
-                                            <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
-                                            <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
-                                            <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
-                                            <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
+                                    <!--<li class="default_res_head">-->
+                                    <!--<p class="clearfix">-->
+                                    <!--<span>热门搜索</span>-->
+                                    <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
+                                    <!--</p>-->
+                                    <!--</li>-->
+                                    <!--<li class="default_res_content">-->
+                                    <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
+                                    <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
+                                    <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
+                                    <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
 
-                                        <!--</li>-->
+                                    <!--</li>-->
                                     <!--</ol>-->
                                 </div>
                             </div>
@@ -224,40 +496,116 @@
                     <span class="mark_start"></span>
                     <span class="vip">vip</span>
                 </a>
-                <a href="#">
+                <a href="#" class="look_history_box">
                     <i class="icon-history"></i>
                     <span>看过</span>
+                    <u></u>
                 </a>
                 <a href="#">
                     <i class="icon-upload"></i>
                     <span>上传</span>
                 </a>
-                <a href="#">
+                <a href="#" class="down_load_box">
                     <i class="icon-pc"></i>
                     <span>下载客户端</span>
+                    <u></u>
                 </a>
-                <a href="#" class="user">
+                <a href="#" class="user_boxs">
+                    <i class="user"></i>
+                    <u></u>
                 </a>
+                <div class="site_quick_render history_con">
+                    <div class="look_history">
+                        <ul>
+                            <li>
+                                <div>
+                                    <i class="icon-history"></i>
+                                </div>
+                                <p>
+                                    你暂时还没有观看的记录哟~
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="more">
+                        <a href="#">登录查看更多</a>
+                    </div>
+                </div>
+                <div class="down_load_con">
+                    <div class="down_load">
+                        <ul>
+                            <li>
+                                <i class="icon-HD"></i>
+                                <span>1080P蓝光画质</span>
+                            </li>
+                            <li>
+                                <i class="icon-play"></i>
+                                <span>纯净式无框播放器</span>
+                            </li>
+                            <li>
+                                <i class="icon-san"></i>
+                                <span>三倍流畅播放</span>
+                            </li>
+                             <li>
+                                <a href="#">立即体验</a>
+                            </li>
 
-            </div>
-            <!--?-->
-            <div class="site_quick_render">
-                <div class="look_history">
-                    <ul>
-                        <li>
-                          <div>
-                              <i></i>
-                          </div>
-                            <p>
-                                还没有历史记录
-                            </p>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-                <div class="more">
-                    <a href="#">登录查看更多</a>
+                <div class="user_con">
+                    <div class="user_box">
+                        <div class="user_info">
+                           <div class="login_out_show">登陆之后可以</div>
+                            <div class="login_show clearfix">
+                                <p class="login_show"> QQ账号：<a href="#"><span></span><i></i></a></p>
+                                <p class="login_show"><a href="#">切换</a><a href="#">退出</a></p>
+                            </div>
+                        </div>
+                        <div class="open_vip">
+                            <span>开通VIP/超级影视VIP/看大片</span>
+                            <a href="#">开通</a>
+                        </div>
+                    </div>
+                    <div class="buy_vip">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>V币好礼</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+                                    </p>
+                                    <p>同步观看记录</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>免费抽奖</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>用户客户端看送VIP</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" class="pl_login">立即登录</a>
+                    </div>
                 </div>
             </div>
+
         </div>
         <!--隐藏盒子-->
         <div class="site_hide_nav">
@@ -406,9 +754,17 @@
 
     <!--banner-->
     <div class="site_slider">
-        <a href="#">
-            <img src="images/cwj/0.jpeg"></img>
-        </a>
+        <div class="banner_Container">
+            <ul class="wrapper">
+                <!--<li><a href="#"><img src="" data-img="images/jl/？ /banner1.jpg" alt="" ></a></li>-->
+            </ul>
+        </div>
+        <div class="banner_focus">
+            <!--<a href="#" class="focus_link select">-->
+            <!--<div class="focus_tit">王者出击</div>-->
+            <!--<div class="focus_txt">Baby贾玲决战峡谷</div>-->
+            <!--</a>-->
+        </div>
     </div>
 </div>
 
@@ -2167,7 +2523,6 @@
     </div>
 </div>
 
-
 <!--今日热点-->
 <div class="mod_row_box">
 
@@ -2189,343 +2544,24 @@
 </div>
 
 <!-- 你的专属频道-->
-<div class="mod_row_box">
+<div class="mod_row_box" id="custommovie">
     <div class="mod_hd">
-
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/custommovie.png" alt="">
+                        我的你的专属频道
+                    </span>
+                </a>
+                <span class="sub_tit">为你精心挑选</span>
+            </h2>
+        </div>
     </div>
-    <!--<div class="mod_bd">-->
-    <!--<div class="figure_scroll">-->
-    <!--<div class="mod_figure">-->
-    <!--<ul class="figure_list">-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--<li class="list_item" data-id="bb59kxkm8sb3i17">-->
-    <!--<a href="javascript:;" class="figure" target="_blank" data-float="tdcwgd32f4ykyxe">-->
-    <!--<img src="//puui.qpic.cn/vcover_vt_pic/0/tdcwgd32f4ykyxe1484907335/260" class="figure_pic"-->
-    <!--alt="欢乐送">-->
-    <!--<i class="mark_v">-->
-    <!--<img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" alt="VIP">-->
-    <!--</i>-->
-    <!--<div class="figure_count">2017-01-20 期</div>-->
-    <!--<div class="figure_score">-->
-    <!--<em class="score_l">7</em>-->
-    <!--<em class="score_s">.4</em>-->
-    <!--</div>-->
-    <!--</a>-->
-    <!--<div class="figure_detail">-->
-    <!--<strong class="figure_title">-->
-    <!--<a href="#" title="欢乐送" data-id="tdcwgd32f4ykyxe">欢乐送</a>-->
-    <!--</strong>-->
-    <!--<div class="figure_desc" title="小品《大考当前》">小品《大考当前》</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-</div>
-
-<!--存储效果节点-->
-<div class="x_poster_card">
-    <div class="x_poster_card_bd">
-        <div class="poster_card_video">
-            <a href="#" class="figure_video_outlink" id="94mini2">
-                <div class="figure_video">
-                    <video src="http://111.202.98.152/vhot2.qqvideo.tc.qq.com/ALtqmj3USZEF-cj30ghJi0dlopkp3e6IiRA4Lq0vjohc/d1530hze2j5.mp4?vkey=7403B70D0198635AF05927E0907043B5DA1FD9010258FA0E09EEAA9757B46881AB447622EFA8CA32A5D18930FC732B6D4AD5C5F8CD71A5A69B0720E1D20679C19CFA226EECB2FA554B4C1D6A6B21D18CCBF57DED9092B4CD&sdtfrom=v1095&guid=fe0d7dff7c883821aeccb570b0d7b523"
-                           style="background: url('//puui.qpic.cn/qqvideo_ori/0/d1530hze2j5_496_280/0') center center / cover no-repeat transparent;">
-                        <img src="" class="figure_video_poster" alt="">
-                    </video>
-                    <div class="figure_video_start">
-                        <i class="icon_l icon_play_l"></i>
-                    </div>
-                    <div class="figure_video_tools none">
-                        <span class="figure_info">0秒</span>
-                        <span class="figure_mute muted"></span>
-                    </div>
-                </div>
-            </a>
-            <div class="video_content">
-                <div class="video_title" title="猎场[DVD版] 2017 电视剧 都市">
-                    <a href="#" class="tit">猎场[DVD版]</a>
-                    <span>2017</span>
-                    <span>电视剧</span>
-                    <span>都市</span>
-                </div>
-                <div class="video_tags" title="胡歌/陈龙/孙红雷/张嘉译/祖峰/李强/胡兵">
-                    <span class="tag_tit">主演：</span>
-                    <span class="tag_tit">胡歌</span>
-                    <span class="tag_tit">陈龙</span>
-                    <span class="tag_tit">孙红雷</span>
-                    <span class="tag_tit">张嘉译</span>
-                    <span class="tag_tit">祖峰</span>
-                    <span class="tag_tit">李强</span>
-                    <span class="tag_tit">胡兵</span>
-                </div>
-                <div class="video_recommend">
-                    <span class="recommend_tit">推荐：</span>
-                    <sapn class="recommend_txt" title="猜你喜欢和颜值爆表.都市有关的精彩视频~">
-                        猜你喜欢和
-                        <span class="h1">颜值爆表.都市</span>
-                        有关的精彩视频~
-                    </sapn>
-                </div>
-                <div class="video_review">
-                    <span class="review_name">点评：</span>
-                    <span class="review_txt" title="16就等待播出，17年终于播放了，值的一看，都是实力派演员">16就等待播出，17年终于播放了，值的一看，都是实力派演员</span>
-                </div>
-                <div class="video_btn">
-                    <span class="video_btn_half _follow">
-                        <a href="javascript:;" class="z_figure_collect" title="加入看单">
-                            <i class="icon icon_collect"></i>
-                            <i class="icon icon_collected"></i>
-                        </a>
-                    </span>
-                    <span class="link"></span>
-                    <span class="video_btn_half _down" title="用客户端下载视频">
-                        <a href="javascript:;" class="z_figure_dl">
-                            <i class="icon icon_dl"></i>
-                            <i class="icon icon_dl_disabled"></i>
-                        </a>
-                    </span>
-                </div>
+    <div class="mod_bd">
+        <div class="figure_scroll">
+            <div class="mod_figure">
+                <ul class="figure_list"></ul>
             </div>
         </div>
     </div>
@@ -2533,17 +2569,166 @@
 
 <!-- 再看一遍-->
 <div class="mod_row_box">
+    <div class="mod_row_box">
+        <div class="mod_hd">
 
+        </div>
+        <div class="mod_bd">
+        </div>
+    </div>
 </div>
 
 <!-- 强势接挡-->
-<div class="mod_row_box">
+<div class="mod_row_box" id="timetable">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/rankplay.png" alt="">
+                        强势接挡
+                    </span>
+                </a>
+                <span class="sub_tit">近期上架内容的精彩内容</span>
+            </h2>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_listings_title">
+            <ul class="listings_list">
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">今天</div>
+                        <div class="txt">12月16日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
 
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">本周日
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">12月17日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周一</div>
+                        <div class="txt">12月18日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周二</div>
+                        <div class="txt">12月19日首播</div>
+                    </div>
+                    <div class="progress progress_4">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周二
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">12月19日首播</div>
+                    </div>
+                    <div class="progress progress_5">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周三</div>
+                        <div class="txt">12月20日首播</div>
+                    </div>
+                    <div class="progress progress_6">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">12月25日</div>
+                        <div class="txt">首播</div>
+                    </div>
+                    <div class="progress progress_7">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">12月28日
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">首播</div>
+                    </div>
+                    <div class="progress progress_8">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 同步剧场-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelSeries">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/tv.png" alt="">
+                        同步剧场
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">偶像爱情</a>
+                    </li>
+                    <li class="item">
+                        <a href="">宫斗权谋</a>
+                    </li>
+                    <li class="item">
+                        <a href="">玄幻史诗</a>
+                    </li>
+                    <li class="item item_ad"></li>
+                    <li class="item">
+                        <a href="">更多电视剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 花絮·剧透·预告片-->
@@ -2618,7 +2803,7 @@
 
 </div>
 
-<!-- 静态宣传图2-->
+<!-- 静态宣传图2x-->
 <div class="mod_row_box">
     <div class="mod_ad_main clearfix">
         <a href="##"><img src="https://swa.gtimg.com/web/snswin/2017/10/27/09/3408932.gif" alt="">
@@ -2632,8 +2817,49 @@
 
 
 <!-- 电影-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelMovie">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/movie.png" alt="">
+                        电影
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">最近热播</a>
+                    </li>
+                    <li class="item">
+                        <a href="">林正英僵尸片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">亲子电影</a>
+                    </li>
+                    <li class="item">
+                        <a href="">周末宅影院</a>
+                    </li>
+                    <li class="item">
+                        <a href="">午夜放映</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多电影
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 资讯·预告片-->
@@ -2653,28 +2879,206 @@
 </div>
 
 <!-- 动漫精选-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelCartoon">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/cartoon.png" alt="">
+                        动漫精选
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">三国演义</a>
+                    </li>
+                    <li class="item">
+                        <a href="">超神学院之雄兵连</a>
+                    </li>
+                    <li class="item">
+                        <a href="">欢乐斗地主</a>
+                    </li>
+                    <li class="item">
+                        <a href="">神契幻奇谭</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多动漫
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 儿童动画-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelChild">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/cartoon.png" alt="">
+                        少儿动画
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">超级小熊迷</a>
+                    </li>
+                    <li class="item">
+                        <a href="">豆乐儿歌</a>
+                    </li>
+                    <li class="item">
+                        <a href="">梦想三国</a>
+                    </li>
+                    <li class="item">
+                        <a href="">熊猫和小鼹鼠</a>
+                    </li>
+                    <li class="item">
+                        <a href="">小企鹅乐园</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多少儿视频
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 英美剧-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelUnitedstates">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/usuk.png" alt="">
+                        英美剧
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">2018美剧抢先看</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多英美剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 韩剧-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelKarea">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/kr.png" alt="">
+                        韩剧
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">泡菜喊上Wasabi</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多韩剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 纪录片-->
-<div class="mod_row_box">
-
+<div class="mod_row_box" id="channelDoco">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/doco.png" alt="">
+                        纪录片
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">BBC纪录片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">NHK纪录片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">美国历史频道</a>
+                    </li>
+                    <li class="item">
+                        <a href="">探索频道</a>
+                    </li>
+                    <li class="item">
+                        <a href="">国家地理</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多纪录片
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
 </div>
 
 <!-- 精选标签-->
@@ -2881,7 +3285,7 @@
                     href="http://service.qq.com/" rel="nofollow" target="_blank">客服中心</a> | <a
                     href="http://www.qq.com/map/" rel="nofollow" target="_blank">网站导航</a>
             </div>
-            <div class="copyrighten">Copyright © 1998 - <span>2017</span>
+            <div class="copyrighten">Copyright © 1998 - <span><script>document.write(new Date().getFullYear());</script></span>
                 Tencent. <a target="_blank" href="http://www.tencent.com/en-us/le/copyrightstatement.shtml"
                             rel="nofollow">All Rights Reserved.</a></div>
             <div class="copyrightzh">腾讯公司 <a target="_blank"
@@ -2896,6 +3300,246 @@
 
 <!--右侧底部定位功能条-->
 <div class="x_fixed_tool">
+    <svg class="txp_svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="svg_icon_backup" viewBox="0 0 20 20">
+            <path d="M17 14.463a.996.996 0 0 1-.724-.313l-6.275-6.695-6.275 6.695c-.381.406-1.014.418-1.414.034s-.415-1.021-.034-1.424L9.277 5.3c.378-.4 1.071-.4 1.448 0l7 7.46c.38.403.365 1.04-.035 1.424a.992.992 0 0 1-.69.279z"></path>
+        </symbol>
+        <symbol id="svg_icon_tinyapp" viewBox="0 0 20 20">
+            <path d="M6 18c-2.757 0-5-2.248-5-5.011a4.991 4.991 0 0 1 4.169-4.943 1.003 1.003 0 0 1 .331 1.977A2.994 2.994 0 0 0 3 12.989c0 1.658 1.346 3.006 3 3.006s3-1.348 3-3.006V7.016c0-2.763 2.243-5.011 5-5.011s5 2.248 5 5.011c0 2.476-1.842 4.608-4.285 4.96a1.003 1.003 0 0 1-.284-1.984A3.017 3.017 0 0 0 17 7.016c0-1.658-1.346-3.007-3-3.007s-3 1.349-3 3.007v5.973C11 15.752 8.757 18 6 18z"></path>
+        </symbol>
+        <symbol id="svg_icon_feedback" viewBox="0 0 20 20">
+            <path d="M6 9.417c0-.835.671-1.512 1.5-1.512.828 0 1.5.677 1.5 1.512s-.672 1.512-1.5 1.512c-.829 0-1.5-.677-1.5-1.512zm4.999 0c0-.835.672-1.512 1.5-1.512.829 0 1.5.677 1.5 1.512s-.671 1.512-1.5 1.512c-.828 0-1.5-.677-1.5-1.512zm3.72 6.645a.995.995 0 0 1-1.319-.513 1.01 1.01 0 0 1 .508-1.33 5.25 5.25 0 0 0 3.091-4.797c0-2.89-2.326-5.242-5.185-5.242H8.185C5.326 4.18 3 6.532 3 9.422c0 2.891 2.326 5.242 5.185 5.242h2.447l1.832 3.896a1.003 1.003 0 0 1-.902 1.44.998.998 0 0 1-.904-.576L9.367 16.68H8.185C4.224 16.68 1 13.424 1 9.422s3.224-7.258 7.185-7.258h3.629c3.961 0 7.185 3.256 7.185 7.258 0 2.871-1.68 5.477-4.28 6.64z"></path>
+        </symbol>
+        <symbol id="svg_icon_miniplayer" viewBox="0 0 20 20">
+            <path d="M17 19h-6a2 2 0 0 1-2-2v-2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2zm0-8h-4V3H3v10h8v4h6v-6zM6.975 8.025L5 10V5h5L8.012 6.988l6.507 6.493L16 12v4h-4l1.482-1.482-6.507-6.493z"></path>
+        </symbol>
+        <symbol id="svg_icon_download" viewBox="0 0 20 20">
+            <path d="M18.915 13.427c-1.487 3.428-4.986 5.644-8.915 5.644s-7.428-2.216-8.915-5.644a1.01 1.01 0 0 1 .516-1.327.994.994 0 0 1 1.316.52c1.169 2.694 3.949 4.435 7.083 4.435 3.135 0 5.915-1.741 7.083-4.435a.997.997 0 0 1 1.317-.52c.505.223.737.817.515 1.327zm-8.207.308a.996.996 0 0 1-1.416 0L5.294 9.704a1.011 1.011 0 0 1 0-1.424.992.992 0 0 1 1.413 0L9 10.59V1.937c0-.557.448-1.008 1-1.008.553 0 1 .451 1 1.008v8.653l2.293-2.31a.994.994 0 0 1 1.414 0c.39.393.39 1.031 0 1.424l-3.999 4.031z"></path>
+        </symbol>
+        <symbol id="svg_icon_win_lg" viewBox="0 0 36 36">
+            <path d="M17 26.7v-7.6l10 .1v9.2l-10-1.7zm0-16.4l10-1.8v9.2l-10 .1v-7.5zM9 19l6.6.1v7.4L9 25.3V19zm0-7.3l6.6-1.2v7.4L9 18v-6.3z"></path>
+        </symbol>
+        <symbol id="svg_icon_mac_lg" viewBox="0 0 36 36">
+            <path d="M27 22.9c-.5 1.2-.8 1.7-1.4 2.8-.9 1.5-2.2 3.3-3.9 3.3-1.4 0-1.8-1-3.7-1-2 0-2.4 1-3.8 1-1.6 0-2.9-1.7-3.8-3.2-2.6-4.1-2.9-9-1.3-11.6 1.1-1.8 2.9-2.9 4.6-2.9 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.9 4.2 2.3-3.7 2.2-3.1 7.8.7 9.3zm-9.7-11.4c-.1 0-.1 0 0 0-.3-1.3.3-2.7 1-3.6.8-1 2.2-1.8 3.4-1.9.2 1.4-.4 2.8-1.1 3.7-.8 1-2.1 1.8-3.3 1.8z"></path>
+        </symbol>
+        <symbol id="svg_icon_ipad_lg" viewBox="0 0 36 36">
+            <path d="M27 10H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2zm-1 14H10V12h16v12z"></path>
+        </symbol>
+        <symbol id="svg_icon_phone_lg" viewBox="0 0 36 36">
+            <path d="M23 29H13c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2zm0-19H13v16h10V10z"></path>
+        </symbol>
+        <symbol id="svg_icon_tv_lg" viewBox="0 0 36 36">
+            <path d="M27 24H9c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2zm0-12H9v10h18V12zM13 25h10c.6 0 1 .4 1 1s-.4 1-1 1H13c-.6 0-1-.4-1-1s.4-1 1-1z"></path>
+        </symbol>
+        <symbol id="svg_icon_qielive_lg" viewBox="0 0 36 36">
+            <path d="M24.9 9.2c-1.1.6-1.8 1.9-2.2 2.8 2.5 1.7 4 4.6 4 7.7 0 5.1-4 9.2-9 9.2s-9-4.1-9-9.2c0-2.5.9-4.8 2.7-6.6l.2-.2c.1-.2.2-.5.3-.8.2-.8.5-1.8 1.1-2.6C14.6 7.4 16.5 7 17.8 7c1.1 0 2 .3 2.6.6.8-.2 1.6-.3 2.6-.3.9 0 1.5.1 1.5.1.4.1.8.4.8.8.2.4 0 .8-.4 1zm-4.2.5c-.3.1-.7.1-1-.1-.3-.2-1-.5-1.9-.5-1.2 0-2.3.6-3.2 1.7-.4.5-.6 1.2-.7 1.8-.1.4-.2.9-.4 1.3-.1.1-.1.2-.2.3l-.3.3c-1.4 1.4-2.1 3.2-2.1 5.2 0 4 3.1 7.2 7 7.2s7-3.2 7-7.2c0-2.7-1.4-5.1-3.7-6.4-.4-.2-.6-.7-.5-1.2.2-.7.7-1.8 1.4-2.9-.6.2-1.1.3-1.4.5zm.6 10.5c-.7.6-1.5 1.1-2.4 1.5-.9.5-1.8.9-2.7 1.2-.6.2-1.2-.1-1.3-.7-.2-.9-.2-1.8-.2-2.7 0-.9 0-1.9.2-2.7.1-.6.7-.9 1.3-.7.9.3 1.8.7 2.7 1.2.9.5 1.7.9 2.4 1.5.5.4.6.9 0 1.4z"></path>
+        </symbol>
+        <symbol id="svg_icon_vcoin" viewBox="0 0 20 20">
+            <path d="M3 10c0-3.866 3.134-7 7-7s7 3.134 7 7-3.134 7-7 7-7-3.134-7-7zm-2 0c0 4.971 4.029 9 9 9s9-4.029 9-9-4.029-9-9-9-9 4.029-9 9zm12.609-1.562s.453-.938-.453-1.328c-.922-.313-1.156.515-1.156.515l-2 3.813-2-3.813s-.203-.844-1.156-.516c-.906.391-.453 1.329-.453 1.329l2.609 4.671s.281.734 1 .734l1-.734 2.609-4.671z"></path>
+        </symbol>
+
+
+
+    </svg>
+    <div role="usersign-container">
+        <svg class="svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="svg_icon_backup" viewBox="0 0 20 20">
+                <path d="M17 14.463a.996.996 0 0 1-.724-.313l-6.275-6.695-6.275 6.695c-.381.406-1.014.418-1.414.034s-.415-1.021-.034-1.424L9.277 5.3c.378-.4 1.071-.4 1.448 0l7 7.46c.38.403.365 1.04-.035 1.424a.992.992 0 0 1-.69.279z"></path>
+            </symbol>
+            <symbol id="svg_icon_tinyapp" viewBox="0 0 20 20">
+                <path d="M6 18c-2.757 0-5-2.248-5-5.011a4.991 4.991 0 0 1 4.169-4.943 1.003 1.003 0 0 1 .331 1.977A2.994 2.994 0 0 0 3 12.989c0 1.658 1.346 3.006 3 3.006s3-1.348 3-3.006V7.016c0-2.763 2.243-5.011 5-5.011s5 2.248 5 5.011c0 2.476-1.842 4.608-4.285 4.96a1.003 1.003 0 0 1-.284-1.984A3.017 3.017 0 0 0 17 7.016c0-1.658-1.346-3.007-3-3.007s-3 1.349-3 3.007v5.973C11 15.752 8.757 18 6 18z"></path>
+            </symbol>
+            <symbol id="svg_icon_feedback" viewBox="0 0 20 20">
+                <path d="M19.736 4.088l-8.649 8.648c-.13.13-.292.206-.46.24-.319.011-3.62.016-3.62.016s.015-3.093.002-3.516c.017-.205.097-.407.254-.564l8.649-8.648c.352-.352.923-.352 1.275 0l2.549 2.549c.352.352.352.923 0 1.275zm-10.561 5.462v1.275h1.275l4.824-4.825-1.274-1.274-4.825 4.824zm7.374-7.374l-1.275 1.275 1.275 1.275 1.275-1.275-1.275-1.275zm-5.966 10.815l.045-.014-.045.014zm-3.574-3.515l-.01.042.01-.042zm-3.002 6.516h12v-6h2v6c0 1.105-.896 2-2 2h-12c-1.105 0-2-.895-2-2v-12c0-1.105.895-2 2-2h6v2h-6v12z"></path>
+            </symbol>
+            <symbol id="svg_icon_miniplayer" viewBox="0 0 20 20">
+                <path d="M17 19h-6a2 2 0 0 1-2-2v-2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2zm0-8h-4V3H3v10h8v4h6v-6zM6.975 8.025L5 10V5h5L8.012 6.988l6.507 6.493L16 12v4h-4l1.482-1.482-6.507-6.493z"></path>
+            </symbol>
+            <symbol id="svg_icon_download" viewBox="0 0 20 20">
+                <path d="M18.915 13.427c-1.487 3.428-4.986 5.644-8.915 5.644s-7.428-2.216-8.915-5.644a1.01 1.01 0 0 1 .516-1.327.994.994 0 0 1 1.316.52c1.169 2.694 3.949 4.435 7.083 4.435 3.135 0 5.915-1.741 7.083-4.435a.997.997 0 0 1 1.317-.52c.505.223.737.817.515 1.327zm-8.207.308a.996.996 0 0 1-1.416 0L5.294 9.704a1.011 1.011 0 0 1 0-1.424.992.992 0 0 1 1.413 0L9 10.59V1.937c0-.557.448-1.008 1-1.008.553 0 1 .451 1 1.008v8.653l2.293-2.31a.994.994 0 0 1 1.414 0c.39.393.39 1.031 0 1.424l-3.999 4.031z"></path>
+            </symbol>
+            <symbol id="svg_icon_win_lg" viewBox="0 0 36 36">
+                <path d="M17 26.7v-7.6l10 .1v9.2l-10-1.7zm0-16.4l10-1.8v9.2l-10 .1v-7.5zM9 19l6.6.1v7.4L9 25.3V19zm0-7.3l6.6-1.2v7.4L9 18v-6.3z"></path>
+            </symbol>
+            <symbol id="svg_icon_mac_lg" viewBox="0 0 36 36">
+                <path d="M27 22.9c-.5 1.2-.8 1.7-1.4 2.8-.9 1.5-2.2 3.3-3.9 3.3-1.4 0-1.8-1-3.7-1-2 0-2.4 1-3.8 1-1.6 0-2.9-1.7-3.8-3.2-2.6-4.1-2.9-9-1.3-11.6 1.1-1.8 2.9-2.9 4.6-2.9 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.9 4.2 2.3-3.7 2.2-3.1 7.8.7 9.3zm-9.7-11.4c-.1 0-.1 0 0 0-.3-1.3.3-2.7 1-3.6.8-1 2.2-1.8 3.4-1.9.2 1.4-.4 2.8-1.1 3.7-.8 1-2.1 1.8-3.3 1.8z"></path>
+            </symbol>
+            <symbol id="svg_icon_ipad_lg" viewBox="0 0 36 36">
+                <path d="M27 10H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2zm-1 14H10V12h16v12z"></path>
+            </symbol>
+            <symbol id="svg_icon_phone_lg" viewBox="0 0 36 36">
+                <path d="M23 29H13c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2zm0-19H13v16h10V10z"></path>
+            </symbol>
+            <symbol id="svg_icon_tv_lg" viewBox="0 0 36 36">
+                <path d="M27 24H9c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2zm0-12H9v10h18V12zM13 25h10c.6 0 1 .4 1 1s-.4 1-1 1H13c-.6 0-1-.4-1-1s.4-1 1-1z"></path>
+            </symbol>
+            <symbol id="svg_icon_qielive_lg" viewBox="0 0 36 36">
+                <path d="M24.9 9.2c-1.1.6-1.8 1.9-2.2 2.8 2.5 1.7 4 4.6 4 7.7 0 5.1-4 9.2-9 9.2s-9-4.1-9-9.2c0-2.5.9-4.8 2.7-6.6l.2-.2c.1-.2.2-.5.3-.8.2-.8.5-1.8 1.1-2.6C14.6 7.4 16.5 7 17.8 7c1.1 0 2 .3 2.6.6.8-.2 1.6-.3 2.6-.3.9 0 1.5.1 1.5.1.4.1.8.4.8.8.2.4 0 .8-.4 1zm-4.2.5c-.3.1-.7.1-1-.1-.3-.2-1-.5-1.9-.5-1.2 0-2.3.6-3.2 1.7-.4.5-.6 1.2-.7 1.8-.1.4-.2.9-.4 1.3-.1.1-.1.2-.2.3l-.3.3c-1.4 1.4-2.1 3.2-2.1 5.2 0 4 3.1 7.2 7 7.2s7-3.2 7-7.2c0-2.7-1.4-5.1-3.7-6.4-.4-.2-.6-.7-.5-1.2.2-.7.7-1.8 1.4-2.9-.6.2-1.1.3-1.4.5zm.6 10.5c-.7.6-1.5 1.1-2.4 1.5-.9.5-1.8.9-2.7 1.2-.6.2-1.2-.1-1.3-.7-.2-.9-.2-1.8-.2-2.7 0-.9 0-1.9.2-2.7.1-.6.7-.9 1.3-.7.9.3 1.8.7 2.7 1.2.9.5 1.7.9 2.4 1.5.5.4.6.9 0 1.4z"></path>
+            </symbol>
+            <!--新增SVG-->
+            <symbol id="svg_icon_close_att" viewBox="0 0 10 10">
+                <path d="M7 6h1v1h1v1h1v2h-2v-1h-1v-1h-1v-1h-2v1h-1v1h-1v1h-2v-2h1v-1h1v-1h1v-2h-1v-1h-1v-1h-1v-2h2v1h1v1h1v1h2v-1h1v-1h1v-1h2v2h-1v1h-1v1h-1v2z"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoin_lg_att" viewBox="0 0 36 36">
+                <circle id="Oval" fill="#FFD600" cx="18" cy="18" r="16"></circle>
+                <circle id="Oval_1_" fill="#F3B600" cx="18" cy="18" r="12.5"></circle>
+                <polygon id="Shape" fill="#FFF300" points="24.912,12 19.543,25.216 16.391,25.216 11,12 14.478,12 17.956,21.44 21.434,12"></polygon>
+            </symbol>
+            <symbol id="svg_icon_mall_lg_att" viewBox="0 0 36 36">
+                <path d="M29,33 L7,33 C5.895,33 5,32.105 5,31 L6,13 C6,11.895 6.895,11 8,11 L10,11 C10,6.582 13.582,3 18,3 C22.418,3 26,6.582 26,11 L28,11 C29.105,11 30,11.895 30,13 L31,31 C31,32.105 30.105,33 29,33 Z M18,6 C15.239,6 13,8.239 13,11 L23,11 C23,8.239 20.761,6 18,6 Z M27,14 L9,14 L8,30 L28,30 L27,14 Z"></path>
+            </symbol>
+            <symbol id="svg_icon_tv_lg_att" viewBox="0 0 36 36">
+                <path d="M20.5,26h-9c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h9c0.828,0,1.5-0.672,1.5-1.5S21.328,26,20.5,26z"></path>
+                <path d="M28,5H4C2.895,5,2,5.895,2,7v15c0,1.105,0.895,2,2,2h24c1.105,0,2-0.895,2-2V7C30,5.895,29.105,5,28,5zM27,21H5V8h22V21z"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_normal_att" viewBox="0 0 52 41">
+                <path d="M4.659 13.496s-.727-.935-.793-1.662v.001c-.198-.948-.282-2.432.173-4.081.191-.69.724-1.093.724-1.093 1.744-1.731 3.295-2.035 3.295-2.035l-.024.074c.499-.005 1.637.077 1.542.927-.131 1.179-3.367 7.321-4.917 7.869z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 23.523s3.038 12.186 3.62 9.97c0 0 2.934 3.137 5.544 3.968 2.61.832 9.558 1.581 12.506.336 2.949-1.245 8.362-3.083 9.86-6.063 0 0 1.272.334 2.694-1.747-1.414 1.092 3.522-3.448.129-4.765l-1.259 1.767s2.13-6.756.954-9.922c0 0-7.692-13.097-19.64-12.559 0 0-17.196 4.252-14.407 19.014z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M34 31h-3c-1.105 0-2-.895-2-2s.895-2 2-2h3c1.105 0 2 .895 2 2s-.895 2-2 2zm-20 0h-3c-1.104 0-2-.895-2-2s.896-2 2-2h3c1.104 0 2 .895 2 2s-.896 2-2 2z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M12.011 14.803s1.658 7.54 20.326 6.58c.657-.712-.71-2.293-1.848-5.64 0 0 3.858 2.583 5.511 10.257 1.254 5.822-2.715 8.434-5.515 11.362l1.045 2.968c2.167-.449 5.907-3.578 5.975-.552.07 3.025 4.881-.046 8.183-3.501 0 0 7.817-3.105 6.052-12.084-2.179-11.088-13.021-20.975-21.327-23.43-2.423-.716-13.331-2.402-19.398 3.76 1.808-1.836-10.689 6.115-11.015 21.559-.234 11.09 7.035 14.61 8.46 14.631 2.723.041.37-1.646 4.909-.388 0 0 7.16 1.229-.433-4.843-6.419-5.134-4.041-13.591-.924-20.68z" id="Shape" fill="#884C43"></path>
+                <path d="M36.672.512s-1.387.685-1.149 2.3c.238 1.615 6.332 12.74 8.413 14.739 0 0 .618 1.381 2.978-2.108l-10.242-14.931z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.048.025s-2.561-.163-1.295 2.166c0 0 5.771 10.938 8.478 13.193 0 0 .925 1.075 1.949-.235 1.023-1.31 3.221-7.998 2.18-9.923-1.041-1.925-4.522-3.323-11.313-5.202z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.562 3.958s-2.13.28-2.344 1.993c-.215 1.712 2.825 9.175 5.523 9.97 0 0 2.585-.699 3.063-1.606.478-.908-6.241-10.356-6.241-10.356z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.555 3.884s4.148-.43 8.224 2.125c0 0 1.47.562 1.352 1.898-.274 3.104-2.198 5.55-3.453 6.759 0 0-5.684-5.278-6.122-10.782z" id="Shape" fill="#F7A741"></path>
+                <path d="M29 28c-1.105 0-2-1.343-2-3s.895-3 2-3 2 1.343 2 3-.895 3-2 3zm-14 0c-1.104 0-2-1.343-2-3s.896-3 2-3c1.105 0 2 1.343 2 3s-.895 3-2 3z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_squinting_att" viewBox="0 0 52 41">
+                <path d="M4.659 13.496s-.727-.935-.793-1.662v.001c-.198-.948-.282-2.432.173-4.081.191-.69.724-1.093.724-1.093 1.744-1.731 3.295-2.035 3.295-2.035l-.024.074c.499-.005 1.637.077 1.542.927-.131 1.179-3.367 7.321-4.917 7.869z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 23.523s3.038 12.186 3.62 9.97c0 0 2.934 3.137 5.544 3.968 2.61.832 9.558 1.581 12.506.336 2.949-1.245 8.362-3.083 9.86-6.063 0 0 1.272.334 2.694-1.747-1.414 1.092 3.522-3.448.129-4.765l-1.259 1.767s2.13-6.756.954-9.922c0 0-7.692-13.097-19.64-12.559 0 0-17.196 4.252-14.407 19.014z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M34 31h-3c-1.105 0-2-.895-2-2s.895-2 2-2h3c1.105 0 2 .895 2 2s-.895 2-2 2zm-20 0h-3c-1.104 0-2-.895-2-2s.896-2 2-2h3c1.104 0 2 .895 2 2s-.896 2-2 2z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M12.011 14.803s1.658 7.54 20.326 6.58c.657-.712-.71-2.293-1.848-5.64 0 0 3.858 2.583 5.511 10.257 1.254 5.822-2.715 8.434-5.515 11.362l1.045 2.968c2.167-.449 5.907-3.578 5.975-.552.07 3.025 4.881-.046 8.183-3.501 0 0 7.817-3.105 6.052-12.084-2.179-11.088-13.021-20.975-21.327-23.43-2.423-.716-13.331-2.402-19.398 3.76 1.808-1.836-10.689 6.115-11.015 21.559-.234 11.09 7.035 14.61 8.46 14.631 2.723.041.37-1.646 4.909-.388 0 0 7.16 1.229-.433-4.843-6.419-5.134-4.041-13.591-.924-20.68z" id="Shape" fill="#884C43"></path>
+                <path d="M36.672.512s-1.387.685-1.149 2.3c.238 1.615 6.332 12.74 8.413 14.739 0 0 .618 1.381 2.978-2.108l-10.242-14.931z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.048.025s-2.561-.163-1.295 2.166c0 0 5.771 10.938 8.478 13.193 0 0 .925 1.075 1.949-.235 1.023-1.31 3.221-7.998 2.18-9.923-1.041-1.925-4.522-3.323-11.313-5.202z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.562 3.958s-2.13.28-2.344 1.993c-.215 1.712 2.825 9.175 5.523 9.97 0 0 2.585-.699 3.063-1.606.478-.908-6.241-10.356-6.241-10.356z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.555 3.884s4.148-.43 8.224 2.125c0 0 1.47.562 1.352 1.898-.274 3.104-2.198 5.55-3.453 6.759 0 0-5.684-5.278-6.122-10.782z" id="Shape" fill="#F7A741"></path>
+                <path d="M31.69 26.25c-.842.774-.813-1.475-3.058-1.266-2.245.209-2.288 1.902-3.139 2.015-1.074.142-.494-2.721 2.055-3.78 2.568-1.067 5.428 1.849 4.143 3.031zm-14.211.75c-.847-.113-.89-1.807-3.125-2.015-2.235-.209-2.207 2.04-3.045 1.266-1.28-1.181 1.568-4.098 4.124-3.031 2.537 1.059 3.115 3.923 2.046 3.78z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_mouth_att" viewBox="0 0 52 41">
+                <path d="M9.575 6.67c-.131 1.189-3.367 7.386-4.917 7.94 0 0-.727-.944-.793-1.678v.001c-.198-.956-.282-2.454.173-4.117.191-.696.724-1.103.724-1.103 1.744-1.746 3.295-2.053 3.295-2.053l-.024.075c.499-.005 1.637.078 1.542.935z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 24.727s3.038 12.295 3.619 10.059c0 0 2.935 3.165 5.544 4.004 2.609.839 9.558 1.595 12.506.339 2.949-1.256 8.362-3.11 9.86-6.117 0 0 1.272.336 2.694-1.763-1.414 1.102 3.522-3.479.129-4.807l-1.259 1.783s2.13-6.816.954-10.011c0 0-7.692-13.215-19.64-12.671 0 0-17.196 4.29-14.407 19.184z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M13 13.123s.669 7.598 19.337 6.629c.657-.718-.71-3.252-1.848-6.629 0 0 3.892 3.638 5.544 11.38 1.253 5.874-2.748 9.355-5.548 12.309l1.045 2.994c2.167-.453 5.907-3.61 5.975-.557.07 3.053 4.881 1.831 8.183-1.655 0 0 7.817-3.132 6.052-12.192-2.179-11.187-13.029-22.633-20.327-24.648-2.438-.673-13.331-2.424-19.398 3.794 1.808-1.852-11.688 7.179-12.015 22.761-.234 11.189 7.035 11.924 8.46 11.946 2.723.041.37-1.66 4.909-.392 0 0 7.16 1.241-.433-4.887-6.419-5.179-3.646-14.709.065-20.854z" id="Shape" fill="#884C43"></path>
+                <path d="M37.16 2.159s-1.424.61-1.278 2.25c.146 1.64 5.595 13.199 7.559 15.332 0 0 .538 1.428 3.093-1.951l-9.374-15.63z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.562 1.748s-2.548-.312-1.417 2.107c0 0 5.138 11.351 7.712 13.779 0 0 .863 1.136 1.959-.124 1.096-1.261 3.673-7.871 2.743-9.87-.93-1.998-4.325-3.608-10.997-5.892z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.853 5.623s-2.142.159-2.454 1.872c-.312 1.713 2.297 9.405 4.944 10.362 0 0 2.622-.555 3.15-1.441.529-.887-5.64-10.792-5.64-10.792z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.851 5.549s4.166-.194 8.089 2.616c0 0 1.435.651 1.241 1.99-.451 3.111-2.511 5.464-3.833 6.609 0 0-5.373-5.644-5.496-11.215z" id="Shape" fill="#F7A741"></path>
+                <path d="M34.406 29.078h-2.75c-1.035 0-1.875-.84-1.875-1.875 0-1.035.84-1.875 1.875-1.875h2.75c1.036 0 1.875.84 1.875 1.875 0 1.035-.839 1.875-1.875 1.875zm-20.437 0h-2.75c-1.036 0-1.875-.84-1.875-1.875 0-1.035.839-1.875 1.875-1.875h2.75c1.036 0 1.875.84 1.875 1.875 0 1.035-.84 1.875-1.875 1.875z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M23.75 25.985c.155.456.25.96.25 1.5 0 1.933-1.119 3.5-2.5 3.5s-2.5-1.567-2.5-3.5c0-.54.095-1.044.25-1.5h4.5z" id="Shape" fill="#ED735B"></path>
+                <path d="M29 24.985c-1.105 0-2-1.344-2-3 0-1.657.895-3 2-3s2 1.343 2 3c0 1.656-.895 3-2 3zm-14 0c-1.104 0-2-1.344-2-3 0-1.657.896-3 2-3 1.105 0 2 1.343 2 3 0 1.656-.895 3-2 3z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_pack_att" viewBox="0 0 38 56">
+                <path fill="#453027" d="M38 12.983c-2.626-1.517-15.085-8.018-25.422-1.395 0 0-17.507 11.438-3.408 27.28 0 0 10.066 10.39 9.367 7.844 0 0 1.068 3.024 8.518 1.959 0 0 7.185-.927 10.945-5.473v-30.215z"></path>
+                <path fill="#FAA832" d="M3.759 32.486s-1.182-.478-1.634-1.119l-.001.001c-.694-.774-1.573-2.11-2.036-3.89-.194-.745.085-1.407.085-1.407.692-2.551 1.974-3.672 1.974-3.672l.018.083c.458-.272 1.565-.817 1.936.029.513 1.168.806 8.628-.342 9.975z"></path>
+                <path fill="#FFE3D6" d="M38.001 16.959c-4.601-1.94-14.455-4.986-22.47.15 0 0-13.735 13.236-3.182 25.464 0 0 9.397 9.698 8.744 7.322 0 0 4.425 1.334 7.305.7 2.182-.48 6.657-2.351 9.603-4.424v-29.212z"></path>
+                <ellipse transform="matrix(.501 .865 -.865 .501 42.336 -13.025)" fill="#573C3B" cx="32.466" cy="30.209" rx="3" ry="2"></ellipse>
+                <path fill="#E29774" d="M38.001 45.469c-.583-.586-1.39-.95-2.281-.95-1.775 0-3.22 1.444-3.22 3.221 0 1.775 1.444 3.22 3.22 3.22.891 0 1.698-.364 2.281-.95v-4.541z"></path>
+                <ellipse transform="matrix(-.866 .501 -.501 -.866 55.248 60.615)" fill="#573C3B" cx="19.485" cy="37.726" rx="2" ry="3"></ellipse><circle fill="#FFE3D6" cx="35.72" cy="47.74" r="2.281"></circle>
+                <path fill="#5AE8A2" d="M38 .024c-2.316-.002-5.651.673-10.382 1.909 0 0-2.475 1.231-.04 2.714 0 0 5.77 3.614 10.422 5.904v-10.527z"></path>
+                <path d="M18.756 40.459l-2.596 1.503c-.955.554-1.282 1.777-.728 2.733.553.956 1.777 1.282 2.733.729l2.596-1.504c.956-.553 1.282-1.777.728-2.733-.553-.956-1.777-1.282-2.733-.728zM38.001 29.341l-.207.094-2.596 1.503c-.955.554-1.282 1.777-.728 2.733.554.956 1.777 1.282 2.733.729l.798-.462v-4.597z" fill="#F9B1A1"></path>
+                <path fill="#8A4C40" d="M33.803 24.885c.228-1.017-1.897-1.749-4.761-4.25 0 0 4.164.945 8.958 5.236v-18.669c-6.273-2.25-12.615-3.012-16.706-1.931-2.631.695-13.718 4.959-16.052 13.966.696-2.683-7.06 12.929.956 27.473 5.756 10.443 14.427 9.794 15.767 9.046 2.559-1.431-.543-1.73 4.366-3.01 0 0 7.334-2.721-3.014-4.273-8.748-1.311-10.612-11.28-12.002-18.739 0 0 5.607 6.12 22.488-4.849z"></path>
+                <path fill="#22BC68" d="M38 8.55l-11.402-5.421s-.924 1.386.168 2.76c.764.96 6.7 4.701 11.234 7.116v-4.455z"></path>
+                <path fill="#FAA832" d="M38 3.893c-.482-.088-.886-.025-.886-.025-5.175-.178-8.809 2.461-8.809 2.461 2.374 3.437 7.097 5.362 9.695 6.205v-8.641z"></path>
+                <path fill="#FF9635" d="M38 11.248c-3.193-1.917-9.649-4.854-9.649-4.854s-1.834 1.41-1.111 3.119c.722 1.709 7.576 7.011 10.518 6.295l.242-.256v-4.304z"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_hand_att" viewBox="0 0 44 6">
+                <path d="M41.260,6.000 C39.746,6.000 38.520,4.657 38.520,3.000 C38.520,1.343 39.746,-0.000 41.260,-0.000 C42.773,-0.000 44.000,1.343 44.000,3.000 C44.000,4.657 42.773,6.000 41.260,6.000 ZM2.740,6.000 C1.227,6.000 0.000,4.657 0.000,3.000 C0.000,1.343 1.227,-0.000 2.740,-0.000 C4.254,-0.000 5.480,1.343 5.480,3.000 C5.480,4.657 4.254,6.000 2.740,6.000 Z" fill="#ffe3d6"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoin_att" viewBox="0 0 20 20">
+                <rect fill="none" width="20" height="20"></rect>
+                <circle fill="#FED431" cx="10" cy="10" r="9"></circle>
+                <circle fill="#F1B42A" cx="10" cy="10" r="7.03"></circle>
+                <path fill="#FFEF37" d="M13.913,6.2l-3.021,7.6H9.12L6.087,6.2h1.957L10,11.629L11.956,6.2H13.913z"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoincirle_lg_att" viewBox="0 0 60 60">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFD600" d="M28.599 5.818c3.192 0 6.371-4.818-1.535-4.818-14.402 0-26.078 11.952-26.078 26.696 0 5.693 1.755 10.96 4.722 15.294-1.053-2.801-2.66-7.854-2.66-11.035 0-16.751 11.995-26.137 25.551-26.137zm25.698 11.192c1.052 2.801 2.657 7.854 2.657 11.035 0 16.751-11.983 26.137-25.525 26.137-3.188 0-6.364 4.818 1.533 4.818 14.388 0 26.053-11.952 26.053-26.696 0-5.694-1.754-10.96-4.718-15.294z"></path>
+            </symbol>
+        </svg>
+        <div class="ft_vcoin_mm">     <!--视频妹动画-->     <div class="att_slide_mm">       <div class="att_slide_mm_inner" role="sister-vip-container">         <a href="javascript:;" class="att_mm_vcoin" role="sisterSignButton">           <div class="att_mm_pic">             <i class="icon_mm icon_mm_normal_att "><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_normal_att"></use></svg></i>             <i class="icon_mm icon_mm_squinting_att"><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_squinting_att"></use></svg></i>             <i class="icon_mm icon_mm_mouth_att"><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_mouth_att"></use></svg></i>             <i class="icon_mm icon_mm_hand_att"><svg class="svg_icon_xx" viewBox="0 0 44 6" width="44" height="6"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_hand_att"></use></svg></i>           </div>           <div class="att_btn_att">             <span class="txt">签到+20</span>             <i class="icon icon_vcoin_att"><svg class="svg_icon_xx" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_att"></use></svg></i>           </div>         </a>                </div>     </div>     <!--微币圆动画-->     <div class="att_vcoincirle">       <i class="icon_mm icon_vcoin_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_lg_att"></use></svg></i>       <i class="icon_mm icon_vcoincirle_lg_att"><svg class="svg_icon_xx" viewBox="0 0 60 60" width="60" height="60"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoincirle_lg_att"></use></svg></i>       <span class="add_num">+20</span>     </div>     <a class="btn_close" id='btn_close_J' href="javascript:;" role="usersign-sister-close">       <i class="icon_xs icon_close_xs"><svg class="svg_icon_xx" viewBox="0 0 10 10" width="10" height="10"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_close_att"></use></svg></i>     </a>   </div></div>
+
+
+
+    <div class="ft_cell ft_cell_vcoin" role="sister-sidelist">
+        <i class="icon icon_vcoin"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin"></use></svg></i>
+        <div class="ft_cell_pop ft_vcoin_pop" role="sidelist-content">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_vcoin_content">
+                <a role="sidelist-showvb" href="http://v.qq.com/u/wallet/vbtask.html" target="_blank;" class="ft_vcoin_item">
+                    <i class="icon_lg icon_vcoin_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_lg_att"></use></svg>
+                        <span class="add_num">+5</span></i>
+                    <span class="tit">0V币</span>
+                    <span class="txt"><span class="num">0</span>V币待领取</span>
+                </a>
+                <a role="sidelist-vbshop" href="http://v.qq.com/u/wallet/" target="_blank;" class="ft_vcoin_item">
+                    <i class="icon_lg icon_mall_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mall_lg_att"></use></svg></i>
+                    <span class="tit">V币商城</span>
+                    <span class="txt">V币换礼品</span>
+                </a>
+                <a role="sidelist-download" class="ft_vcoin_item" data-clipboard-text="qqlivechannel=channel1.grow_nav_download">
+                    <i class="icon_lg icon_tv_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_lg_att"></use></svg></i>
+                    <span class="tit">电脑桌面版</span>
+                    <span class="txt">签到五天送VIP</span>
+                    <span class="sup">送VIP</span></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <a href="https://support.qq.com/products/2208" target="blank" class="ft_cell ft_cell_feedback _feedback" _stat="support:click">
+        <i class="icon icon_feedback"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_feedback"></use></svg></i>
+        <div class="ft_cell_pop ft_general_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_general_content">
+                <span class="txt">意见反馈</span>
+            </div>
+        </div>
+    </a>
+
+
+    <div class="ft_cell ft_cell_download _download">
+        <i class="icon icon_download"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_download"></use></svg></i>
+        <div class="ft_cell_pop ft_dl_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_dl_content">
+                <a href="http://v.qq.com/download.html#pc" class="ft_dl_cell" target="_blank" _stat="shortcut:download-pc">
+                    <i class="icon_lg icon_win_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_win_lg"></use></svg></i>
+                    <span class="text_icon">Win</span>
+                </a>
+                <a href="http://v.qq.com/download.html#mac" class="ft_dl_cell" target="_blank" _stat="shortcut:download-mac">
+                    <i class="icon_lg icon_mac_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mac_lg"></use></svg></i>
+                    <span class="text_icon">Mac</span>
+                </a>
+                <a href="http://v.qq.com/download.html#pad" class="ft_dl_cell" target="_blank" _stat="shortcut:download-pad">
+                    <i class="icon_lg icon_ipad_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_ipad_lg"></use></svg></i>
+                    <span class="text_icon">iPad</span>
+                </a>
+                <a href="http://v.qq.com/download.html#phone" class="ft_dl_cell" target="_blank" _stat="shortcut:download-phone">
+                    <i class="icon_lg icon_phone_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_phone_lg"></use></svg></i>
+                    <span class="text_icon">移动端</span>
+                </a>
+                <a href="http://v.qq.com/download.html#tv" class="ft_dl_cell" target="_blank" _stat="shortcut:download-tv">
+                    <i class="icon_lg icon_tv_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_lg"></use></svg></i>
+                    <span class="text_icon">TV</span>
+                </a>
+                <a href="http://v.qq.com/download.html#tencentlive" class="ft_dl_cell" target="_blank" _stat="shortcut:download-live">
+                    <i class="icon_lg icon_qielive_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_qielive_lg"></use></svg></i>
+                    <span class="text_icon">直播</span>
+                </a>
+                <a href="http://v.qq.com/download.html" class="ft_dl_btn" target="_blank" _stat="shortcut:download">软件下载</a>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="javascript:;" class="ft_cell ft_cell_backup _top" style="display: none;" _stat="shortcut:totop">
+        <i class="icon icon_backup"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_backup"></use></svg></i>
+        <div class="ft_cell_pop ft_general_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_general_content">
+                <span class="txt">返回顶部</span>
+            </div>
+        </div>
+    </a>
 
 </div>
 
@@ -2912,6 +3556,8 @@
 <!--登录遮罩层-->
 <div class="mask_layer"></div>
 
+<!--存储效果节点-->
+<div class="x_poster_card"></div>
 
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/tencent/yb.js"></script>

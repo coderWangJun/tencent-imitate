@@ -84,12 +84,48 @@ let site_channel_render = (function () {
             $(".site_hide_nav").hide();
         });
     }
+    //隐藏显示看过历史记录(临时-处理）
+    $(".site_quick").delegate('.look_history_box',"mouseenter", function () {
+        $(this).find("u").show();
+        $(".history_con").show();
+        $(this).siblings("a").on("mouseenter", function () {
+            $(this).siblings(".look_history_box").find("u").hide();
+            $(".history_con").hide();
+        });
+    }).on("mouseleave", function () {
+        $(this).find("u").hide();
+        $(".history_con").hide();
+    });
+    $(".site_quick").delegate('.down_load_box',"mouseenter", function () {
+        $(this).find("u").show();
+        $(".down_load_con").show();
+        $(this).siblings("a").on("mouseenter", function () {
+            $(this).siblings(".down_load_box").find("u").hide();
+            $(".down_load_con").hide();
+        });
+    }).on("mouseleave", function () {
+        $(this).find("u").hide();
+        $(".down_load_con").hide();
+    });
+    $(".site_quick").delegate('.user_boxs',"mouseenter", function () {
+        $(this).find("u").show();
+        $(".user_con").show();
+        $(this).siblings("a").on("mouseenter", function () {
+            $(this).siblings(".user_boxs").find("u").hide();
+            $(".user_con").hide();
+        });
+    }).on("mouseleave", function () {
+        $(this).find("u").hide();
+        $(".user_con").hide();
+    });
+
 
     return {
         init: function () {
             hideNav();
         }
     };
+
 
 })();
 site_channel_render.init();
@@ -188,8 +224,8 @@ let searchRender = (function () {
             //文本发生改变后
             $searchTxt.on("input", searchFn);
             //点击搜索跳转页面
-            $search_btn.on("click", ()=>{
-                location.href=$searchTxt.data("pl")
+            $search_btn.on("click", () => {
+                location.href = $searchTxt.data("pl")
             });
             //点击搜索框显示搜索
             $searchTxt.on("click", () => {
@@ -205,7 +241,7 @@ searchRender.init();
     $(window).on("scroll", function () {
         let $this = $(this),
             $site_boxs = $(".site_boxs");
-        if ($this.scrollTop() >= 480) $site_boxs.addClass("site_head_fixed").stop().animate({
+        if ($this.scrollTop() >= 650) $site_boxs.addClass("site_head_fixed").stop().animate({
             height: 73
         }, 80, function () {
             $site_boxs.css("overflow", "visible")
