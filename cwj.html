@@ -4,13 +4,3560 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Tencent Video</title>
+    <link rel="stylesheet" href="font/css/iconfont.css">
     <link rel="stylesheet/less" href="less/tencent/tencent.less">
     <link rel="stylesheet/less" href="less/tencent/cwj.less">
+    <link rel="stylesheet/less" href="less/tencent/jl.less">
+    <link rel="stylesheet" href="icomoon/style.css">
     <script src="js/less-2.5.3.min.js"></script>
 </head>
 <body>
 
+<!--我的追剧节目单-->
+<div class="site_head_drawer site_head_drawer_hide">
+    <!-- sprite svg -->
+    <svg class="txp_svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="svg_arrow_next_xs" viewBox="0 0 10 10">
+            <path d="M3.2 1.6c-.3.4-.2 1 .2 1.3L5.3 5 3.4 7.1c-.4.3-.5.8-.2 1.2.4.3.9.2 1.2-.2l2.4-2.6c.2-.2.3-.6.1-.9l-.1-.1-2.4-2.7c-.3-.3-.8-.4-1.2-.2z"></path>
+        </symbol>
+
+        <symbol id="svg_triangle_next_xs" viewBox="0 0 10 10">
+            <path d="M2 9l6-4-6-4v8z"></path>
+        </symbol>
+
+        <symbol id="svg_icon_user_lg" viewBox="0 0 36 36">
+            <path d="M1 34.98c.382.351.774.691 1.178 1.019A20.033 20.033 0 0 1 18 28.29a20.036 20.036 0 0 1 15.822 7.709c.403-.327.796-.668 1.178-1.019-4.17-5.126-10.241-8.355-17-8.355S5.17 29.854 1 34.98zm6.143-22.503c0-5.975 4.86-10.819 10.857-10.819s10.857 4.844 10.857 10.819c0 5.975-4.861 10.819-10.857 10.819S7.143 18.452 7.143 12.477zm23.384.005C30.527 5.588 24.918-.001 18-.001c-6.919 0-12.528 5.589-12.528 12.483S11.081 24.965 18 24.965c6.918 0 12.527-5.589 12.527-12.483z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_next_lg" viewBox="0 0 36 36">
+            <path d="M11.7 32.7c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4L23.5 18 10.3 4.7c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l14 14c.4.4.4 1-.2 1.5z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_prev_lg" viewBox="0 0 36 36">
+            <path d="M24.3 3.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4L12.5 18l13.2 13.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-14-14c-.4-.4-.4-1 .2-1.5z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_up_lg" viewBox="0 0 36 36">
+            <path d="M18 10.9c-.2 0-.4.1-.5.3L5.8 22.7c-.4.6-.4 1.4 0 2 .6.4 1.4.4 2 0L18 14.8l10.2 9.8c.6.4 1.4.4 2 0 .4-.6.4-1.4 0-2L18.5 11.1c-.1-.1-.3-.2-.5-.2z"></path>
+        </symbol>
+
+        <symbol id="svg_arrow_down_sm" viewBox="0 0 16 16">
+            <path d="M8 12l6-6V4h-2L8 8 4 4H2v2l6 6z"></path>
+        </symbol>
+        <symbol id="svg_arrow_down_xs" viewBox="0 0 10 10">
+            <path d="M8.4 3.1c-.4-.2-1-.1-1.3.2L5 5.3l-2.1-2c-.3-.3-.8-.4-1.2-.2-.3.4-.2 1 .2 1.2l2.6 2.4c.2.3.6.4.9.2l.1-.1 2.6-2.4c.4-.3.5-.9.3-1.3zz"></path>
+        </symbol>
+
+        <symbol id="svg_icon_play_step" viewBox="0 0 20 20">
+            <path style="opacity:.3;fill:#fff;" d="M14 2c-1.2-.6-2.6-1-4-1-5 0-9 4-9 9 0 1.4.3 2.8 1 4 0 0 1.5 1.1 1.7-1.1C3.2 12 3 11 3 10c0-3.9 3.1-7 7-7 1.1 0 2.2.3 3.1.7 0 0 1.6.1.9-1.7z"></path>
+            <path style="opacity:.3;fill:#fff;" d="M8 7v6l5-3z"></path>
+            <path style="opacity:.8;fill:#ff6428;" d="M14 2l-.9 1.8C15.4 4.9 17 7.3 17 10c0 3.9-3.1 7-7 7-2.8 0-5.3-1.7-6.4-4.1L2 14c1.5 2.9 4.5 5 8.1 5 5 0 9-4 9-9C19 6.5 17 3.4 14 2z"></path>
+        </symbol>
+        <symbol id="svg_icon_follow" viewBox="0 0 20 20">
+            <path d="M19.2 7l-5.6-1.1L11 1.1c-.2-.3-.5-.6-.9-.6s-.7.2-.9.6L6.4 5.9.7 7c-.4.2-.7.6-.7 1 0 .3.1.6.4.8l3.7 4-.6 5.5v.1c0 .6.5 1 1 1 .2 0 .3 0 .5-.1l5.1-2.2 5.1 2.3c.1.1.3.1.4.1.6 0 1-.5 1-1v-.2l-.5-4c0-.6-.5-1.1-1.1-1.1s-1 .4-1 1l.2 2.5-4.2-1.9-4.3 1.9.6-4.7-3.1-3.3 4.6-.9L10 3.7l2.2 4.1 4.6.9-1.5 1.6-.1.1c-.2.2-.3.5-.3.8 0 .6.5 1.1 1.1 1.1.3 0 .5-.1.7-.3l2.9-3.2c.3-.2.4-.5.4-.8 0-.5-.4-.9-.8-1z"></path>
+        </symbol>
+        <symbol id="svg_icon_followed" viewBox="0 0 20 20">
+            <path d="M15 8.5c1.4 0 2.7.5 3.7 1.3l.9-1c.2-.1.3-.4.3-.6.1-.5-.2-1.1-.8-1.2l-5.5-1.1L11 1.1c-.1-.2-.3-.3-.4-.4-.6-.3-1.3-.1-1.5.4L6.4 5.9.8 7c-.3.1-.4.2-.6.4-.4.4-.3 1.1.1 1.4l3.7 4-.6 5.5v.1c0 .2 0 .3.1.5.3.5.9.7 1.4.4l4.7-2.1c-.3-.7-.6-1.7-.6-2.7 0-3.3 2.7-6 6-6zm-.1.8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.3-5-5-5zM18 14l-3.2 3.2c-.2.2-.4.3-.7.3-.2 0-.5-.1-.6-.3L12.1 16c-.3-.3-.3-.9 0-1.2.3-.3.9-.3 1.2 0l.7.7 2.7-2.7c.3-.3.9-.3 1.2 0 .4.3.4.8.1 1.2z"></path>
+        </symbol>
+        <symbol id="svg_icon_ellipsis" viewBox="0 0 20 20">
+            <path d="M8.5 16c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5zm0-6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5zm0-6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5-.7-1.5-1.5-1.5-1.5.7-1.5 1.5z"></path>
+        </symbol>
+
+    </svg>
+
+    <!--关闭-->
+    <div class="head_drawer_bait">
+        <div class="drawer_bait_inner">
+            <i class="icon icon_play_step"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_play_step"></use></svg></i>
+            <span class="bait_text" id="top_followSeries_title">我的追剧节目单</span>
+            <i class="icon_sm arrow_down_sm"><svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_down_sm"></use></svg></i>
+            <div class="bait_poptips" id="top_followSeries_shut">
+                <div class="bait_poptips_content">3天内将不再出现追剧版块</div>
+                <i class="icon_xs icon_close_xs" id="close">
+                    <svg class="svg_icon" viewBox="0 0 10 10" width="10" height="10">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_close_xs">
+                            <svg id="svg_icon_close_xs" viewBox="0 0 10 10" width="100%" height="100%">
+                                <path d="M9.4 8.9l-.5.5-3.9-4-3.9 4-.5-.5 4-3.9-4-3.9.4-.4 4 3.9L8.9.7l.4.4L5.4 5l4 3.9z"></path>
+                            </svg>
+                        </use>
+                    </svg>
+                </i>
+            </div>
+        </div>
+        <!--<div class="drawer_bait_collapse_inner">-->
+        <!--<i class="icon_xs arrow_down_xs"><svg class="svg_icon" viewBox="0 0 10 10"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_down_xs"></use></svg></i>-->
+        <!--</div>-->
+    </div>
+
+    <!--打开-->
+    <div class="head_drawer_inner_wrap">
+        <div class="head_drawer_inner">
+            <div class="drawer_watch_list cf">
+
+                <div class="drawer_item drawer_item_login drawer_item_1">
+                    <a class="item_link" href="javascript:;" id="top_followSeries_login" _stat="top-followSeries:login">
+                        <span class="item_pic"><img src="//puui.qpic.cn/vcover_vt_pic/0/wze0f9voi6x1r9s1511754260/0" alt="登录" class="pic"></span>
+                        <div class="item_login">
+                            <i class="icon_lg icon_user_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_user_lg"></use></svg></i>
+                            <span class="login_hint">登录查看你感兴趣的内容</span>
+                            <span class="login_btn">登录</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_2">
+                    <div class="drawer_item_headline">也许你还喜欢看</div>
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/05r9c4oyuz1tp1o.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="我的！体育老师">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/05r9c4oyuz1tp1o1510283884/220" alt="我的！体育老师" class="pic" onerror="picerr(this,'v')">
+
+                    <span class="item_score">8<em class="ss">.8</em></span>
+                </span>
+                        <span class="item_name">我的！体育老师</span>
+
+                        <span class="item_desc">更新至00集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_3">
+                    <a class="item_link" href="https://v.qq.com/x/cover/41dicgms0277zoz.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="致我们单纯的小美好">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/41dicgms0277zoz1509076237/220" alt="致我们单纯的小美好" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">9<em class="ss">.1</em></span>
+                        </span>
+                        <span class="item_name">致我们单纯的小美好</span>
+
+                        <span class="item_desc">全23集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_4">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/641dgjmod92qq07.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="柒个我" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/641dgjmod92qq071511946838/220" alt="柒个我" class="pic">
+                    <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                    <span class="item_score">7<em class="ss">.2</em></span>
+                </span>
+                        <span class="item_name">柒个我</span>
+
+                        <span class="item_desc">更新至12集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_5">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/bzfkv5se8qaqel2.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="小猪佩奇全集" _stat="top-followSeries:item-4-106">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/bzfkv5se8qaqel2t1466571646.jpg/220" alt="小猪佩奇全集" class="pic">
+
+                    <span class="item_score">9<em class="ss">.7</em></span>
+                </span>
+                        <span class="item_name">小猪佩奇全集</span>
+
+                        <span class="item_desc" title="萌萌小猪佩奇">萌萌小猪佩奇</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_6">
+
+
+                    <a class="item_link" href="https://v.qq.com/x/cover/edaiel3h0k28p3d.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="东风破" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/edaiel3h0k28p3d1512459286/220" alt="东风破" class="pic">
+
+                    <span class="item_score">7<em class="ss">.0</em></span>
+                </span>
+                        <span class="item_name">东风破</span>
+
+                        <span class="item_desc">更新至00集</span>
+
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_7">
+                    <a class="item_link" href="https://v.qq.com/x/cover/i5w51tl7vbl5mid.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="猎场" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/i5w51tl7vbl5mid1513148800/220" alt="猎场" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">8<em class="ss">.3</em></span>
+                        </span>
+                        <span class="item_name">猎场</span>
+
+                        <span class="item_desc">全58集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_8">
+                    <a class="item_link" href="https://v.qq.com/x/cover/jb6wejrvi609u6f.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="花谢花飞花满天" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/jb6wejrvi609u6f1506499744/220" alt="花谢花飞花满天" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">7<em class="ss">.8</em></span>
+                        </span>
+                        <span class="item_name">花谢花飞花满天</span>
+                        <span class="item_desc">更新至26集</span>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_9">
+                    <a class="item_link" href="https://v.qq.com/x/cover/lg1nc5g8poyfuu8.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="吐槽大会 第2季" _stat="top-followSeries:item-4-10">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/lg1nc5g8poyfuu81513305215/220" alt="吐槽大会 第2季" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_4.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_4@2x.png 2x" alt="腾讯出品"></i>
+                            <span class="item_score">7<em class="ss">.5</em></span>
+                        </span>
+                        <span class="item_name">吐槽大会 第2季</span>
+                        <span class="item_desc" title="papi酱爆笑模仿叶璇">papi酱爆笑模仿叶璇</span>
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_10">
+                    <a class="item_link" href="https://v.qq.com/x/cover/qg67m04ckextp6j.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="九州·海上牧云记" _stat="top-followSeries:item-4-2">
+                        <span class="item_pic">
+                            <img src="//puui.qpic.cn/vcover_vt_pic/0/qg67m04ckextp6j1513149039/220" alt="九州·海上牧云记" class="pic">
+                            <i class="mark_v"><img src="//i.gtimg.cn/qqlive/images/mark/mark_5.png" srcset="//i.gtimg.cn/qqlive/images/mark/mark_5@2x.png 2x" alt="VIP"></i>
+                            <span class="item_score">9<em class="ss">.3</em></span>
+                        </span>
+                        <span class="item_name">九州·海上牧云记</span>
+
+                        <span class="item_desc">更新至50集</span>
+                    </a>
+
+                </div>
+
+                <div class="drawer_item drawer_item_11">
+                    <a class="item_link" href="https://v.qq.com/x/cover/vu9sw3n7yrh7qwm.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="极光之恋" _stat="top-followSeries:item-4-2">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/vu9sw3n7yrh7qwm1511663240/220" alt="极光之恋" class="pic">
+
+                    <span class="item_score">6<em class="ss">.3</em></span>
+                </span>
+                        <span class="item_name">极光之恋</span>
+
+                        <span class="item_desc">更新至24集</span>
+
+                    </a>
+                </div>
+
+                <div class="drawer_item drawer_item_12">
+                    <a class="item_link" href="https://v.qq.com/x/cover/wze0f9voi6x1r9s.html" target="_blank;" data-light="#E0E9F7" data-dark="#687081" title="熊出没之探险日记" _stat="top-followSeries:item-4-106">
+                <span class="item_pic">
+                    <img src="//puui.qpic.cn/vcover_vt_pic/0/wze0f9voi6x1r9s1511754260/220" alt="熊出没之探险日记" class="pic">
+
+                    <span class="item_score">7<em class="ss">.7</em></span>
+                </span>
+                        <span class="item_name">熊出没之探险日记</span>
+
+                        <span class="item_desc" title="两熊两人的森林大冒险">两熊两人的森林大冒险</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <a href="javascript:;" class="drawer_btn_prev drawer_btn_disabled" aria-label="向前" title="向前">
+                <i class="icon_lg arrow_prev_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_prev_lg"></use></svg></i>
+            </a>
+            <a href="javascript:;" class="drawer_btn_next" aria-label="向后" title="向后" _stat="top-followSeries:next">
+                <i class="icon_lg arrow_next_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_next_lg"></use></svg></i>
+            </a>
+
+            <div class="drawer_switch" id="top_followSeries_close">
+                <i class="icon_lg arrow_up_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_arrow_up_lg"></use></svg></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--banner 和 search-->
+<div class="site_channel_top">
+    <!--search-->
+    <div class="site_head">
+
+    </div>
+    <!--site_boxs-->
+    <div class="site_boxs">
+        <!--search-->
+        <div class="site_head clearfix mod_row_box">
+            <!--site_logo-->
+            <h1 class="site_logo">
+                <a href="#" class="logo"></a>
+                <a href="#" class="logo_fu"></a>
+            </h1>
+            <!--site_channel-->
+            <div class="site_channel clearfix">
+                <div class="site_channel_div">
+                    <a href="javascript:;">
+                        <span>电视剧</span>
+                        <u></u>
+                    </a>
+                    <a href="javascript:;">
+                        <span>综艺</span>
+                        <u></u></a>
+                    <a href="javascript:;">
+                        <span>电影</span>
+
+                        <u></u></a>
+
+                    <a href="javascript:;">
+                        <span>VIP影院</span>
+                        <u></u></a>
+                    <a href="javascript:;" class="menu_btn">
+                        <i class="icon-ViewGallery_fill"></i>
+                        <i class="icon-menu"></i>
+                    </a>
+                </div>
+                <div class="site_channel_render">
+                    <div class="channel_list_box clearfix">
+                    </div>
+                    <div class="more">
+                        <a href="#">查看更多 <i class="icon-left-arrow"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!--mod_search-->
+            <div class="mod_search">
+                <form action="">
+                    <div class="search_inner clearfix">
+                        <div class="serch_box">
+                            <div class="search_txt">
+                                <input type="text" id="searchTxt" class="searchTxt " data-pl="https://v.qq.com/" placeholder="致我们单纯的小美好" autocomplete="off">
+                                <a href="javascript:;">
+                                    <i class="icon_search_hot_sm"></i>
+                                    <i class="icon_search_hot_animation"></i>
+                                    <span>热搜榜</span>
+                                </a>
+                            </div>
+                            <div class="search_res_box">
+                                <div class="default_res default">
+                                    <ol class="default_res_box">
+                                        <!--<li class="default_res_head">-->
+                                        <!--<p class="clearfix">-->
+                                        <!--<span>热门搜索</span>-->
+                                        <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
+                                        <!--</p>-->
+                                        <!--</li>-->
+                                        <!--<li class="default_res_content">-->
+                                        <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
+                                        <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
+                                        <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
+                                        <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
+                                        <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
+                                        <!--<a href="#" class="default_link"> <span>6</span>柒个我</a>-->
+                                        <!--<a href="#" class="default_link"> <span>7</span>致我们单纯的小美好</a>-->
+                                        <!--<a href="#" class="default_link"> <span>8</span>演员的诞生 第1季</a>-->
+                                        <!--<a href="#" class="default_link"> <span>9</span>极光之恋</a>-->
+                                        <!--<a href="#" class="default_link"> <span>10</span>我的！体育老师</a>-->
+
+                                        <!--</li>-->
+                                    </ol>
+                                </div>
+                                <div class="search_res">
+                                    <ol class="search_result">
+                                        <!--&lt;!&ndash;电视剧&ndash;&gt;-->
+                                        <!--<li class="search_result_content">-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电视剧</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;电视剧&ndash;&gt;-->
+                                        <!--<div class="sb_text_box TV">-->
+                                        <!--<div class="look_title">-->
+                                        <!--<h6>全集39集</h6>-->
+                                        <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
+                                        <!--</div>-->
+                                        <!--<a href="#" class="look tv_look">-->
+                                        <!--立即播放-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</li>-->
+                                        <!--&lt;!&ndash;电影&ndash;&gt;-->
+                                        <!--<li class="search_result_content">-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;电影&ndash;&gt;-->
+                                        <!--<div class="sb_text_box movie">-->
+                                        <!--<div class="look_title">-->
+                                        <!--<p>主演：王俊凯 王源 点点滴滴到底</p>-->
+                                        <!--</div>-->
+                                        <!--<a href="#" class="look movie_look">-->
+                                        <!--立即播放-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</li>-->
+                                        <!--&lt;!&ndash;综艺&ndash;&gt;-->
+                                        <!--<li class="search_result_content">-->
+                                        <!--<a href="#" class="sb_title">致我们单纯的小美好<span>电影</span><i-->
+                                        <!--class="icon-arrow-up"></i></a>-->
+                                        <!--<div class="sb_richbox">-->
+                                        <!--<div class="sb_item clearfix">-->
+                                        <!--<a class="sb_img_box">-->
+                                        <!--<img src="images/cwj/search_img/0.jpg" alt="">-->
+                                        <!--</a>-->
+                                        <!--&lt;!&ndash;综艺&ndash;&gt;-->
+                                        <!--<div class="sb_text_box" data-zy="zy">-->
+                                        <!--<div class="zy">-->
+                                        <!--<a href="#">2016-06-05 第12期：大结局！周冬雨泪崩吻上余文乐</a>-->
+                                        <!--<a href="#">2016-08-06 第16期：大结局！周冬雨泪崩吻上余文乐</a>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</li>-->
+                                        <!--&lt;!&ndash;没有图片&ndash;&gt;-->
+                                        <!--<li class="default_res_content">-->
+                                        <!--<a href="#" class="default_res_content"> 柒个我</a>-->
+                                        <!--</li>-->
+
+                                    </ol>
+                                </div>
+                                <div class="history_res ">
+                                    <!--<ul class="history_add">-->
+                                    <!--<li class="history_add_head">-->
+                                    <!--<p class="clearfix">-->
+                                    <!--<span>历史记录</span>-->
+                                    <!--<a href="#" class="more_search"> <i class="icon-trash-bin"></i>清除记录</a>-->
+                                    <!--</p>-->
+                                    <!--</li>-->
+                                    <!--<li class="history_add_content clearfix">-->
+                                    <!--<a href="#" class="default_link"> 柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> 柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> 致我们单纯的小美好</a>-->
+                                    <!--<a href="#" class="default_link"> 演员的诞生 第1季</a>-->
+                                    <!--<a href="#" class="default_link"> 极光之恋</a>-->
+                                    <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
+                                    <!--<a href="#" class="default_link"> 我的！体育老师</a>-->
+
+                                    <!--</li>-->
+                                    <!--</ul>-->
+                                    <!--<ol class="default_res_box">-->
+                                    <!--<li class="default_res_head">-->
+                                    <!--<p class="clearfix">-->
+                                    <!--<span>热门搜索</span>-->
+                                    <!--<a href="#" class="more_search">更多搜索 <i class="icon-left-arrow"></i></a>-->
+                                    <!--</p>-->
+                                    <!--</li>-->
+                                    <!--<li class="default_res_content">-->
+                                    <!--<a href="#" class="default_link"> <span>1</span>柒个我</a>-->
+                                    <!--<a href="#" class="default_link"> <span>2</span>致我们单纯的小美好</a>-->
+                                    <!--<a href="#" class="default_link"> <span>3</span>演员的诞生 第1季</a>-->
+                                    <!--<a href="#" class="default_link"> <span>4</span>极光之恋</a>-->
+                                    <!--<a href="#" class="default_link"> <span>5</span>我的！体育老师</a>-->
+
+                                    <!--</li>-->
+                                    <!--</ol>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search_btn">
+                            <i class="icon-search_1" style="
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    font-weight: bold;
+    left: 0px;
+"></i>
+                            <span>全网搜</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--site_quick-->
+            <div class="site_quick">
+                <a href="#">
+                    <span class="mark_start"></span>
+                    <span class="vip">vip</span>
+                </a>
+                <a href="#" class="look_history_box">
+                    <i class="icon-history"></i>
+                    <span>看过</span>
+                    <u></u>
+                </a>
+                <a href="#">
+                    <i class="icon-upload"></i>
+                    <span>上传</span>
+                </a>
+                <a href="#" class="down_load_box">
+                    <i class="icon-pc"></i>
+                    <span>下载客户端</span>
+                    <u></u>
+                </a>
+                <a href="#" class="user_boxs">
+                    <i class="user"></i>
+                    <u></u>
+                </a>
+                <div class="site_quick_render history_con">
+                    <div class="look_history">
+                        <ul>
+                            <li>
+                                <div>
+                                    <i class="icon-history"></i>
+                                </div>
+                                <p>
+                                    你暂时还没有观看的记录哟~
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="more">
+                        <a href="#">登录查看更多</a>
+                    </div>
+                </div>
+                <div class="down_load_con">
+                    <div class="down_load">
+                        <ul>
+                            <li>
+                                <i class="icon-HD"></i>
+                                <span>1080P蓝光画质</span>
+                            </li>
+                            <li>
+                                <i class="icon-play"></i>
+                                <span>纯净式无框播放器</span>
+                            </li>
+                            <li>
+                                <i class="icon-san"></i>
+                                <span>三倍流畅播放</span>
+                            </li>
+                             <li>
+                                <a href="#">立即体验</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="user_con">
+                    <div class="user_box">
+                        <div class="user_info">
+                           <div class="login_out_show">登陆之后可以</div>
+                            <div class="login_show clearfix">
+                                <p class="login_show"> QQ账号：<a href="#"><span></span><i></i></a></p>
+                                <p class="login_show"><a href="#">切换</a><a href="#">退出</a></p>
+                            </div>
+                        </div>
+                        <div class="open_vip">
+                            <span>开通VIP/超级影视VIP/看大片</span>
+                            <a href="#">开通</a>
+                        </div>
+                    </div>
+                    <div class="buy_vip">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>V币好礼</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+                                    </p>
+                                    <p>同步观看记录</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>免费抽奖</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <p>
+
+                                    </p>
+                                    <p>用户客户端看送VIP</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="#" class="pl_login">立即登录</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--隐藏盒子-->
+        <div class="site_hide_nav">
+            <div class="hide_nav mod_row_box">
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+                <div class="hide_nav_item">
+                    <span></span>
+                    <a href="#"> 电视剧</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--banner-->
+    <div class="site_slider">
+        <div class="banner_Container">
+            <ul class="wrapper">
+                <!--<li><a href="#"><img src="" data-img="images/jl/？ /banner1.jpg" alt="" ></a></li>-->
+            </ul>
+        </div>
+        <div class="banner_focus">
+            <!--<a href="#" class="focus_link select">-->
+            <!--<div class="focus_tit">王者出击</div>-->
+            <!--<div class="focus_txt">Baby贾玲决战峡谷</div>-->
+            <!--</a>-->
+        </div>
+    </div>
+</div>
+
 <!--nav-->
+
+<div class="mod_main_nav" id="nav" _wind="columnname=nav" __expose="nav">
+    <svg class="svg_sprite none" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="svg_icon_rank" viewBox="0 0 20 20" width="20" height="20">
+            <path d="M16.5 10h1c.6 0 1 .4 1 1v6c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1zm-14-3h1c.6 0 1 .4 1 1v9c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V8c0-.6.4-1 1-1zm7-5h1c.6 0 1 .4 1 1v14c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V3c0-.6.4-1 1-1z"></path>
+        </symbol>
+        <symbol id="svg_icon_tvset" viewBox="0 0 20 20" width="20" height="20">
+            <path d="M17 5.5h-3.8l1.7-2.6c.3-.4.1-1-.3-1.2h-.1c-.5-.3-1.1-.1-1.4.3l-2 3.2s-.1.2-.1.3H9c0-.1 0-.3-.1-.4l-2-3.2c-.3-.4-.9-.5-1.4-.3h-.1c-.4.3-.5.8-.3 1.3l1.7 2.6H3c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2zm0 11H3v-9h14v9z"></path>
+        </symbol>
+        <symbol id="svg_icon_tvstore" viewBox="0 0 20 20" width="20" height="20">
+            <path d="M4 4h12c.6 0 1-.4 1-1s-.4-1-1-1H4c-.6 0-1 .4-1 1s.4 1 1 1zM17 5H3c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 11H3V7h14v9zM9 14h.1c.7-.2 1.3-.5 1.9-.9.6-.3 1.2-.7 1.7-1.1.3-.2.4-.5.2-.8 0-.1-.1-.2-.2-.2-.5-.4-1.1-.8-1.7-1.1-.6-.3-1.3-.6-1.9-.9-.4-.1-.8 0-.9.4v.1c-.2.6-.2 1.3-.2 2s0 1.4.1 2c.1.4.5.6.9.5z"></path>
+        </symbol>
+        <symbol id="svg_icon_client" viewBox="0 0 20 20" width="20" height="20">
+            <path d="M16 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2zm0-10H4v8h12V5zM7 16h6a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2z"></path>
+        </symbol>
+        <symbol id="svg_icon_dl" viewBox="0 0 20 20" width="20" height="20">
+            <path d="M17.816 14.448C16.267 17.164 13.351 19 10 19c-3.241 0-6.063-1.725-7.648-4.294a.99.99 0 0 1-.316-.723 1 1 0 0 1 1-1c.383 0 .706.223.874.54l.058-.029C5.179 15.58 7.413 17 10 17c2.58 0 4.809-1.411 6.022-3.488l.043.021a.988.988 0 0 1 .865-.528 1 1 0 0 1 1 1 .962.962 0 0 1-.114.443zm-7.031-1.742a1.016 1.016 0 0 1-.784.292 1.029 1.029 0 0 1-.767-.293l-2.938-2.94a1.038 1.038 0 1 1 1.469-1.469L9 9.531V3a1 1 0 0 1 2 0v6.571l1.246-1.246a1.033 1.033 0 0 1 1.46 1.46l-2.921 2.921z"></path>
+        </symbol>
+    </svg>
+
+    <div class="main_nav main_nav_0">
+
+
+        <a href="https://v.qq.com/tv/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_电视剧"
+           data-key="tv" data-left="15">电视剧</a>
+
+
+        <a href="https://v.qq.com/tv/yingmei/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_美剧"
+           data-key="atv" data-left="15">美剧</a>
+
+
+        <a href="http://v.qq.com/tv/korea/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_韩剧"
+           data-key="krtv" data-left="15">韩剧</a>
+
+        <br>
+        <a href="http://v.qq.com/movie/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_电影"
+           data-key="movie" data-left="15" data-invalid="2017-09-27 19:25:48">电影</a>
+
+
+        <a href="http://film.qq.com/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_VIP影院"
+           data-key="vip" data-left="15">VIP影院</a>
+
+
+        <a href="https://v.qq.com/x/channel/dv" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_网络电影"
+           data-left="15" data-invalid="2017-11-06 00:00:36">网络电影</a>
+
+
+    </div>
+
+    <div class="main_nav main_nav_1">
+
+
+        <a href="http://v.qq.com/variety/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_综艺"
+           data-key="variety">综艺</a>
+
+
+        <a href="http://v.qq.com/ent/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_娱乐"
+           data-key="ent">娱乐</a>
+
+
+        <a href="https://v.qq.com/x/channel/fun" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_搞笑"
+           data-key="fun" data-invalid="2017-09-17 16:00:30">搞笑</a>
+
+        <br>
+        <a href="https://v.qq.com/x/channel/cartoon" target="_blank" class="nav_link _link bold"
+           _stat="new_vs_header:pop_动漫" data-key="cartoon" data-invalid="2017-11-05 16:00:46">动漫</a>
+
+
+        <a href="http://v.qq.com/child/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_少儿"
+           data-key="child" data-invalid="2017-08-25 00:00:07">少儿</a>
+
+
+        <a href="https://v.qq.com/x/channel/doco" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_纪录片"
+           data-key="doco" data-invalid="2017-12-10 23:50:32">纪录片</a>
+
+
+    </div>
+
+    <div class="main_nav main_nav_2">
+
+
+        <a href="https://v.qq.com/x/channel/music" target="_blank" class="nav_link _link bold"
+           _stat="new_vs_header:pop_音乐" data-key="music" data-invalid="2017-11-04 00:00:21">音乐</a>
+
+
+        <a href="http://v.qq.com/x/live/index.html" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_直播">直播</a>
+
+
+        <a href="http://v.qq.com/livemusic/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_演唱会"
+           data-key="concert">演唱会</a>
+
+        <br>
+        <a href="http://v.qq.com/sports/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_体育"
+           data-key="sports">体育</a>
+
+
+        <a href="http://sports.qq.com/nbavideo/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_NBA">NBA</a>
+
+
+        <a href="http://v.qq.com/games/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_游戏"
+           data-key="game">游戏</a>
+
+
+    </div>
+
+    <div class="main_nav main_nav_3">
+
+
+        <a href="https://v.qq.com/x/channel/news" target="_blank" class="nav_link _link bold"
+           _stat="new_vs_header:pop_新闻" data-key="news" data-invalid="2017-11-13 00:00:39">新闻</a>
+
+
+        <a href="https://v.qq.com/x/channel/tech" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_科技"
+           data-key="tech" data-invalid="2017-09-17 16:00:43">科技</a>
+
+
+        <a href="https://v.qq.com/x/channel/finance" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_财经"
+           data-key="finance" data-invalid="2017-11-04 00:00:55">财经</a>
+
+
+        <a href="http://v.qq.com/house/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_房产"
+           data-key="house">房产</a>
+
+        <br>
+        <a href="http://v.qq.com/life/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_生活"
+           data-key="life">生活</a>
+
+
+        <a href="http://v.qq.com/fashion/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_时尚"
+           data-key="fashion">时尚</a>
+
+
+        <a href="http://v.qq.com/travel/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_旅游"
+           data-key="travel">旅游</a>
+
+
+        <a href="http://v.qq.com/baby/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_育儿"
+           data-key="baby">育儿</a>
+
+
+    </div>
+
+    <div class="main_nav main_nav_4">
+
+
+        <a href="http://v.qq.com/videoplus/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_原创"
+           data-key="vplus">原创</a>
+
+
+        <a href="http://paike.qq.com/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_拍客"
+           data-key="paike">拍客</a>
+
+
+        <a href="http://class.qq.com/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_精品课">精品课</a>
+
+        <br>
+        <a href="https://v.qq.com/auto/" target="_blank" class="nav_link _link bold" _stat="new_vs_header:pop_汽车"
+           data-key="auto">汽车</a>
+
+
+        <a href="http://yingping.qq.com/?source=1" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_影评">影评</a>
+
+
+        <a href="https://v.qq.com/rushidao/" target="_blank" class="nav_link _link" _stat="new_vs_header:pop_儒释道"
+           data-key="rushidao">儒释道</a>
+
+
+    </div>
+
+    <div class="nav_sub_wrap">
+
+
+        <div class="nav_sub_area" data-nav="电视剧" style="left: -15px; top: 0px; bottom: auto;">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/tv" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部电视剧"><span class="icon_text">全部电视剧</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/641dgjmod92qq07.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">柒个我</a>
+
+                <a href="https://v.qq.com/x/cover/3l8tkwulnp88n95.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">红蔷薇</a>
+
+                <a href="https://v.qq.com/x/cover/qg67m04ckextp6j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">九州·海上牧云记</a>
+
+                <a href="https://v.qq.com/x/cover/o660llk6wfo7ncw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">风筝</a>
+
+                <a href="https://v.qq.com/x/cover/l1zwovecxm9hg4p.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">溏心风暴3</a>
+
+                <a href="https://v.qq.com/x/cover/vu9sw3n7yrh7qwm.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">极光之恋</a>
+
+                <a href="https://v.qq.com/x/cover/jb6wejrvi609u6f.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">花谢花飞花满天</a>
+
+                <a href="https://v.qq.com/x/cover/05r9c4oyuz1tp1o.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">我的！体育老师</a>
+
+                <a href="https://v.qq.com/x/cover/n62tix4mc92a8bh.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">独步天下</a>
+
+                <a href="https://v.qq.com/x/cover/cltmsz5k25rt04w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">龙日一你死定了</a>
+
+                <a href="https://v.qq.com/x/cover/qdt6bemblmtd13d.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">花落宫廷错流年</a>
+
+                <a href="https://v.qq.com/x/cover/41dicgms0277zoz.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">致我们单纯的小美好</a>
+
+                <a href="https://v.qq.com/x/cover/jzhtr2cgy35ejz0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">那年花开月正圆</a>
+
+                <a href="https://v.qq.com/x/cover/r9gtfcofby9r1eg.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">特勤精英</a>
+
+                <a href="https://v.qq.com/x/cover/21xd3hfit38yi8y.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">传奇大亨</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="电影">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/movie" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部电影"><span class="icon_text">全部电影</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/h6hk8z8unolunqb.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">春娇救志明</a>
+
+                <a href="https://v.qq.com/x/cover/laraofctuh3mh4q.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">绣春刀·修罗战场</a>
+
+                <a href="https://v.qq.com/x/cover/ug2j3pdta8ow55b.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">喜欢你</a>
+
+                <a href="https://v.qq.com/x/cover/u4s2zisluorvkgt.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">英伦对决</a>
+
+                <a href="https://v.qq.com/x/cover/nqmxae531yjmbua.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">傲娇与偏见</a>
+
+                <a href="https://v.qq.com/x/cover/w1m66djwjxk7uox.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">青春逗</a>
+
+                <a href="https://v.qq.com/x/cover/wn8zjoi9e41qoyf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">星际特工：千星之城</a>
+
+                <a href="https://v.qq.com/x/cover/v2bohhli64p784o.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">银魂</a>
+
+                <a href="https://v.qq.com/x/cover/0s79svkh53jmrga.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">空天猎</a>
+
+                <a href="https://v.qq.com/x/cover/7cwi9p4usdfpguy.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">悟空传</a>
+
+                <a href="https://v.qq.com/x/cover/sofhgish4kpzjjw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">我不做大哥好多年</a>
+
+                <a href="https://v.qq.com/x/cover/iqwvbujgzj5obv1.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">蜘蛛侠：英雄归来</a>
+
+                <a href="https://v.qq.com/x/cover/akd59nfvoavdt75.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">原谅他77次</a>
+
+                <a href="https://v.qq.com/x/cover/wi8e2p5kirdaf3j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">战狼2</a>
+
+                <a href="https://v.qq.com/x/cover/5hh6z6fc3xifo8e.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">李雷和韩梅梅</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="综艺">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/variety" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部综艺"><span class="icon_text">全部综艺</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/variety/p/topic/wzcj/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">王者出击</a>
+
+                <a href="https://v.qq.com/variety/p/topic/tcdh2/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">吐槽大会2</a>
+
+                <a href="https://v.qq.com/variety/p/topic/yydds/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">演员的诞生</a>
+
+                <a href="https://v.qq.com/p/topic/lettersalive2/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">见字如面</a>
+
+                <a href="http://v.qq.com/detail/6/67788.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">喜剧总动员2</a>
+
+                <a href="http://v.qq.com/detail/6/68802.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">亲爱的客栈</a>
+
+                <a href="http://v.qq.com/detail/5/55472.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">天籁之战2</a>
+
+                <a href="http://v.qq.com/detail/6/68852.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">青春旅社</a>
+
+                <a href="http://v.qq.com/detail/7/71987.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">国家宝藏</a>
+
+                <a href="http://v.qq.com/detail/7/70192.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">奇兵神犬</a>
+
+                <a href="http://v.qq.com/detail/6/68964.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">漂亮的房子</a>
+
+                <a href="http://v.qq.com/detail/6/69658.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">超凡魔术师</a>
+
+                <a href="http://v.qq.com/detail/6/69552.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">我为喜剧狂4</a>
+
+                <a href="http://v.qq.com/detail/5/53946.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">综艺大爆炸</a>
+
+                <a href="http://v.qq.com/detail/6/69659.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">宝贝的新朋友</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="动漫">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/x/list/cartoon" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部动漫"><span class="icon_text">全部动漫</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/cartoon/p/topic/2017guoman/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">国漫剧场</a>
+
+                <a href="https://v.qq.com/x/cover/0f12m8pg4q5quqy.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">酷跑英雄</a>
+
+                <a href="https://v.qq.com/x/cover/gj2ffreln67nwxg.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">枪娘</a>
+
+                <a href="https://v.qq.com/x/cover/50rljwzmo3ur1xk.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">雄兵连</a>
+
+                <a href="https://v.qq.com/cartoon/p/topic/rongyao/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">全职高手</a>
+
+                <a href="http://v.qq.com/cover/x/xvlhj7cglyfwx8x.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">斗破苍穹</a>
+
+                <a href="https://v.qq.com/x/cover/wtsrsra8jj6qtuw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">全职法师2</a>
+
+                <a href="https://v.qq.com/x/cover/eyuyhrrvbhvhs7d.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">择天记第3季</a>
+
+                <a href="https://v.qq.com/x/cover/x2wk7o6k1vhitn0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">捷德奥特曼</a>
+
+                <a href="https://v.qq.com/x/cover/68msmq3ysfc6txk.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">画江湖之换世门生</a>
+
+                <a href="https://v.qq.com/x/cover/13yr8sapcmabnyc.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">墓王之王</a>
+
+                <a href="https://v.qq.com/x/cover/mngmwmaysesaq9p.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">拳皇命运</a>
+
+                <a href="https://v.qq.com/x/cover/jxj5pth9h3a71sg.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">哆啦A梦</a>
+
+                <a href="http://v.qq.com/cover/5/53q0eh78q97e4d1.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">名侦探柯南</a>
+
+                <a href="https://v.qq.com/x/cover/ipm2meuu857sw3e.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">蜡笔小新</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="少儿">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/x/list/children" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部少儿"><span class="icon_text">全部少儿</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/rm49niparfh3t6w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">乌龙院</a>
+
+                <a href="http://kid.qq.com/cross/20170718/8pMW70O0.html#0" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">超级小熊布迷</a>
+
+                <a href="https://v.qq.com/x/cover/6r1q2cj2zrdr8kz.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">豆乐儿歌</a>
+
+                <a href="http://kid.v.qq.com/home?c=txw3" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">小企鹅乐园</a>
+
+                <a href="http://v.qq.com/cover/b/bzfkv5se8qaqel2.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">小猪佩奇</a>
+
+                <a href="https://v.qq.com/x/cover/ky9n4c5q142hoie.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">小公主苏菲亚</a>
+
+                <a href="https://v.qq.com/x/cover/lesch825u8n3f7q/t0022d3q2mw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">熊猫和小鼹鼠</a>
+
+                <a href="https://v.qq.com/x/cover/fmy3srlfpa5wr53/q0022r1ix03.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">海底小纵队</a>
+
+                <a href="https://v.qq.com/x/cover/ygyx5buye1dyob1.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">乐高</a>
+
+                <a href="https://v.qq.com/x/cover/zlrjvoan5acz3gs.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">汪汪队立大功</a>
+
+                <a href="http://v.qq.com/cover/n/nnjrt62wfa51161.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">爆笑虫子</a>
+
+                <a href="http://v.qq.com/cover/4/42d8kpnd2mndj5v.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">喜羊羊</a>
+
+                <a href="http://v.qq.com/cover/u/uo1l1j78851me7b.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">熊出没</a>
+
+                <a href="http://v.qq.com/cover/c/cz1lane6cfcx9p5.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">猪猪侠</a>
+
+                <a href="http://v.qq.com/cover/l/ltwypmftc4oqc50.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">叶罗丽</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="VIP影院">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://film.qq.com/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部VIP影院"><span class="icon_text">全部VIP影院</span><i
+                            class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/u4s2zisluorvkgt.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">英伦对决</a>
+
+                <a href="https://v.qq.com/x/cover/41dicgms0277zoz.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">致我们单纯的小美好</a>
+
+                <a href="https://v.qq.com/x/cover/wi8e2p5kirdaf3j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">战狼2</a>
+
+                <a href="https://v.qq.com/x/cover/qg67m04ckextp6j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">九州·海上牧云记</a>
+
+                <a href="https://v.qq.com/x/cover/t6udtxyvbhbbxv2.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">蓝色星球第2季</a>
+
+                <a href="https://v.qq.com/x/cover/n62tix4mc92a8bh.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">独步天下</a>
+
+                <a href="https://v.qq.com/x/cover/i5w51tl7vbl5mid.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">猎场</a>
+
+                <a href="https://v.qq.com/x/cover/ldl8jqkvepk3t6a.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">杀破狼·贪狼</a>
+
+                <a href="https://v.qq.com/x/cover/0s79svkh53jmrga.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">空天猎</a>
+
+                <a href="https://v.qq.com/x/cover/ctfk6qw188z0kcw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">斗破苍穹 特别篇</a>
+
+                <a href="https://v.qq.com/x/cover/3mctyqewi1dit2p.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">大话西游之爱你一万年</a>
+
+                <a href="https://v.qq.com/x/cover/vqm1l9en588rdtx.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">权力的游戏第七季</a>
+
+                <a href="http://film.qq.com/theater.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">院线同步</a>
+
+                <a href="http://film.qq.com/feature.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">特色影厅</a>
+
+                <a href="http://film.qq.com/paylist/0/pay_-1_-1_-1_-1_0_0_0_30.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">最新上架</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="娱乐">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/ent" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部娱乐"><span class="icon_text">全部娱乐</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/detail/5/52852.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">BIG磅来了</a>
+
+                <a href="http://v.qq.com/ent/suoweiyule/suoweiyule.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">所谓娱乐</a>
+
+                <a href="http://v.qq.com/detail/5/53552.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">爱豆伴饭</a>
+
+                <a href="http://v.qq.com/detail/6/68295.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">忙day韬能量</a>
+
+                <a href="https://v.qq.com/x/cover/dlywhjaa0wcmjgg.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">娱乐通告栏</a>
+
+                <a href="http://v.qq.com/detail/6/69878.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">尖叫CAR拉秀</a>
+
+                <a href="https://v.qq.com/x/cover/b5plj5f6ubqefhl.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">演说家</a>
+
+                <a href="http://ent.qq.com/yulevideo/zhouyijian/zhouyijianthree.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">周一见</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="音乐">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/x/list/music" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部音乐"><span class="icon_text">全部音乐</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/p/mv/younghot20.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">嗨爆真我·YOUNG榜</a>
+
+                <a href="https://v.qq.com/x/search/?q=%E9%99%88%E5%A5%95%E8%BF%85cmon+in~%E9%9F%B3%E4%B9%90%E4%B9%8B%E6%97%85&amp;stag=0&amp;smartbox_ab="
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">陈奕迅音乐之旅</a>
+
+                <a href="http://v.qq.com/detail/4/48427.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">大事发声</a>
+
+                <a href="http://martell.act.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">PARTY 不止于此</a>
+
+                <a href="http://budweiser.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">百威电波星球</a>
+
+                <a href="https://v.qq.com/variety/p/topic/binmusic/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">相信音乐演唱会</a>
+
+                <a href="http://v.qq.com/live/p/topic/35250/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">TFBOYS演唱会</a>
+
+                <a href="https://cy.qq.com/p/caiyun/3462.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">滚石经典演唱会</a>
+
+                <a href="http://pepsi.act.qq.com/pc/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">百事就现在</a>
+
+                <a href="http://v.qq.com/live/p/topic/31333/review.html#player" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">金曲大赏</a>
+
+                <a href="http://v.qq.com/live/p/topic/27943/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">音乐战纪</a>
+
+                <a href="http://v.qq.com/live/p/topic/40842/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">英雄联盟音乐节</a>
+
+                <a href="http://v.qq.com/live/p/topic/38605/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2017简单生活节</a>
+
+                <a href="http://v.qq.com/variety/p/topic/idolcoming/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">IDOL来了</a>
+
+                <a href="http://tuborgopen.act.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">乐堡开躁计划</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="演唱会">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/music?offset=0&amp;istate=2" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部演唱会"><span class="icon_text">全部演唱会</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/search/?q=%E9%99%88%E5%A5%95%E8%BF%85cmon+in~%E9%9F%B3%E4%B9%90%E4%B9%8B%E6%97%85&amp;stag=0&amp;smartbox_ab="
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">陈奕迅音乐之旅</a>
+
+                <a href="https://v.qq.com/variety/p/topic/binmusic/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">相信音乐演唱会</a>
+
+                <a href="https://v.qq.com/variety/p/topic/bbclive/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">BBC经典演唱会</a>
+
+                <a href="http://cy.qq.com/p/caiyun/3462.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">滚石经典演唱会</a>
+
+                <a href="http://v.qq.com/live/p/topic/39072/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">华晨宇火星演唱会</a>
+
+                <a href="http://v.qq.com/live/p/topic/35250/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">TFBOYS演唱会</a>
+
+                <a href="http://v.qq.com/live/p/topic/40842/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">英雄联盟音乐节</a>
+
+                <a href="http://v.qq.com/live/p/topic/38605/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2017简单生活节</a>
+
+                <a href="http://v.qq.com/live/p/topic/31333/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">金曲大赏</a>
+
+                <a href="http://v.qq.com/live/p/topic/27943/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">音乐战纪</a>
+
+                <a href="http://v.qq.com/variety/p/topic/idolcoming/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">IDOL来了</a>
+
+                <a href="http://tuborgopen.act.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">乐堡开躁音乐计划</a>
+
+                <a href="http://v.qq.com/live/p/topic/33467/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">周迅公益演唱会</a>
+
+                <a href="http://v.qq.com/live/p/topic/31991/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">第28届金曲奖</a>
+
+                <a href="http://v.qq.com/live/p/topic/34320/preview.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">SNH48总决选</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="游戏">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/games" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部游戏"><span class="icon_text">全部游戏</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/bzc7xr95fot0p4e.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2017英雄联盟全球总决赛</a>
+
+                <a href="http://v.qq.com/x/cover/6hkvpfwhjxld5ep.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2017MSI</a>
+
+                <a href="http://v.qq.com/vplus/miss" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">MISS</a>
+
+                <a href="http://v.qq.com/vplus/xiaozhi" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">小智</a>
+
+                <a href="http://v.qq.com/vplus/xiaocang" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">小苍</a>
+
+                <a href="http://v.qq.com/vplus/ruofeng" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">Misaya若风</a>
+
+                <a href="http://v.qq.com/vplus/jy" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">JY</a>
+
+                <a href="http://v.qq.com/vplus/gerger" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">好尸</a>
+
+                <a href="http://v.qq.com/vplus/yhal" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">硬汉阿雷</a>
+
+                <a href="http://games.qq.com/tencent/minecraft2/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">我的世界全景视频</a>
+
+                <a href="http://games.qq.com/nba/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">NBA游戏专区</a>
+
+                <a href="http://iwan.qq.com/index.htm" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">游戏福利</a>
+
+                <a href="http://v.qq.com/live/game/list.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">游戏直播</a>
+
+                <a href="http://v.qq.com/vplus/eb8e5b8b76832470ee34a4e73a803f62" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">生死狙击OL</a>
+
+                <a href="http://v.qq.com/vplus/cos" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">英魂之刃</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="美剧">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/tv?iarea=815&amp;offset=0" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部美剧"><span class="icon_text">全部美剧</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/vqm1l9en588rdtx.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">权力的游戏</a>
+
+                <a href="https://v.qq.com/x/cover/8ly4s55kfhsiu45.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">河谷镇</a>
+
+                <a href="https://v.qq.com/x/cover/lnnijsrcp2djcm5.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">X战警</a>
+
+                <a href="https://v.qq.com/x/cover/xv8ntbbe9ccug5o.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">闪电侠</a>
+
+                <a href="https://v.qq.com/x/cover/fhcmqli6gp21us8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">黑松镇</a>
+
+                <a href="http://film.qq.com/cover/e/ek3kbgy363ka8uk.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">黑吃黑</a>
+
+                <a href="http://film.qq.com/cover/7/7p7i5q9momipthi.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">破产姐妹</a>
+
+                <a href="https://v.qq.com/x/cover/vtxb95np45a6ooz.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">西部世界</a>
+
+                <a href="https://v.qq.com/x/cover/857m263ty48bcgj.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">大小谎言</a>
+
+                <a href="https://v.qq.com/x/cover/8vo388mz3gz3ehq.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">罪恶之夜</a>
+
+                <a href="http://v.qq.com/cover/a/aihoaq2s1az6rwo.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">吸血鬼日记</a>
+
+                <a href="https://v.qq.com/x/cover/w9b0skyrkz3wnux.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">赏金猎人</a>
+
+                <a href="http://v.qq.com/cover/d/dr2zn76oez8tyt4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">硅谷</a>
+
+                <a href="http://v.qq.com/cover/7/782waf8kbw7qsie.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">欲望都市</a>
+
+                <a href="https://v.qq.com/x/cover/j5426hzegj51gt9.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">时尚烟云</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="纪录片">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/doco" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部纪录片"><span class="icon_text">全部纪录片</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/x/list/doco?offset=0&amp;sort=5" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">最新纪录片</a>
+
+                <a href="http://v.qq.com/x/list/doco?offset=0&amp;sort=4" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">最热纪录片</a>
+
+                <a href="https://v.qq.com/x/cover/t6udtxyvbhbbxv2/z0024xgmy6h.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">蓝色星球2</a>
+
+                <a href="https://v.qq.com/x/cover/zgsttfm0nz6x2ol.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">蓝色星球1</a>
+
+                <a href="https://v.qq.com/x/cover/5c0l5t70jg2awgl.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">人生七年</a>
+
+                <a href="https://v.qq.com/x/cover/4maws8r2ms8h3e6.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">人类星球</a>
+
+                <a href="https://v.qq.com/x/cover/2glb1bv9od6hzwc.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">飞越地球</a>
+
+                <a href="https://v.qq.com/x/cover/gjxf5ibuuljjvav.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">远古外星人</a>
+
+                <a href="http://film.qq.com/cover/0/0qcd5h3k537846y.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">地球脉动第2季</a>
+
+                <a href="https://v.qq.com/x/cover/yzf4ddhddby7xvy.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">减肥纪录片特辑</a>
+
+                <a href="https://v.qq.com/x/cover/hc5ijap05blxney.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">国家地理微纪录</a>
+
+                <a href="http://v.qq.com/search.html?pagetype=3&amp;stj2=search.search&amp;stag=txt.index&amp;ms_key=ARTE"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">欧洲纪录片大观</a>
+
+                <a href="http://v.qq.com/cover/4/4qjhykh1e71prp7.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">BBC大赏</a>
+
+                <a href="https://v.qq.com/x/cover/6vlapl4m9iotiaq.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">诸神之战</a>
+
+                <a href="http://v.qq.com/cover/x/xba91rl764hqspo.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">中国新年</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="新闻">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/x/list/news" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部新闻"><span class="icon_text">全部新闻</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/vplus/131" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">十三邀</a>
+
+                <a href="http://v.qq.com/vplus/xinwening" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">新闻ing</a>
+
+                <a href="http://v.qq.com/vplus/TheFront" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">全球锋报</a>
+
+                <a href="http://v.qq.com/vplus/wevideo" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">我们视频</a>
+
+                <a href="http://v.qq.com/vplus/shijieshuo" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">世界说</a>
+
+                <a href="http://v.qq.com/vplus/junwuclub" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">军武大本营</a>
+
+                <a href="http://v.qq.com/vplus/liumaishenjian" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">六脉神见</a>
+
+                <a href="http://v.qq.com/vplus/WatchThis" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">WatchThis字幕组</a>
+
+                <a href="http://v.qq.com/vplus/riliao" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">日料</a>
+
+                <a href="http://v.qq.com/detail/2/29981.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">大家讲堂</a>
+
+                <a href="http://v.qq.com/paike/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">拍客学院</a>
+
+                <a href="http://v.qq.com/vplus/Poweron" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">科技三分钟</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="时尚">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/fashion/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部时尚"><span class="icon_text">全部时尚</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://vs.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">2017“维密”内衣秀</a>
+
+                <a href="http://v.qq.com/search.html?pagetype=3&amp;stj2=search.search&amp;stag=txt.index&amp;ms_key=A%E5%92%96%E6%97%B6%E5%B0%9A"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">A咖时尚</a>
+
+                <a href="http://v.qq.com/cover/6/6ipeaq708del6xu.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">摩登派</a>
+
+                <a href="http://v.qq.com/search.html?pagetype=3&amp;ms_key=%E6%97%B6%E5%B0%9A%E7%9C%8B%E5%BE%97%E6%87%82&amp;stj2=search.search&amp;stag=txt.result"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">时尚看得懂</a>
+
+                <a href="https://v.qq.com/x/cover/cp6iex1cpnczfc8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">美肤叨叨乐</a>
+
+                <a href="https://v.qq.com/x/cover/kgfpvk7q5kc4i2g.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">天生高手</a>
+
+                <a href="http://v.qq.com/zt2017/2018ssny/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">四大国际时装周</a>
+
+                <a href="https://v.qq.com/x/cover/8t5ub7to32iznjz/g0024mh4geb.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">东京女孩时尚盛典</a>
+
+                <a href="http://martell.act.qq.com/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">PARTY 不止于此</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="生活">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/life/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部生活"><span class="icon_text">全部生活</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/travel/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">旅游</a>
+
+                <a href="http://v.qq.com/baby/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">育儿</a>
+
+                <a href="http://astro.fashion.qq.com/event/event.shtml" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">星座</a>
+
+                <a href="http://v.qq.com/zt2017/nwyf2/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">年味有FUN 第2季</a>
+
+                <a href="http://v.qq.com/zt2017/cometoeat/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">来吧，开饭啦</a>
+
+                <a href="http://v.qq.com/zt2017/msgbj/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">美食告白记</a>
+
+                <a href="http://v.qq.com/zt2017/mzll/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">萌主来了</a>
+
+                <a href="http://v.qq.com/zt2017/huangxiaochu/4.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">黄小厨的春夏秋冬</a>
+
+                <a href="http://v.qq.com/zt2017/rmttj/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">软萌头条君</a>
+
+                <a href="http://v.qq.com/x/cover/e03r328jxef5swu.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">美颜美食+</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="体育">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/x/list/sports" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部体育"><span class="icon_text">全部体育</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://sports.qq.com/nbavideo/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">NBA</a>
+
+                <a href="http://sports.qq.com/nbavideo/match.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">NBA赛事库</a>
+
+                <a href="http://sports.qq.com/nbavideo/topsk/" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">NBA十佳球</a>
+
+                <a href="http://sports.qq.com/nbavideo/cxmatch/" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">NBA回放</a>
+
+                <a href="http://sports.qq.com/cba/video.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">CBA</a>
+
+                <a href="http://sports.qq.com/video/yc/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">英超</a>
+
+                <a href="http://sports.qq.com/isocce/bundesligavideo.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">德甲</a>
+
+                <a href="http://sports.qq.com/video/og/" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">欧冠</a>
+
+                <a href="http://sports.qq.com/video/zcvideo/" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">中超</a>
+
+                <a href="http://sports.qq.com/csocce/gnzq/zcyx/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">中超英雄</a>
+
+                <a href="http://sports.qq.com/p/topic/20161110010008/index.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">鸟巢沸雪狂欢节</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="汽车">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/auto/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部汽车"><span class="icon_text">全部汽车</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://auto.qq.com/zt2017/cheshenlaile/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">车神来了</a>
+
+                <a href="http://v.qq.com/detail/5/53061.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">用车百科全书</a>
+
+                <a href="https://v.qq.com/x/cover/07o0beigrhwr2r3.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">交警来了</a>
+
+                <a href="https://v.qq.com/x/cover/z0wevp51pbdtu4z.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">腾讯汽车直播</a>
+
+                <a href="https://v.qq.com/x/cover/8e67rlcax4635xi.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">用车实验室</a>
+
+                <a href="https://v.qq.com/x/cover/vbfcdpedz0fvjxz.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">新车速递</a>
+
+                <a href="https://v.qq.com/x/cover/f7se6ttk70eqzty.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">试驾评测</a>
+
+                <a href="https://v.qq.com/x/cover/g3kp0dy3goozapw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">选车指南</a>
+
+                <a href="https://v.qq.com/x/cover/ngcgu83byl25q3t.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">用车之道</a>
+
+                <a href="https://v.qq.com/x/cover/mxvlmo03uv93k24.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">玩车改装</a>
+
+                <a href="https://v.qq.com/x/cover/ec9qfnvpv2yxlj0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">女司机</a>
+
+                <a href="https://v.qq.com/x/cover/j37b6yqa38dbfyh.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">摩托车</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="搞笑">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/fun" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部搞笑"><span class="icon_text">全部搞笑</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/mcxp2erbhmnf3qm.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">男人装不装</a>
+
+                <a href="https://v.qq.com/x/cover/via3ng9ejiznzpb.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">废物点心Ⅱ</a>
+
+                <a href="http://v.qq.com/cover/d/dq28cuqao9uzwja.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">你说了蒜</a>
+
+                <a href="http://v.qq.com/vplus/papijiang" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">papi醬</a>
+
+                <a href="http://v.qq.com/vplus/dsnvlaoshi" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">DS女老诗</a>
+
+                <a href="http://v.qq.com/vplus/20678bf4f710730e3af0bd5d16188422#uin=20678bf4f710730e3af0bd5d16188422"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">拜托啦学妹</a>
+
+                <a href="http://v.qq.com/vplus/changsuoyuyan" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">畅所欲言</a>
+
+                <a href="http://v.qq.com/vplus/89d5d45804c24b53d198c58fb86eb4dc#uin=89d5d45804c24b53d198c58fb86eb4dc"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">办公室小野</a>
+
+                <a href="http://v.qq.com/vplus/fd226fc5dd137b4fd04b9ab5d52a45d8#uin=fd226fc5dd137b4fd04b9ab5d52a45d8"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">歪果仁研究协会</a>
+
+                <a href="http://v.qq.com/vplus/ruan94ruan" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">软软其实不太硬</a>
+
+                <a href="http://v.qq.com/vplus/luoxiuxiu" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">罗休休</a>
+
+                <a href="http://v.qq.com/vplus/yshowclub" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">淮秀帮</a>
+
+                <a href="http://v.qq.com/vplus/xuduba" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">胥渡吧</a>
+
+                <a href="http://v.qq.com/vplus/hexiangufu" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">何仙姑夫</a>
+
+                <a href="http://v.qq.com/vplus/6e0906f1e816e213f9bb462829b154a5#uin=6e0906f1e816e213f9bb462829b154a5"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">毒角Show</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="微电影">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/dv/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部微电影"><span class="icon_text">全部微电影</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/g5sww8w3cvdnchv.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">刀剑笑新传之宝鉴</a>
+
+                <a href="https://v.qq.com/x/cover/f77gmdjptkyr8at.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">长官你别跑</a>
+
+                <a href="https://v.qq.com/x/cover/cm6hs0u8uoqggav.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">逃不出的情人节</a>
+
+                <a href="https://v.qq.com/x/cover/wiq1g7s4ldz0skf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">这个大王我罩的</a>
+
+                <a href="https://v.qq.com/x/cover/zbc5okahsoeb8ii.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">校花2之消失的村落</a>
+
+                <a href="https://v.qq.com/x/cover/pntxsggkuew31gn.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">巡楼人之舞灵</a>
+
+                <a href="https://v.qq.com/x/cover/cedwxs6jkxjpxci.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">消失的妻子</a>
+
+                <a href="https://v.qq.com/x/cover/h66c0or0go9ht0o.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">红袖添香</a>
+
+                <a href="https://v.qq.com/x/cover/spcf58ydnbjqh8w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">御姐在上</a>
+
+                <a href="https://v.qq.com/x/cover/7oooopco58adwwk.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">幸运神与衰神</a>
+
+                <a href="https://v.qq.com/x/cover/4czc3vpxsk7qy87.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">绝命循环</a>
+
+                <a href="http://v.qq.com/cover/h/hzxj4x228yv5k6w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">德扑女王3</a>
+
+                <a href="http://film.qq.com/cover/s/spajmbecrfbpj9y.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">青狗2</a>
+
+                <a href="http://v.qq.com/cover/7/7kcf8a09yt0mkzh.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">超星星学园</a>
+
+                <a href="http://film.qq.com/cover/e/ekf6186puzhy4m0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">危情密友</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="原创">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/videoplus/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部原创"><span class="icon_text">全部原创</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/kpyst2017.html" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">科普影视厅</a>
+
+                <a href="https://om.qq.com/userAuth/index" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">企鹅媒体平台</a>
+
+                <a href="http://v.qq.com/vplus/ted" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">TED</a>
+
+                <a href="http://v.qq.com/vplus/papijiang" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">papi酱</a>
+
+                <a href="http://v.qq.com/detail/3/30406.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">暴走大事件</a>
+
+                <a href="https://v.qq.com/x/cover/68msmq3ysfc6txk/n0549s3m2b4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">换世门生</a>
+
+                <a href="http://v.qq.com/vplus/f4b42e1453cb7f1de7db6985fbb6bbc6" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">一禅小和尚</a>
+
+                <a href="http://v.qq.com/vplus/jwcwm" target="_blank" class="nav_link" _stat="new_vs_header:pop_item"
+                   __wind="">军武次位面</a>
+
+                <a href="http://v.qq.com/vplus/rejuzixishi" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">热剧自习室</a>
+
+                <a href="http://v.qq.com/vplus/6e0906f1e816e213f9bb462829b154a5#uin=6e0906f1e816e213f9bb462829b154a5"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">毒角SHOW</a>
+
+                <a href="http://v.qq.com/vplus/xingyun365" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">星座呦呦秀</a>
+
+                <a href="http://v.qq.com/vplus/vicechina" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">VICE中国</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="拍客">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://paike.qq.com/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部拍客"><span class="icon_text">全部拍客</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://news.qq.com/a/20140220/020405.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">规范须知</a>
+
+                <a href="http://news.qq.com/a/20140220/020388.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">拍客入门</a>
+
+                <a href="http://v.qq.com/cover/e/exk1d33a67naae9.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">如何上传视频</a>
+
+                <a href="http://news.qq.com/a/20140718/062023.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">加入航拍联盟</a>
+
+                <a href="http://news.qq.com/a/20141231/043007.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">奖金设置</a>
+
+                <a href="http://user.qzone.qq.com/1557542448/blog/#!app=2&amp;via=QZ.HashRefresh&amp;pos=catalog_list"
+                   target="_blank" class="nav_link" _stat="new_vs_header:pop_item" __wind="">奖金查询</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="韩剧" style="left: 103px; bottom: 30px; top: auto;">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/x/list/tv?offset=0&amp;iarea=818" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部韩剧"><span class="icon_text">全部韩剧</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/cover/o/ou9rzat4aa01w6g.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">明星伙伴</a>
+
+                <a href="http://v.qq.com/cover/j/j9xn8rw7avsdwke.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">W两个世界</a>
+
+                <a href="http://film.qq.com/cover/g/g1ifl8kazfn3l04.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">我亲爱的朋友们</a>
+
+                <a href="http://film.qq.com/cover/3/3llq9tbpd17kuzi.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">又是吴海英</a>
+
+                <a href="http://film.qq.com/cover/l/lq81p2hszx53nqk.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">记忆</a>
+
+                <a href="http://film.qq.com/cover/z/zsm8q6nsky4z5u6.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">大撲</a>
+
+                <a href="http://film.qq.com/cover/i/icpisy7vkq4jidp.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">陷入纯情</a>
+
+                <a href="http://film.qq.com/cover/v/vkf8hhfj7uunkg6.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">信号 Signal</a>
+
+                <a href="http://film.qq.com/cover/4/454bpdepufip4m0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">邻家英雄</a>
+
+                <a href="http://film.qq.com/cover/i/ik3k9geiy7ye7t8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">亲爱的恩东啊</a>
+
+                <a href="http://v.qq.com/cover/q/qjsrnngkqiyaf2k.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">泡菜爱上Wasabi</a>
+
+                <a href="http://v.qq.com/cover/3/348jg8z69njv2hs.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">总理和我</a>
+
+                <a href="http://v.qq.com/cover/q/q0c1lhfa4umqbw3/w0014g46kej.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">triangle</a>
+
+                <a href="http://v.qq.com/cover/y/yji5djppkx4313j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">百年的新娘</a>
+
+                <a href="http://v.qq.com/cover/8/801pyum2pe8frkr.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">只想爱</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="科技">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/tech/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部科技"><span class="icon_text">全部科技</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/f8nu3uyw482kn9w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">发布会精选</a>
+
+                <a href="https://v.qq.com/x/cover/d1zdz4ovon92a4z.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">搞机零距离</a>
+
+                <a href="http://v.qq.com/cover/p/p24t6bjx9z8lq1z.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">趣玩ing</a>
+
+                <a href="https://v.qq.com/x/cover/e4th0v7bfha4rrf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">科技相对论</a>
+
+                <a href="https://v.qq.com/x/cover/lpn79ey2v37nwv0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">真会玩</a>
+
+                <a href="https://v.qq.com/x/cover/1lztcky027xqct9.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">超能实验室</a>
+
+                <a href="https://v.qq.com/x/cover/01nprqnueynbfwq.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">超能作死秀</a>
+
+                <a href="https://v.qq.com/x/cover/a21st356dl93i84.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">值不值得买</a>
+
+                <a href="https://v.qq.com/x/cover/alx2z8sze34aw8l.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">奇葩硬客</a>
+
+                <a href="https://v.qq.com/x/cover/enlxsp9uuukfk58.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">科技三分钟</a>
+
+                <a href="https://v.qq.com/x/cover/cnm4xsmh5wsphti.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">拆机Pa</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="财经">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/finance/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部财经"><span class="icon_text">全部财经</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/ahs3cq6y2r2l1rm/w0364clbn7l.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">谁来赴宴</a>
+
+                <a href="https://v.qq.com/x/cover/qkl1wqrg6cg8nx9.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">世界经济之旅</a>
+
+                <a href="https://v.qq.com/x/cover/5uw3blpoje8wggt.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">财约你</a>
+
+                <a href="https://v.qq.com/x/page/j0022fcoems.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">世道 Money Voice</a>
+
+                <a href="https://v.qq.com/x/cover/pcjqtqgcp4hamaw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">财经大咖请回答</a>
+
+                <a href="https://v.qq.com/x/cover/vfryud3t4v34vy8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">藏家</a>
+
+                <a href="https://v.qq.com/x/cover/y7ijjql3tk4n0t8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">MoneyTalk</a>
+
+                <a href="https://v.qq.com/x/page/p0024g4jnzf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">波动</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="房产">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/house/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部房产"><span class="icon_text">全部房产</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/page/x05474vwmh6.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">房生百态</a>
+
+                <a href="https://v.qq.com/x/page/i0555um45a4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">购房指南</a>
+
+                <a href="https://v.qq.com/x/page/x0540r95hzl.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">楼市动态</a>
+
+                <a href="https://v.qq.com/x/page/p05391ur629.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">房产资讯</a>
+
+                <a href="https://v.qq.com/x/page/d05563nwnl4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">家居装修</a>
+
+                <a href="https://v.qq.com/x/page/a0547gofx17.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">风水趣谈</a>
+
+                <a href="https://v.qq.com/x/page/g0559gvopc2.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">公积金</a>
+
+                <a href="https://v.qq.com/x/page/q0555m0lki4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">二手房</a>
+
+                <a href="https://v.qq.com/x/page/x0560b8uki2.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">保障房</a>
+
+                <a href="https://v.qq.com/x/page/v0559iokumy.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">海外购房科普</a>
+
+                <a href="https://v.qq.com/x/page/w0503ie4sji.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">贷款买房有讲究</a>
+
+                <a href="https://v.qq.com/x/page/c05471x66dw.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">租房囧事</a>
+
+                <a href="https://v.qq.com/x/page/p054224zqys.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">十二星座租房奇遇记</a>
+
+                <a href="https://v.qq.com/x/page/s05096kzppv.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2017房价预测</a>
+
+                <a href="https://v.qq.com/x/page/y0557r5q1hq.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">2016楼市回顾</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="育儿">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/baby/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部育儿"><span class="icon_text">全部育儿</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/agosdxh6h9qwttd/q0024jfu3wf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">软萌头条君</a>
+
+                <a href="http://v.qq.com/zt2017/naisibama/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">耐撕爸妈</a>
+
+                <a href="https://v.qq.com/x/cover/ebs4mkpud3ra6qn.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">有养</a>
+
+                <a href="http://v.qq.com/zt2017/mblema/index.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">明白了妈</a>
+
+                <a href="https://v.qq.com/x/cover/d2x46xrtl0rrrst.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">十月呵护</a>
+
+                <a href="https://v.qq.com/x/cover/wp9j311wdnuy69v/z0377eiyn7d.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">全民宝贝计划</a>
+
+                <a href="https://v.qq.com/x/cover/kzyozwc5m327xpv.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">半米孕妇学校</a>
+
+                <a href="http://v.qq.com/x/cover/wwyimqpk48wcqm0.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">育儿你造吗</a>
+
+                <a href="https://v.qq.com/x/cover/hnqjsci88sltylj.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">拾味爸爸</a>
+
+                <a href="http://v.qq.com/x/cover/5w4pk4hj0brlkys.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">健健康康成长记</a>
+
+                <a href="http://v.qq.com/x/cover/shx1cw0x5nqfmq6.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">奇育记MEET</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="旅游">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="http://v.qq.com/travel/" target="_blank" class="btn_nav_normal" _stat="new_vs_header:全部旅游"><span
+                            class="icon_text">全部旅游</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="http://v.qq.com/zt2017/dqqqda/diqiuqiqu2017.htm" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">地球奇趣档案</a>
+
+                <a href="http://v.qq.com/detail/4/49535.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">野心</a>
+
+                <a href="https://v.qq.com/x/cover/qybr9p7bow6roq9.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">旅行囧记</a>
+
+                <a href="https://v.qq.com/x/cover/od16c9iydfb0qk1.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">Hi走啦</a>
+
+                <a href="https://v.qq.com/x/cover/pvzttmehn6xpm32.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">世界厨房</a>
+
+                <a href="https://v.qq.com/x/cover/gtn9k2pcn2630gs.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">旅食家</a>
+
+                <a href="http://v.qq.com/vplus/beibaoquhuanyou/videos" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">背包去环游GO</a>
+
+                <a href="https://v.qq.com/x/cover/cxb4l2qk7j2m91w.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">RxS的奇妙旅行</a>
+
+                <a href="https://v.qq.com/x/cover/nemzp42s8xt7ogd.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">小城记事</a>
+
+            </div>
+        </div>
+
+
+        <div class="nav_sub_area" data-nav="儒释道">
+            <div class="nav_sub_inner">
+
+                <div class="nav_btn_line">
+                    <a href="https://v.qq.com/rushidao/" target="_blank" class="btn_nav_normal"
+                       _stat="new_vs_header:全部儒释道"><span class="icon_text">全部儒释道</span><i class="icon_sm icon_right_sm">
+                        <svg class="svg_icon" viewBox="0 0 16 16" width="16" height="16">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_right_sm"></use>
+                        </svg>
+                    </i></a>
+                </div>
+
+
+                <a href="https://v.qq.com/x/cover/reht0e0k8hndin8.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">《华严讲堂》</a>
+
+                <a href="https://v.qq.com/x/cover/0b9feuhs8jjwyfb.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">《明德讲堂》</a>
+
+                <a href="https://v.qq.com/x/cover/7hs1y9jsp4gem3j.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">《弘道讲堂》</a>
+
+                <a href="https://v.qq.com/x/cover/ucfzzr2ruzbo8sf.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">四十二章经 解读</a>
+
+                <a href="https://v.qq.com/x/cover/0156r7erj522mxr.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">朱高正讲解《近思录》</a>
+
+                <a href="https://v.qq.com/x/cover/7nguzizy4itueuh.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">道学新闻</a>
+
+                <a href="http://v.qq.com/cover/v/vztqjgcx1xk75j4.html" target="_blank" class="nav_link"
+                   _stat="new_vs_header:pop_item" __wind="">沙画中的佛学</a>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="main_feature">
+        <a href="https://v.qq.com/x/list/tv" target="_blank" class="mf_item mf_item_0" _stat="nav:tvlist">
+            <i class="icon icon_tvstore">
+                <svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tvstore"></use>
+                </svg>
+            </i>
+            <span class="icon_text">片库</span>
+        </a>
+        <a href="https://v.qq.com/x/hotlist/search" target="_blank" class="mf_item mf_item_1" _stat="nav:hotlist">
+            <i class="icon icon_rank">
+                <svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_rank"></use>
+                </svg>
+            </i>
+            <span class="icon_text">热搜榜</span>
+        </a>
+        <a href="https://node.video.qq.com/x/api/download_pc" target="_blank" class="mf_item mf_item_2"
+           _stat="nav:pcclient" id="nav_pcclient" data-clipboard-text="qqlivechannel=channel1.vhomenav">
+            <i class="icon icon_client">
+                <svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_client"></use>
+                </svg>
+            </i>
+            <span class="icon_text">下载客户端</span>
+        </a>
+        <a href="http://v.qq.com/download.html" target="_blank" class="mf_item mf_item_3" _stat="nav:download">
+            <i class="icon icon_dl">
+                <svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_dl"></use>
+                </svg>
+            </i>
+            <span class="icon_text">下载应用</span>
+        </a>
+        <a href="http://film.qq.com/" class="mf_item mf_item_4" target="_blank" _stat="nav:vipicon">
+                <span class="item_normal hide">
+                    <i class="icon icon_vip_flat"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xlink:href="#svg_icon_vip_flat"></use></svg></i><span class="icon_text">VIP会员</span>
+                </span>
+
+            <span class="item_pic">
+                        <img class="pic1" src="//puui.qpic.cn/vupload/0/20171219_809bq8fe2367t2tycxgusdcxr/0"
+                             alt="VIP会员">
+                        <img class="pic2" src="//puui.qpic.cn/vupload/0/20171219_2nzttptgtrs5lm598km4pldi/0"
+                             alt="VIP会员">
+                    </span>
+
+        </a>
+    </div>
+</div>
+
+<!--今日热点-->
+<div class="mod_row_box">
+
+</div>
+
+<!--正在追-->
+<div class="mod_row_box">
+
+</div>
+
+<!--原创精选-->
+<div class="mod_row_box">
+
+</div>
+
+<!--原创精选-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 你的专属频道-->
+<div class="mod_row_box" id="custommovie">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/custommovie.png" alt="">
+                        我的你的专属频道
+                    </span>
+                </a>
+                <span class="sub_tit">为你精心挑选</span>
+            </h2>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="figure_scroll">
+            <div class="mod_figure">
+                <ul class="figure_list"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 再看一遍-->
+<div class="mod_row_box">
+    <div class="mod_row_box">
+        <div class="mod_hd">
+
+        </div>
+        <div class="mod_bd">
+        </div>
+    </div>
+</div>
+
+<!-- 强势接挡-->
+<div class="mod_row_box" id="timetable">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/rankplay.png" alt="">
+                        强势接挡
+                    </span>
+                </a>
+                <span class="sub_tit">近期上架内容的精彩内容</span>
+            </h2>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_listings_title">
+            <ul class="listings_list">
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">今天</div>
+                        <div class="txt">12月16日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">本周日
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">12月17日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周一</div>
+                        <div class="txt">12月18日首播</div>
+                    </div>
+                    <div class="progress progress_1">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周二</div>
+                        <div class="txt">12月19日首播</div>
+                    </div>
+                    <div class="progress progress_4">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周二
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">12月19日首播</div>
+                    </div>
+                    <div class="progress progress_5">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">下周三</div>
+                        <div class="txt">12月20日首播</div>
+                    </div>
+                    <div class="progress progress_6">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">12月25日</div>
+                        <div class="txt">首播</div>
+                    </div>
+                    <div class="progress progress_7">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+                <li class="list_item">
+                    <div class="tit_txt">
+                        <div class="tit">12月28日
+                            <i class="icon_aspect">有好戏</i>
+                        </div>
+                        <div class="txt">首播</div>
+                    </div>
+                    <div class="progress progress_8">
+                        <span class="dot"></span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 同步剧场-->
+<div class="mod_row_box" id="channelSeries">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/tv.png" alt="">
+                        同步剧场
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">偶像爱情</a>
+                    </li>
+                    <li class="item">
+                        <a href="">宫斗权谋</a>
+                    </li>
+                    <li class="item">
+                        <a href="">玄幻史诗</a>
+                    </li>
+                    <li class="item item_ad"></li>
+                    <li class="item">
+                        <a href="">更多电视剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 花絮·剧透·预告片-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 静态宣传图1-->
+<div class="mod_row_box">
+    <div class="mod_ad_spread">
+        <ul class="ad_spread_list">
+
+            <li class="item">
+                <a __wind="" href="https://v.qq.com/x/cover/m8i6uooilmandtf.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//puui.qpic.cn/tv/0/15609064_580200/0" alt="无心法师2" class="pic1">
+                    <img src="//i.gtimg.cn/qqlive/images/20170904/i1504493725_1.jpg" alt="无心法师2" class="pic2">
+                </a>
+            </li>
+
+            <li class="item">
+                <a __wind="" href="https://v.qq.com/x/cover/yoz60y87rdgl1vp.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//puui.qpic.cn/tv/0/15074651_580200/0" alt="鬼吹灯之黄皮子坟" class="pic1">
+                    <img src="//i.gtimg.cn/qqlive/images/20170720/i1500550625_1.jpg" alt="鬼吹灯之黄皮子坟" class="pic2">
+                </a>
+            </li>
+
+            <li class="item">
+                <a __wind="" href="https://v.qq.com/variety/p/topic/tcdh2/index.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//puui.qpic.cn/tv/0/16578488_580200/0" alt="吐槽大会2" class="pic1">
+                    <img src="//img1.gtimg.com/variety/pics/hv1/117/181/2254/146612622.png" alt="吐槽大会2" class="pic2">
+                </a>
+            </li>
+
+            <li class="item">
+                <a __wind="" href="http://v.qq.com/detail/6/68852.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//puui.qpic.cn/tv/0/15910284_580200/0" alt="青春旅社" class="pic1">
+                    <img src="//img1.gtimg.com/v/pics/hv1/235/38/2244/145926025.png" alt="青春旅社" class="pic2">
+                </a>
+            </li>
+
+            <li class="item">
+                <a __wind="" href="http://v.qq.com/detail/6/68802.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//img1.gtimg.com/variety/pics/hv1/136/43/2244/145927201.jpg" alt="亲爱的客栈" class="pic1">
+                    <img src="//img1.gtimg.com/variety/pics/hv1/117/43/2244/145927182.png" alt="亲爱的客栈" class="pic2">
+                </a>
+            </li>
+
+            <li class="item">
+                <a __wind="" href="https://v.qq.com/variety/p/topic/yydds/index.html" class="pic_block" target="_blank"
+                   _stat="new_vs_tv_banner:item">
+                    <img src="//puui.qpic.cn/tv/0/16194780_580200/0" alt="演员的诞生" class="pic1">
+                    <img src="//img1.gtimg.com/15/pics/hv1/25/210/2249/146294800.png" alt="演员的诞生" class="pic2">
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!-- 综艺-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 预告·花絮-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 静态宣传图2x-->
+<div class="mod_row_box">
+    <div class="mod_ad_main clearfix">
+        <a href="##"><img src="https://swa.gtimg.com/web/snswin/2017/10/27/09/3408932.gif" alt="">
+            <p class="advertising">广告</p>
+            <p class="tip_off">举报</p>
+        </a>
+        <a href="##"><img src="https://puui.qpic.cn/tv/0/16609678_27590/0" alt=""></a>
+    </div>
+
+</div>
+
+
+<!-- 电影-->
+<div class="mod_row_box" id="channelMovie">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/movie.png" alt="">
+                        电影
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">最近热播</a>
+                    </li>
+                    <li class="item">
+                        <a href="">林正英僵尸片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">亲子电影</a>
+                    </li>
+                    <li class="item">
+                        <a href="">周末宅影院</a>
+                    </li>
+                    <li class="item">
+                        <a href="">午夜放映</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多电影
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 资讯·预告片-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 静态宣传图3-->
+<div class="mod_row_box">
+    <div class="mod_ad_main clearfix">
+        <a href="##"><img src="https://tui.gtimg.com/res/2017/06/03/09/2915418.gif" alt="">
+            <p class="advertising">广告</p>
+            <p class="tip_off">举报</p>
+        </a>
+        <a href="##"><img src="https://puui.qpic.cn/tv/0/16536125_27590/0" alt=""></a>
+    </div>
+</div>
+
+<!-- 动漫精选-->
+<div class="mod_row_box" id="channelCartoon">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/cartoon.png" alt="">
+                        动漫精选
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">三国演义</a>
+                    </li>
+                    <li class="item">
+                        <a href="">超神学院之雄兵连</a>
+                    </li>
+                    <li class="item">
+                        <a href="">欢乐斗地主</a>
+                    </li>
+                    <li class="item">
+                        <a href="">神契幻奇谭</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多动漫
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 儿童动画-->
+<div class="mod_row_box" id="channelChild">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/cartoon.png" alt="">
+                        少儿动画
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">超级小熊迷</a>
+                    </li>
+                    <li class="item">
+                        <a href="">豆乐儿歌</a>
+                    </li>
+                    <li class="item">
+                        <a href="">梦想三国</a>
+                    </li>
+                    <li class="item">
+                        <a href="">熊猫和小鼹鼠</a>
+                    </li>
+                    <li class="item">
+                        <a href="">小企鹅乐园</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多少儿视频
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 英美剧-->
+<div class="mod_row_box" id="channelUnitedstates">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/usuk.png" alt="">
+                        英美剧
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">2018美剧抢先看</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多英美剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 韩剧-->
+<div class="mod_row_box" id="channelKarea">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/kr.png" alt="">
+                        韩剧
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">泡菜喊上Wasabi</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多韩剧
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 纪录片-->
+<div class="mod_row_box" id="channelDoco">
+    <div class="mod_hd">
+        <div class="mod_hd_yb">
+            <h2 class="mod_hd_title">
+                <a href="" class="title_pic_link" target="_blank">
+                    <span class="title_pic">
+                        <img src="images/yb/doco.png" alt="">
+                        纪录片
+                    </span>
+                </a>
+                <span class="sub_tit"></span>
+            </h2>
+            <div class="title_action">
+                <ul class="mod_link_list">
+                    <li class="item">
+                        <a href="">BBC纪录片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">NHK纪录片</a>
+                    </li>
+                    <li class="item">
+                        <a href="">美国历史频道</a>
+                    </li>
+                    <li class="item">
+                        <a href="">探索频道</a>
+                    </li>
+                    <li class="item">
+                        <a href="">国家地理</a>
+                    </li>
+                    <li class="item">
+                        <a href="">更多纪录片
+                            <i class="iconfont_yb icon-arrowRight"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mod_bd">
+        <div class="mod_figure">
+            <ul class="figure_list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- 精选标签-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 为你推荐-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 娱乐热点-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 音乐·演唱会-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- NBA-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 最强笑点-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 游戏-->
+<div class="mod_row_box">
+
+</div>
+
+<!-- 静态宣传图4-->
+<div class="mod_row_box">
+    <div class="mod_ad_main clearfix">
+        <a href="##"><img src="https://swa.gtimg.com/web/snswin/2017/09/19/15/3358708.gif" alt="">
+            <p class="advertising">广告</p>
+            <p class="tip_off">举报</p>
+        </a>
+        <a href="##"><img src="https://puui.qpic.cn/tv/0/16639464_27590/0" alt=""></a>
+    </div>
+
+</div>
+
+<!--footer-->
+<div class="site_footer">
+    <div class="footer_inner">
+        <svg class="svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="svg_icon_phone_l" viewBox="0 0 50 50">
+                <path d="M34 3h-18c-1.657 0-3 1.343-3 3v38c0 1.657 1.343 3 3 3h18c1.657 0 3-1.343 3-3v-38c0-1.657-1.343-3-3-3zm1 38h-20v-32h20v32z"></path>
+            </symbol>
+            <symbol id="svg_icon_win_l" viewBox="0 0 50 50">
+                <path d="M7 23.977l13.282-.176v-14.384l-13.282 2.286v12.274zm15.953-15.02v14.809l20.047-.266v-17.993l-20.047 3.45zm-15.953 29.339l13.282 2.286v-14.383l-13.282-.176v12.273zm15.953 2.746l20.047 3.451v-17.994l-20.047-.265v14.808z"></path>
+            </symbol>
+            <symbol id="svg_icon_mac_l" viewBox="0 0 50 50">
+                <path d="M42.705 17.437c-2.28-2.958-5.474-4.671-8.49-4.671-3.99 0-5.675 1.976-8.454 1.976-2.85 0-5.022-1.964-8.478-1.964-3.384 0-6.993 2.143-9.285 5.796-3.218 5.15-2.672 14.85 2.541 23.114 1.864 2.958 4.358 6.275 7.623 6.312h.06c2.838 0 3.681-1.928 7.587-1.952h.06c3.847 0 4.619 1.94 7.445 1.94h.059c3.265-.036 5.889-3.713 7.753-6.659 1.342-2.12 1.84-3.185 2.873-5.581-7.54-2.97-8.751-14.059-1.294-18.311zm-18.155-4.371c2.529 0 5.118-1.581 6.625-3.605 1.461-1.928 2.565-4.658 2.162-7.461-2.375.168-5.141 1.736-6.768 3.784-1.472 1.856-2.683 4.611-2.208 7.282h.189z"></path>
+            </symbol>
+            <symbol id="svg_icon_ipad_l" viewBox="0 0 50 50">
+                <path d="M46 8h-42c-1.657 0-3 1.343-3 3v28c0 1.657 1.343 3 3 3h42c1.657 0 3-1.343 3-3v-28c0-1.657-1.343-3-3-3zm-2 32h-38v-30h38v30z"></path>
+            </symbol>
+            <symbol id="svg_icon_tv_l" viewBox="0 0 50 50">
+                <path d="M2 11h44v10h2v-11c0-.552-.448-1-1-1h-46c-.552 0-1 .448-1 1v27c0 .552.448 1 1 1h11v2c0 .552.448 1 1 1h22c.552 0 1-.448 1-1v-2h4v-2h-38v-25zm46 12h-4c-1.105 0-2 .895-2 2v14c0 1.105.895 2 2 2h4c1.105 0 2-.895 2-2v-14c0-1.105-.895-2-2-2zm-2 13c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm0-5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z"></path>
+            </symbol>
+        </svg>
+        <div class="mod_footer_contentinfo cf">
+            <div class="contentinfo_column contentinfo_channel">
+                <em class="contentinfo_title">热门频道</em>
+                <ul>
+
+                    <li><a href="http://v.qq.com/tv/" target="_blank" title="电视剧">电视剧</a></li>
+
+                    <li><a href="http://v.qq.com/variety/" target="_blank" title="综艺">综艺</a></li>
+
+                    <li><a href="http://v.qq.com/movie/" target="_blank" title="电影">电影</a></li>
+
+                    <li><a href="http://v.qq.com/ent/" target="_blank" title="娱乐">娱乐</a></li>
+
+                    <li><a href="http://v.qq.com/music/" target="_blank" title="MV">MV</a></li>
+
+                    <li><a href="http://v.qq.com/cartoon/" target="_blank" title="动漫">动漫</a></li>
+
+                    <li><a href="http://v.qq.com/games/" target="_blank" title="游戏">游戏</a></li>
+
+                    <li><a href="http://film.qq.com" target="_blank" title="VIP影院">VIP影院</a></li>
+
+                    <li><a href="http://v.qq.com/tv/yingmei/" target="_blank" title="英美剧">英美剧</a></li>
+
+                    <li><a href="http://v.qq.com/doco/" target="_blank" title="纪录片">纪录片</a></li>
+
+                    <li><a href="http://v.qq.com/news/" target="_blank" title="新闻">新闻</a></li>
+
+                    <li><a href="http://v.qq.com/sports/" target="_blank" title="体育">体育</a></li>
+
+                    <li><a href="http://v.qq.com/life/" target="_blank" title="生活">生活</a></li>
+
+                </ul>
+            </div>
+            <div class="contentinfo_column contentinfo_feature">
+                <em class="contentinfo_title">特色推荐</em>
+                <ul>
+
+                    <li><a href="http://v.qq.com/videoplus/" target="_blank" title="原创自媒体" _stat="page_footer:rec_1">原创自媒体</a>
+                    </li>
+
+                    <li><a href="http://v.qq.com/dv/" target="_blank" title="微电影" _stat="page_footer:rec_2">微电影</a></li>
+
+                    <li><a href="http://v.qq.com/paike/" target="_blank" title="拍客" _stat="page_footer:rec_3">拍客</a>
+                    </li>
+
+                    <li><a href="http://v.qq.com/hotshare/" target="_blank" title="搞笑" _stat="page_footer:rec_4">搞笑</a>
+                    </li>
+
+                    <!--[if !IE]>|xGv00|d866fff45657538033983dd0d469c4f9<![endif]-->
+                </ul>
+            </div>
+            <div class="contentinfo_column contentinfo_download">
+                <em class="contentinfo_title">软件下载</em>
+                <div class="dl_list">
+
+                    <a class="item" target="_blank" href="http://v.qq.com/download.html#phone"
+                       _stat="page_footer:download_1">
+                        <i class="icon_l icon_phone_l">
+                            <svg class="svg_icon" viewBox="0 0 50 50" width="50" height="50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_phone_l"></use>
+                            </svg>
+                        </i>
+                        <span class="text_icon">手机版</span>
+                    </a>
+
+                    <a class="item" target="_blank" href="http://v.qq.com/download.html#pc"
+                       _stat="page_footer:download_2">
+                        <i class="icon_l icon_win_l">
+                            <svg class="svg_icon" viewBox="0 0 50 50" width="50" height="50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_win_l"></use>
+                            </svg>
+                        </i>
+                        <span class="text_icon">Windows版</span>
+                    </a>
+
+                    <a class="item" target="_blank" href="http://v.qq.com/download.html#mac"
+                       _stat="page_footer:download_3">
+                        <i class="icon_l icon_mac_l">
+                            <svg class="svg_icon" viewBox="0 0 50 50" width="50" height="50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mac_l"></use>
+                            </svg>
+                        </i>
+                        <span class="text_icon">Mac版</span>
+                    </a>
+
+                    <a class="item" target="_blank" href="http://v.qq.com/download.html#pad"
+                       _stat="page_footer:download_4">
+                        <i class="icon_l icon_ipad_l">
+                            <svg class="svg_icon" viewBox="0 0 50 50" width="50" height="50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_ipad_l"></use>
+                            </svg>
+                        </i>
+                        <span class="text_icon">iPad版</span>
+                    </a>
+
+                    <a class="item" target="_blank" href="http://v.qq.com/download.html#tv"
+                       _stat="page_footer:download_5">
+                        <i class="icon_l icon_tv_l">
+                            <svg class="svg_icon" viewBox="0 0 50 50" width="50" height="50">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_l"></use>
+                            </svg>
+                        </i>
+                        <span class="text_icon">TV版</span>
+                    </a>
+
+                </div>
+            </div>
+            <div class="contentinfo_column contentinfo_service">
+                <em class="contentinfo_title">服务</em>
+                <ul>
+
+                    <li><a href="http://kf.qq.com/product/QQlive.html" target="_blank" title="客服"
+                           _stat="page_footer:service_1">客服</a></li>
+
+                    <li><a href="https://support.qq.com/products/2208" target="_blank" title="反馈"
+                           _stat="page_footer:service_2">反馈</a></li>
+
+                    <li><a href="http://v.qq.com/qinquan/q1.html" target="_blank" title="侵权投诉"
+                           _stat="page_footer:service_3">侵权投诉</a></li>
+
+                    <li><a href="http://v.qq.com/open/index.html" target="_blank" title="免广告合作"
+                           _stat="page_footer:service_4">免广告合作</a></li>
+
+                    <!--[if !IE]>|xGv00|50fe2943e16f80a385ff71c4cab27aa4<![endif]-->
+                </ul>
+            </div>
+        </div>
+        <div class="mod_footer"><!--placeholder-->
+            <div class="footermenu">
+                <a href="http://www.tencent.com/" rel="nofollow" target="_blank">关于腾讯</a> | <a
+                    href="http://www.tencent.com/index_e.shtml" rel="nofollow" target="_blank">About Tencent</a> | <a
+                    href="http://www.qq.com/contract.shtml" rel="nofollow" target="_blank">服务条款</a> | <a
+                    href="http://www.tencentmind.com/" rel="nofollow" target="_blank">广告服务</a> | <a
+                    href="http://hr.tencent.com/" rel="nofollow" target="_blank">腾讯招聘</a> | <a
+                    href="http://service.qq.com/" rel="nofollow" target="_blank">客服中心</a> | <a
+                    href="http://www.qq.com/map/" rel="nofollow" target="_blank">网站导航</a>
+            </div>
+            <div class="copyrighten">Copyright © 1998 - <span><script>document.write(new Date().getFullYear());</script></span>
+                Tencent. <a target="_blank" href="http://www.tencent.com/en-us/le/copyrightstatement.shtml"
+                            rel="nofollow">All Rights Reserved.</a></div>
+            <div class="copyrightzh">腾讯公司 <a target="_blank"
+                                             href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml"
+                                             rel="nofollow">版权所有</a> <a target="_blank"
+                                                                        href="http://www.tencent.com/law/mo_law.shtml?/law/copyright.htm"
+                                                                        rel="nofollow">腾讯网络文化经营许可证</a></div>
+        </div>
+    </div>
+
+</div>
+
+<!--右侧底部定位功能条-->
+<div class="x_fixed_tool">
+    <svg class="txp_svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="svg_icon_backup" viewBox="0 0 20 20">
+            <path d="M17 14.463a.996.996 0 0 1-.724-.313l-6.275-6.695-6.275 6.695c-.381.406-1.014.418-1.414.034s-.415-1.021-.034-1.424L9.277 5.3c.378-.4 1.071-.4 1.448 0l7 7.46c.38.403.365 1.04-.035 1.424a.992.992 0 0 1-.69.279z"></path>
+        </symbol>
+        <symbol id="svg_icon_tinyapp" viewBox="0 0 20 20">
+            <path d="M6 18c-2.757 0-5-2.248-5-5.011a4.991 4.991 0 0 1 4.169-4.943 1.003 1.003 0 0 1 .331 1.977A2.994 2.994 0 0 0 3 12.989c0 1.658 1.346 3.006 3 3.006s3-1.348 3-3.006V7.016c0-2.763 2.243-5.011 5-5.011s5 2.248 5 5.011c0 2.476-1.842 4.608-4.285 4.96a1.003 1.003 0 0 1-.284-1.984A3.017 3.017 0 0 0 17 7.016c0-1.658-1.346-3.007-3-3.007s-3 1.349-3 3.007v5.973C11 15.752 8.757 18 6 18z"></path>
+        </symbol>
+        <symbol id="svg_icon_feedback" viewBox="0 0 20 20">
+            <path d="M6 9.417c0-.835.671-1.512 1.5-1.512.828 0 1.5.677 1.5 1.512s-.672 1.512-1.5 1.512c-.829 0-1.5-.677-1.5-1.512zm4.999 0c0-.835.672-1.512 1.5-1.512.829 0 1.5.677 1.5 1.512s-.671 1.512-1.5 1.512c-.828 0-1.5-.677-1.5-1.512zm3.72 6.645a.995.995 0 0 1-1.319-.513 1.01 1.01 0 0 1 .508-1.33 5.25 5.25 0 0 0 3.091-4.797c0-2.89-2.326-5.242-5.185-5.242H8.185C5.326 4.18 3 6.532 3 9.422c0 2.891 2.326 5.242 5.185 5.242h2.447l1.832 3.896a1.003 1.003 0 0 1-.902 1.44.998.998 0 0 1-.904-.576L9.367 16.68H8.185C4.224 16.68 1 13.424 1 9.422s3.224-7.258 7.185-7.258h3.629c3.961 0 7.185 3.256 7.185 7.258 0 2.871-1.68 5.477-4.28 6.64z"></path>
+        </symbol>
+        <symbol id="svg_icon_miniplayer" viewBox="0 0 20 20">
+            <path d="M17 19h-6a2 2 0 0 1-2-2v-2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2zm0-8h-4V3H3v10h8v4h6v-6zM6.975 8.025L5 10V5h5L8.012 6.988l6.507 6.493L16 12v4h-4l1.482-1.482-6.507-6.493z"></path>
+        </symbol>
+        <symbol id="svg_icon_download" viewBox="0 0 20 20">
+            <path d="M18.915 13.427c-1.487 3.428-4.986 5.644-8.915 5.644s-7.428-2.216-8.915-5.644a1.01 1.01 0 0 1 .516-1.327.994.994 0 0 1 1.316.52c1.169 2.694 3.949 4.435 7.083 4.435 3.135 0 5.915-1.741 7.083-4.435a.997.997 0 0 1 1.317-.52c.505.223.737.817.515 1.327zm-8.207.308a.996.996 0 0 1-1.416 0L5.294 9.704a1.011 1.011 0 0 1 0-1.424.992.992 0 0 1 1.413 0L9 10.59V1.937c0-.557.448-1.008 1-1.008.553 0 1 .451 1 1.008v8.653l2.293-2.31a.994.994 0 0 1 1.414 0c.39.393.39 1.031 0 1.424l-3.999 4.031z"></path>
+        </symbol>
+        <symbol id="svg_icon_win_lg" viewBox="0 0 36 36">
+            <path d="M17 26.7v-7.6l10 .1v9.2l-10-1.7zm0-16.4l10-1.8v9.2l-10 .1v-7.5zM9 19l6.6.1v7.4L9 25.3V19zm0-7.3l6.6-1.2v7.4L9 18v-6.3z"></path>
+        </symbol>
+        <symbol id="svg_icon_mac_lg" viewBox="0 0 36 36">
+            <path d="M27 22.9c-.5 1.2-.8 1.7-1.4 2.8-.9 1.5-2.2 3.3-3.9 3.3-1.4 0-1.8-1-3.7-1-2 0-2.4 1-3.8 1-1.6 0-2.9-1.7-3.8-3.2-2.6-4.1-2.9-9-1.3-11.6 1.1-1.8 2.9-2.9 4.6-2.9 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.9 4.2 2.3-3.7 2.2-3.1 7.8.7 9.3zm-9.7-11.4c-.1 0-.1 0 0 0-.3-1.3.3-2.7 1-3.6.8-1 2.2-1.8 3.4-1.9.2 1.4-.4 2.8-1.1 3.7-.8 1-2.1 1.8-3.3 1.8z"></path>
+        </symbol>
+        <symbol id="svg_icon_ipad_lg" viewBox="0 0 36 36">
+            <path d="M27 10H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2zm-1 14H10V12h16v12z"></path>
+        </symbol>
+        <symbol id="svg_icon_phone_lg" viewBox="0 0 36 36">
+            <path d="M23 29H13c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2zm0-19H13v16h10V10z"></path>
+        </symbol>
+        <symbol id="svg_icon_tv_lg" viewBox="0 0 36 36">
+            <path d="M27 24H9c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2zm0-12H9v10h18V12zM13 25h10c.6 0 1 .4 1 1s-.4 1-1 1H13c-.6 0-1-.4-1-1s.4-1 1-1z"></path>
+        </symbol>
+        <symbol id="svg_icon_qielive_lg" viewBox="0 0 36 36">
+            <path d="M24.9 9.2c-1.1.6-1.8 1.9-2.2 2.8 2.5 1.7 4 4.6 4 7.7 0 5.1-4 9.2-9 9.2s-9-4.1-9-9.2c0-2.5.9-4.8 2.7-6.6l.2-.2c.1-.2.2-.5.3-.8.2-.8.5-1.8 1.1-2.6C14.6 7.4 16.5 7 17.8 7c1.1 0 2 .3 2.6.6.8-.2 1.6-.3 2.6-.3.9 0 1.5.1 1.5.1.4.1.8.4.8.8.2.4 0 .8-.4 1zm-4.2.5c-.3.1-.7.1-1-.1-.3-.2-1-.5-1.9-.5-1.2 0-2.3.6-3.2 1.7-.4.5-.6 1.2-.7 1.8-.1.4-.2.9-.4 1.3-.1.1-.1.2-.2.3l-.3.3c-1.4 1.4-2.1 3.2-2.1 5.2 0 4 3.1 7.2 7 7.2s7-3.2 7-7.2c0-2.7-1.4-5.1-3.7-6.4-.4-.2-.6-.7-.5-1.2.2-.7.7-1.8 1.4-2.9-.6.2-1.1.3-1.4.5zm.6 10.5c-.7.6-1.5 1.1-2.4 1.5-.9.5-1.8.9-2.7 1.2-.6.2-1.2-.1-1.3-.7-.2-.9-.2-1.8-.2-2.7 0-.9 0-1.9.2-2.7.1-.6.7-.9 1.3-.7.9.3 1.8.7 2.7 1.2.9.5 1.7.9 2.4 1.5.5.4.6.9 0 1.4z"></path>
+        </symbol>
+        <symbol id="svg_icon_vcoin" viewBox="0 0 20 20">
+            <path d="M3 10c0-3.866 3.134-7 7-7s7 3.134 7 7-3.134 7-7 7-7-3.134-7-7zm-2 0c0 4.971 4.029 9 9 9s9-4.029 9-9-4.029-9-9-9-9 4.029-9 9zm12.609-1.562s.453-.938-.453-1.328c-.922-.313-1.156.515-1.156.515l-2 3.813-2-3.813s-.203-.844-1.156-.516c-.906.391-.453 1.329-.453 1.329l2.609 4.671s.281.734 1 .734l1-.734 2.609-4.671z"></path>
+        </symbol>
+
+
+
+    </svg>
+    <div role="usersign-container">
+        <svg class="svg_sprite" display="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="svg_icon_backup" viewBox="0 0 20 20">
+                <path d="M17 14.463a.996.996 0 0 1-.724-.313l-6.275-6.695-6.275 6.695c-.381.406-1.014.418-1.414.034s-.415-1.021-.034-1.424L9.277 5.3c.378-.4 1.071-.4 1.448 0l7 7.46c.38.403.365 1.04-.035 1.424a.992.992 0 0 1-.69.279z"></path>
+            </symbol>
+            <symbol id="svg_icon_tinyapp" viewBox="0 0 20 20">
+                <path d="M6 18c-2.757 0-5-2.248-5-5.011a4.991 4.991 0 0 1 4.169-4.943 1.003 1.003 0 0 1 .331 1.977A2.994 2.994 0 0 0 3 12.989c0 1.658 1.346 3.006 3 3.006s3-1.348 3-3.006V7.016c0-2.763 2.243-5.011 5-5.011s5 2.248 5 5.011c0 2.476-1.842 4.608-4.285 4.96a1.003 1.003 0 0 1-.284-1.984A3.017 3.017 0 0 0 17 7.016c0-1.658-1.346-3.007-3-3.007s-3 1.349-3 3.007v5.973C11 15.752 8.757 18 6 18z"></path>
+            </symbol>
+            <symbol id="svg_icon_feedback" viewBox="0 0 20 20">
+                <path d="M19.736 4.088l-8.649 8.648c-.13.13-.292.206-.46.24-.319.011-3.62.016-3.62.016s.015-3.093.002-3.516c.017-.205.097-.407.254-.564l8.649-8.648c.352-.352.923-.352 1.275 0l2.549 2.549c.352.352.352.923 0 1.275zm-10.561 5.462v1.275h1.275l4.824-4.825-1.274-1.274-4.825 4.824zm7.374-7.374l-1.275 1.275 1.275 1.275 1.275-1.275-1.275-1.275zm-5.966 10.815l.045-.014-.045.014zm-3.574-3.515l-.01.042.01-.042zm-3.002 6.516h12v-6h2v6c0 1.105-.896 2-2 2h-12c-1.105 0-2-.895-2-2v-12c0-1.105.895-2 2-2h6v2h-6v12z"></path>
+            </symbol>
+            <symbol id="svg_icon_miniplayer" viewBox="0 0 20 20">
+                <path d="M17 19h-6a2 2 0 0 1-2-2v-2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2zm0-8h-4V3H3v10h8v4h6v-6zM6.975 8.025L5 10V5h5L8.012 6.988l6.507 6.493L16 12v4h-4l1.482-1.482-6.507-6.493z"></path>
+            </symbol>
+            <symbol id="svg_icon_download" viewBox="0 0 20 20">
+                <path d="M18.915 13.427c-1.487 3.428-4.986 5.644-8.915 5.644s-7.428-2.216-8.915-5.644a1.01 1.01 0 0 1 .516-1.327.994.994 0 0 1 1.316.52c1.169 2.694 3.949 4.435 7.083 4.435 3.135 0 5.915-1.741 7.083-4.435a.997.997 0 0 1 1.317-.52c.505.223.737.817.515 1.327zm-8.207.308a.996.996 0 0 1-1.416 0L5.294 9.704a1.011 1.011 0 0 1 0-1.424.992.992 0 0 1 1.413 0L9 10.59V1.937c0-.557.448-1.008 1-1.008.553 0 1 .451 1 1.008v8.653l2.293-2.31a.994.994 0 0 1 1.414 0c.39.393.39 1.031 0 1.424l-3.999 4.031z"></path>
+            </symbol>
+            <symbol id="svg_icon_win_lg" viewBox="0 0 36 36">
+                <path d="M17 26.7v-7.6l10 .1v9.2l-10-1.7zm0-16.4l10-1.8v9.2l-10 .1v-7.5zM9 19l6.6.1v7.4L9 25.3V19zm0-7.3l6.6-1.2v7.4L9 18v-6.3z"></path>
+            </symbol>
+            <symbol id="svg_icon_mac_lg" viewBox="0 0 36 36">
+                <path d="M27 22.9c-.5 1.2-.8 1.7-1.4 2.8-.9 1.5-2.2 3.3-3.9 3.3-1.4 0-1.8-1-3.7-1-2 0-2.4 1-3.8 1-1.6 0-2.9-1.7-3.8-3.2-2.6-4.1-2.9-9-1.3-11.6 1.1-1.8 2.9-2.9 4.6-2.9 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.9 4.2 2.3-3.7 2.2-3.1 7.8.7 9.3zm-9.7-11.4c-.1 0-.1 0 0 0-.3-1.3.3-2.7 1-3.6.8-1 2.2-1.8 3.4-1.9.2 1.4-.4 2.8-1.1 3.7-.8 1-2.1 1.8-3.3 1.8z"></path>
+            </symbol>
+            <symbol id="svg_icon_ipad_lg" viewBox="0 0 36 36">
+                <path d="M27 10H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2zm-1 14H10V12h16v12z"></path>
+            </symbol>
+            <symbol id="svg_icon_phone_lg" viewBox="0 0 36 36">
+                <path d="M23 29H13c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2zm0-19H13v16h10V10z"></path>
+            </symbol>
+            <symbol id="svg_icon_tv_lg" viewBox="0 0 36 36">
+                <path d="M27 24H9c-1.1 0-2-.9-2-2V12c0-1.1.9-2 2-2h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2zm0-12H9v10h18V12zM13 25h10c.6 0 1 .4 1 1s-.4 1-1 1H13c-.6 0-1-.4-1-1s.4-1 1-1z"></path>
+            </symbol>
+            <symbol id="svg_icon_qielive_lg" viewBox="0 0 36 36">
+                <path d="M24.9 9.2c-1.1.6-1.8 1.9-2.2 2.8 2.5 1.7 4 4.6 4 7.7 0 5.1-4 9.2-9 9.2s-9-4.1-9-9.2c0-2.5.9-4.8 2.7-6.6l.2-.2c.1-.2.2-.5.3-.8.2-.8.5-1.8 1.1-2.6C14.6 7.4 16.5 7 17.8 7c1.1 0 2 .3 2.6.6.8-.2 1.6-.3 2.6-.3.9 0 1.5.1 1.5.1.4.1.8.4.8.8.2.4 0 .8-.4 1zm-4.2.5c-.3.1-.7.1-1-.1-.3-.2-1-.5-1.9-.5-1.2 0-2.3.6-3.2 1.7-.4.5-.6 1.2-.7 1.8-.1.4-.2.9-.4 1.3-.1.1-.1.2-.2.3l-.3.3c-1.4 1.4-2.1 3.2-2.1 5.2 0 4 3.1 7.2 7 7.2s7-3.2 7-7.2c0-2.7-1.4-5.1-3.7-6.4-.4-.2-.6-.7-.5-1.2.2-.7.7-1.8 1.4-2.9-.6.2-1.1.3-1.4.5zm.6 10.5c-.7.6-1.5 1.1-2.4 1.5-.9.5-1.8.9-2.7 1.2-.6.2-1.2-.1-1.3-.7-.2-.9-.2-1.8-.2-2.7 0-.9 0-1.9.2-2.7.1-.6.7-.9 1.3-.7.9.3 1.8.7 2.7 1.2.9.5 1.7.9 2.4 1.5.5.4.6.9 0 1.4z"></path>
+            </symbol>
+            <!--新增SVG-->
+            <symbol id="svg_icon_close_att" viewBox="0 0 10 10">
+                <path d="M7 6h1v1h1v1h1v2h-2v-1h-1v-1h-1v-1h-2v1h-1v1h-1v1h-2v-2h1v-1h1v-1h1v-2h-1v-1h-1v-1h-1v-2h2v1h1v1h1v1h2v-1h1v-1h1v-1h2v2h-1v1h-1v1h-1v2z"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoin_lg_att" viewBox="0 0 36 36">
+                <circle id="Oval" fill="#FFD600" cx="18" cy="18" r="16"></circle>
+                <circle id="Oval_1_" fill="#F3B600" cx="18" cy="18" r="12.5"></circle>
+                <polygon id="Shape" fill="#FFF300" points="24.912,12 19.543,25.216 16.391,25.216 11,12 14.478,12 17.956,21.44 21.434,12"></polygon>
+            </symbol>
+            <symbol id="svg_icon_mall_lg_att" viewBox="0 0 36 36">
+                <path d="M29,33 L7,33 C5.895,33 5,32.105 5,31 L6,13 C6,11.895 6.895,11 8,11 L10,11 C10,6.582 13.582,3 18,3 C22.418,3 26,6.582 26,11 L28,11 C29.105,11 30,11.895 30,13 L31,31 C31,32.105 30.105,33 29,33 Z M18,6 C15.239,6 13,8.239 13,11 L23,11 C23,8.239 20.761,6 18,6 Z M27,14 L9,14 L8,30 L28,30 L27,14 Z"></path>
+            </symbol>
+            <symbol id="svg_icon_tv_lg_att" viewBox="0 0 36 36">
+                <path d="M20.5,26h-9c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h9c0.828,0,1.5-0.672,1.5-1.5S21.328,26,20.5,26z"></path>
+                <path d="M28,5H4C2.895,5,2,5.895,2,7v15c0,1.105,0.895,2,2,2h24c1.105,0,2-0.895,2-2V7C30,5.895,29.105,5,28,5zM27,21H5V8h22V21z"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_normal_att" viewBox="0 0 52 41">
+                <path d="M4.659 13.496s-.727-.935-.793-1.662v.001c-.198-.948-.282-2.432.173-4.081.191-.69.724-1.093.724-1.093 1.744-1.731 3.295-2.035 3.295-2.035l-.024.074c.499-.005 1.637.077 1.542.927-.131 1.179-3.367 7.321-4.917 7.869z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 23.523s3.038 12.186 3.62 9.97c0 0 2.934 3.137 5.544 3.968 2.61.832 9.558 1.581 12.506.336 2.949-1.245 8.362-3.083 9.86-6.063 0 0 1.272.334 2.694-1.747-1.414 1.092 3.522-3.448.129-4.765l-1.259 1.767s2.13-6.756.954-9.922c0 0-7.692-13.097-19.64-12.559 0 0-17.196 4.252-14.407 19.014z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M34 31h-3c-1.105 0-2-.895-2-2s.895-2 2-2h3c1.105 0 2 .895 2 2s-.895 2-2 2zm-20 0h-3c-1.104 0-2-.895-2-2s.896-2 2-2h3c1.104 0 2 .895 2 2s-.896 2-2 2z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M12.011 14.803s1.658 7.54 20.326 6.58c.657-.712-.71-2.293-1.848-5.64 0 0 3.858 2.583 5.511 10.257 1.254 5.822-2.715 8.434-5.515 11.362l1.045 2.968c2.167-.449 5.907-3.578 5.975-.552.07 3.025 4.881-.046 8.183-3.501 0 0 7.817-3.105 6.052-12.084-2.179-11.088-13.021-20.975-21.327-23.43-2.423-.716-13.331-2.402-19.398 3.76 1.808-1.836-10.689 6.115-11.015 21.559-.234 11.09 7.035 14.61 8.46 14.631 2.723.041.37-1.646 4.909-.388 0 0 7.16 1.229-.433-4.843-6.419-5.134-4.041-13.591-.924-20.68z" id="Shape" fill="#884C43"></path>
+                <path d="M36.672.512s-1.387.685-1.149 2.3c.238 1.615 6.332 12.74 8.413 14.739 0 0 .618 1.381 2.978-2.108l-10.242-14.931z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.048.025s-2.561-.163-1.295 2.166c0 0 5.771 10.938 8.478 13.193 0 0 .925 1.075 1.949-.235 1.023-1.31 3.221-7.998 2.18-9.923-1.041-1.925-4.522-3.323-11.313-5.202z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.562 3.958s-2.13.28-2.344 1.993c-.215 1.712 2.825 9.175 5.523 9.97 0 0 2.585-.699 3.063-1.606.478-.908-6.241-10.356-6.241-10.356z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.555 3.884s4.148-.43 8.224 2.125c0 0 1.47.562 1.352 1.898-.274 3.104-2.198 5.55-3.453 6.759 0 0-5.684-5.278-6.122-10.782z" id="Shape" fill="#F7A741"></path>
+                <path d="M29 28c-1.105 0-2-1.343-2-3s.895-3 2-3 2 1.343 2 3-.895 3-2 3zm-14 0c-1.104 0-2-1.343-2-3s.896-3 2-3c1.105 0 2 1.343 2 3s-.895 3-2 3z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_squinting_att" viewBox="0 0 52 41">
+                <path d="M4.659 13.496s-.727-.935-.793-1.662v.001c-.198-.948-.282-2.432.173-4.081.191-.69.724-1.093.724-1.093 1.744-1.731 3.295-2.035 3.295-2.035l-.024.074c.499-.005 1.637.077 1.542.927-.131 1.179-3.367 7.321-4.917 7.869z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 23.523s3.038 12.186 3.62 9.97c0 0 2.934 3.137 5.544 3.968 2.61.832 9.558 1.581 12.506.336 2.949-1.245 8.362-3.083 9.86-6.063 0 0 1.272.334 2.694-1.747-1.414 1.092 3.522-3.448.129-4.765l-1.259 1.767s2.13-6.756.954-9.922c0 0-7.692-13.097-19.64-12.559 0 0-17.196 4.252-14.407 19.014z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M34 31h-3c-1.105 0-2-.895-2-2s.895-2 2-2h3c1.105 0 2 .895 2 2s-.895 2-2 2zm-20 0h-3c-1.104 0-2-.895-2-2s.896-2 2-2h3c1.104 0 2 .895 2 2s-.896 2-2 2z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M12.011 14.803s1.658 7.54 20.326 6.58c.657-.712-.71-2.293-1.848-5.64 0 0 3.858 2.583 5.511 10.257 1.254 5.822-2.715 8.434-5.515 11.362l1.045 2.968c2.167-.449 5.907-3.578 5.975-.552.07 3.025 4.881-.046 8.183-3.501 0 0 7.817-3.105 6.052-12.084-2.179-11.088-13.021-20.975-21.327-23.43-2.423-.716-13.331-2.402-19.398 3.76 1.808-1.836-10.689 6.115-11.015 21.559-.234 11.09 7.035 14.61 8.46 14.631 2.723.041.37-1.646 4.909-.388 0 0 7.16 1.229-.433-4.843-6.419-5.134-4.041-13.591-.924-20.68z" id="Shape" fill="#884C43"></path>
+                <path d="M36.672.512s-1.387.685-1.149 2.3c.238 1.615 6.332 12.74 8.413 14.739 0 0 .618 1.381 2.978-2.108l-10.242-14.931z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.048.025s-2.561-.163-1.295 2.166c0 0 5.771 10.938 8.478 13.193 0 0 .925 1.075 1.949-.235 1.023-1.31 3.221-7.998 2.18-9.923-1.041-1.925-4.522-3.323-11.313-5.202z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.562 3.958s-2.13.28-2.344 1.993c-.215 1.712 2.825 9.175 5.523 9.97 0 0 2.585-.699 3.063-1.606.478-.908-6.241-10.356-6.241-10.356z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.555 3.884s4.148-.43 8.224 2.125c0 0 1.47.562 1.352 1.898-.274 3.104-2.198 5.55-3.453 6.759 0 0-5.684-5.278-6.122-10.782z" id="Shape" fill="#F7A741"></path>
+                <path d="M31.69 26.25c-.842.774-.813-1.475-3.058-1.266-2.245.209-2.288 1.902-3.139 2.015-1.074.142-.494-2.721 2.055-3.78 2.568-1.067 5.428 1.849 4.143 3.031zm-14.211.75c-.847-.113-.89-1.807-3.125-2.015-2.235-.209-2.207 2.04-3.045 1.266-1.28-1.181 1.568-4.098 4.124-3.031 2.537 1.059 3.115 3.923 2.046 3.78z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_mouth_att" viewBox="0 0 52 41">
+                <path d="M9.575 6.67c-.131 1.189-3.367 7.386-4.917 7.94 0 0-.727-.944-.793-1.678v.001c-.198-.956-.282-2.454.173-4.117.191-.696.724-1.103.724-1.103 1.744-1.746 3.295-2.053 3.295-2.053l-.024.075c.499-.005 1.637.078 1.542.935z" id="Shape" fill="#F7A741"></path>
+                <path d="M5.596 24.727s3.038 12.295 3.619 10.059c0 0 2.935 3.165 5.544 4.004 2.609.839 9.558 1.595 12.506.339 2.949-1.256 8.362-3.11 9.86-6.117 0 0 1.272.336 2.694-1.763-1.414 1.102 3.522-3.479.129-4.807l-1.259 1.783s2.13-6.816.954-10.011c0 0-7.692-13.215-19.64-12.671 0 0-17.196 4.29-14.407 19.184z" id="Shape" fill="#FEE3D7"></path>
+                <path d="M13 13.123s.669 7.598 19.337 6.629c.657-.718-.71-3.252-1.848-6.629 0 0 3.892 3.638 5.544 11.38 1.253 5.874-2.748 9.355-5.548 12.309l1.045 2.994c2.167-.453 5.907-3.61 5.975-.557.07 3.053 4.881 1.831 8.183-1.655 0 0 7.817-3.132 6.052-12.192-2.179-11.187-13.029-22.633-20.327-24.648-2.438-.673-13.331-2.424-19.398 3.794 1.808-1.852-11.688 7.179-12.015 22.761-.234 11.189 7.035 11.924 8.46 11.946 2.723.041.37-1.66 4.909-.392 0 0 7.16 1.241-.433-4.887-6.419-5.179-3.646-14.709.065-20.854z" id="Shape" fill="#884C43"></path>
+                <path d="M37.16 2.159s-1.424.61-1.278 2.25c.146 1.64 5.595 13.199 7.559 15.332 0 0 .538 1.428 3.093-1.951l-9.374-15.63z" id="Shape" fill="#3ABA6B"></path>
+                <path d="M38.562 1.748s-2.548-.312-1.417 2.107c0 0 5.138 11.351 7.712 13.779 0 0 .863 1.136 1.959-.124 1.096-1.261 3.673-7.871 2.743-9.87-.93-1.998-4.325-3.608-10.997-5.892z" id="Shape" fill="#68E6A4"></path>
+                <path d="M36.853 5.623s-2.142.159-2.454 1.872c-.312 1.713 2.297 9.405 4.944 10.362 0 0 2.622-.555 3.15-1.441.529-.887-5.64-10.792-5.64-10.792z" id="Shape" fill="#FC9542"></path>
+                <path d="M36.851 5.549s4.166-.194 8.089 2.616c0 0 1.435.651 1.241 1.99-.451 3.111-2.511 5.464-3.833 6.609 0 0-5.373-5.644-5.496-11.215z" id="Shape" fill="#F7A741"></path>
+                <path d="M34.406 29.078h-2.75c-1.035 0-1.875-.84-1.875-1.875 0-1.035.84-1.875 1.875-1.875h2.75c1.036 0 1.875.84 1.875 1.875 0 1.035-.839 1.875-1.875 1.875zm-20.437 0h-2.75c-1.036 0-1.875-.84-1.875-1.875 0-1.035.839-1.875 1.875-1.875h2.75c1.036 0 1.875.84 1.875 1.875 0 1.035-.84 1.875-1.875 1.875z" id="Shape" fill="#F6B1A3"></path>
+                <path d="M23.75 25.985c.155.456.25.96.25 1.5 0 1.933-1.119 3.5-2.5 3.5s-2.5-1.567-2.5-3.5c0-.54.095-1.044.25-1.5h4.5z" id="Shape" fill="#ED735B"></path>
+                <path d="M29 24.985c-1.105 0-2-1.344-2-3 0-1.657.895-3 2-3s2 1.343 2 3c0 1.656-.895 3-2 3zm-14 0c-1.104 0-2-1.344-2-3 0-1.657.896-3 2-3 1.105 0 2 1.343 2 3 0 1.656-.895 3-2 3z" fill="#563C3B"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_pack_att" viewBox="0 0 38 56">
+                <path fill="#453027" d="M38 12.983c-2.626-1.517-15.085-8.018-25.422-1.395 0 0-17.507 11.438-3.408 27.28 0 0 10.066 10.39 9.367 7.844 0 0 1.068 3.024 8.518 1.959 0 0 7.185-.927 10.945-5.473v-30.215z"></path>
+                <path fill="#FAA832" d="M3.759 32.486s-1.182-.478-1.634-1.119l-.001.001c-.694-.774-1.573-2.11-2.036-3.89-.194-.745.085-1.407.085-1.407.692-2.551 1.974-3.672 1.974-3.672l.018.083c.458-.272 1.565-.817 1.936.029.513 1.168.806 8.628-.342 9.975z"></path>
+                <path fill="#FFE3D6" d="M38.001 16.959c-4.601-1.94-14.455-4.986-22.47.15 0 0-13.735 13.236-3.182 25.464 0 0 9.397 9.698 8.744 7.322 0 0 4.425 1.334 7.305.7 2.182-.48 6.657-2.351 9.603-4.424v-29.212z"></path>
+                <ellipse transform="matrix(.501 .865 -.865 .501 42.336 -13.025)" fill="#573C3B" cx="32.466" cy="30.209" rx="3" ry="2"></ellipse>
+                <path fill="#E29774" d="M38.001 45.469c-.583-.586-1.39-.95-2.281-.95-1.775 0-3.22 1.444-3.22 3.221 0 1.775 1.444 3.22 3.22 3.22.891 0 1.698-.364 2.281-.95v-4.541z"></path>
+                <ellipse transform="matrix(-.866 .501 -.501 -.866 55.248 60.615)" fill="#573C3B" cx="19.485" cy="37.726" rx="2" ry="3"></ellipse><circle fill="#FFE3D6" cx="35.72" cy="47.74" r="2.281"></circle>
+                <path fill="#5AE8A2" d="M38 .024c-2.316-.002-5.651.673-10.382 1.909 0 0-2.475 1.231-.04 2.714 0 0 5.77 3.614 10.422 5.904v-10.527z"></path>
+                <path d="M18.756 40.459l-2.596 1.503c-.955.554-1.282 1.777-.728 2.733.553.956 1.777 1.282 2.733.729l2.596-1.504c.956-.553 1.282-1.777.728-2.733-.553-.956-1.777-1.282-2.733-.728zM38.001 29.341l-.207.094-2.596 1.503c-.955.554-1.282 1.777-.728 2.733.554.956 1.777 1.282 2.733.729l.798-.462v-4.597z" fill="#F9B1A1"></path>
+                <path fill="#8A4C40" d="M33.803 24.885c.228-1.017-1.897-1.749-4.761-4.25 0 0 4.164.945 8.958 5.236v-18.669c-6.273-2.25-12.615-3.012-16.706-1.931-2.631.695-13.718 4.959-16.052 13.966.696-2.683-7.06 12.929.956 27.473 5.756 10.443 14.427 9.794 15.767 9.046 2.559-1.431-.543-1.73 4.366-3.01 0 0 7.334-2.721-3.014-4.273-8.748-1.311-10.612-11.28-12.002-18.739 0 0 5.607 6.12 22.488-4.849z"></path>
+                <path fill="#22BC68" d="M38 8.55l-11.402-5.421s-.924 1.386.168 2.76c.764.96 6.7 4.701 11.234 7.116v-4.455z"></path>
+                <path fill="#FAA832" d="M38 3.893c-.482-.088-.886-.025-.886-.025-5.175-.178-8.809 2.461-8.809 2.461 2.374 3.437 7.097 5.362 9.695 6.205v-8.641z"></path>
+                <path fill="#FF9635" d="M38 11.248c-3.193-1.917-9.649-4.854-9.649-4.854s-1.834 1.41-1.111 3.119c.722 1.709 7.576 7.011 10.518 6.295l.242-.256v-4.304z"></path>
+            </symbol>
+            <symbol id="svg_icon_mm_hand_att" viewBox="0 0 44 6">
+                <path d="M41.260,6.000 C39.746,6.000 38.520,4.657 38.520,3.000 C38.520,1.343 39.746,-0.000 41.260,-0.000 C42.773,-0.000 44.000,1.343 44.000,3.000 C44.000,4.657 42.773,6.000 41.260,6.000 ZM2.740,6.000 C1.227,6.000 0.000,4.657 0.000,3.000 C0.000,1.343 1.227,-0.000 2.740,-0.000 C4.254,-0.000 5.480,1.343 5.480,3.000 C5.480,4.657 4.254,6.000 2.740,6.000 Z" fill="#ffe3d6"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoin_att" viewBox="0 0 20 20">
+                <rect fill="none" width="20" height="20"></rect>
+                <circle fill="#FED431" cx="10" cy="10" r="9"></circle>
+                <circle fill="#F1B42A" cx="10" cy="10" r="7.03"></circle>
+                <path fill="#FFEF37" d="M13.913,6.2l-3.021,7.6H9.12L6.087,6.2h1.957L10,11.629L11.956,6.2H13.913z"></path>
+            </symbol>
+            <symbol id="svg_icon_vcoincirle_lg_att" viewBox="0 0 60 60">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFD600" d="M28.599 5.818c3.192 0 6.371-4.818-1.535-4.818-14.402 0-26.078 11.952-26.078 26.696 0 5.693 1.755 10.96 4.722 15.294-1.053-2.801-2.66-7.854-2.66-11.035 0-16.751 11.995-26.137 25.551-26.137zm25.698 11.192c1.052 2.801 2.657 7.854 2.657 11.035 0 16.751-11.983 26.137-25.525 26.137-3.188 0-6.364 4.818 1.533 4.818 14.388 0 26.053-11.952 26.053-26.696 0-5.694-1.754-10.96-4.718-15.294z"></path>
+            </symbol>
+        </svg>
+        <div class="ft_vcoin_mm">     <!--视频妹动画-->     <div class="att_slide_mm">       <div class="att_slide_mm_inner" role="sister-vip-container">         <a href="javascript:;" class="att_mm_vcoin" role="sisterSignButton">           <div class="att_mm_pic">             <i class="icon_mm icon_mm_normal_att "><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_normal_att"></use></svg></i>             <i class="icon_mm icon_mm_squinting_att"><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_squinting_att"></use></svg></i>             <i class="icon_mm icon_mm_mouth_att"><svg class="svg_icon_xx" viewBox="0 0 52 41" width="52" height="41"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_mouth_att"></use></svg></i>             <i class="icon_mm icon_mm_hand_att"><svg class="svg_icon_xx" viewBox="0 0 44 6" width="44" height="6"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mm_hand_att"></use></svg></i>           </div>           <div class="att_btn_att">             <span class="txt">签到+20</span>             <i class="icon icon_vcoin_att"><svg class="svg_icon_xx" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_att"></use></svg></i>           </div>         </a>                </div>     </div>     <!--微币圆动画-->     <div class="att_vcoincirle">       <i class="icon_mm icon_vcoin_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_lg_att"></use></svg></i>       <i class="icon_mm icon_vcoincirle_lg_att"><svg class="svg_icon_xx" viewBox="0 0 60 60" width="60" height="60"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoincirle_lg_att"></use></svg></i>       <span class="add_num">+20</span>     </div>     <a class="btn_close" id='btn_close_J' href="javascript:;" role="usersign-sister-close">       <i class="icon_xs icon_close_xs"><svg class="svg_icon_xx" viewBox="0 0 10 10" width="10" height="10"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_close_att"></use></svg></i>     </a>   </div></div>
+
+
+
+    <div class="ft_cell ft_cell_vcoin" role="sister-sidelist">
+        <i class="icon icon_vcoin"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin"></use></svg></i>
+        <div class="ft_cell_pop ft_vcoin_pop" role="sidelist-content">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_vcoin_content">
+                <a role="sidelist-showvb" href="http://v.qq.com/u/wallet/vbtask.html" target="_blank;" class="ft_vcoin_item">
+                    <i class="icon_lg icon_vcoin_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_vcoin_lg_att"></use></svg>
+                        <span class="add_num">+5</span></i>
+                    <span class="tit">0V币</span>
+                    <span class="txt"><span class="num">0</span>V币待领取</span>
+                </a>
+                <a role="sidelist-vbshop" href="http://v.qq.com/u/wallet/" target="_blank;" class="ft_vcoin_item">
+                    <i class="icon_lg icon_mall_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mall_lg_att"></use></svg></i>
+                    <span class="tit">V币商城</span>
+                    <span class="txt">V币换礼品</span>
+                </a>
+                <a role="sidelist-download" class="ft_vcoin_item" data-clipboard-text="qqlivechannel=channel1.grow_nav_download">
+                    <i class="icon_lg icon_tv_lg_att"><svg class="svg_icon_xx" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_lg_att"></use></svg></i>
+                    <span class="tit">电脑桌面版</span>
+                    <span class="txt">签到五天送VIP</span>
+                    <span class="sup">送VIP</span></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <a href="https://support.qq.com/products/2208" target="blank" class="ft_cell ft_cell_feedback _feedback" _stat="support:click">
+        <i class="icon icon_feedback"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_feedback"></use></svg></i>
+        <div class="ft_cell_pop ft_general_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_general_content">
+                <span class="txt">意见反馈</span>
+            </div>
+        </div>
+    </a>
+
+
+    <div class="ft_cell ft_cell_download _download">
+        <i class="icon icon_download"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_download"></use></svg></i>
+        <div class="ft_cell_pop ft_dl_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_dl_content">
+                <a href="http://v.qq.com/download.html#pc" class="ft_dl_cell" target="_blank" _stat="shortcut:download-pc">
+                    <i class="icon_lg icon_win_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_win_lg"></use></svg></i>
+                    <span class="text_icon">Win</span>
+                </a>
+                <a href="http://v.qq.com/download.html#mac" class="ft_dl_cell" target="_blank" _stat="shortcut:download-mac">
+                    <i class="icon_lg icon_mac_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_mac_lg"></use></svg></i>
+                    <span class="text_icon">Mac</span>
+                </a>
+                <a href="http://v.qq.com/download.html#pad" class="ft_dl_cell" target="_blank" _stat="shortcut:download-pad">
+                    <i class="icon_lg icon_ipad_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_ipad_lg"></use></svg></i>
+                    <span class="text_icon">iPad</span>
+                </a>
+                <a href="http://v.qq.com/download.html#phone" class="ft_dl_cell" target="_blank" _stat="shortcut:download-phone">
+                    <i class="icon_lg icon_phone_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_phone_lg"></use></svg></i>
+                    <span class="text_icon">移动端</span>
+                </a>
+                <a href="http://v.qq.com/download.html#tv" class="ft_dl_cell" target="_blank" _stat="shortcut:download-tv">
+                    <i class="icon_lg icon_tv_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_tv_lg"></use></svg></i>
+                    <span class="text_icon">TV</span>
+                </a>
+                <a href="http://v.qq.com/download.html#tencentlive" class="ft_dl_cell" target="_blank" _stat="shortcut:download-live">
+                    <i class="icon_lg icon_qielive_lg"><svg class="svg_icon" viewBox="0 0 36 36" width="36" height="36"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_qielive_lg"></use></svg></i>
+                    <span class="text_icon">直播</span>
+                </a>
+                <a href="http://v.qq.com/download.html" class="ft_dl_btn" target="_blank" _stat="shortcut:download">软件下载</a>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="javascript:;" class="ft_cell ft_cell_backup _top" style="display: none;" _stat="shortcut:totop">
+        <i class="icon icon_backup"><svg class="svg_icon" viewBox="0 0 20 20" width="20" height="20"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg_icon_backup"></use></svg></i>
+        <div class="ft_cell_pop ft_general_pop">
+            <i class="triangle_right"><i class="triangle_inner"></i></i>
+            <div class="ft_general_content">
+                <span class="txt">返回顶部</span>
+            </div>
+        </div>
+    </a>
+
+</div>
+
+<!--播放-->
+<div class="poplayer_quickplay">
+
+</div>
+
+<!--登录-->
+<div class="login_dialog">
+
+</div>
+
+<!--登录遮罩层-->
+<div class="mask_layer"></div>
+
+<!--存储效果节点-->
+<div class="x_poster_card"></div>
 
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/tencent/yb.js"></script>
