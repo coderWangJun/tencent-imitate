@@ -11,10 +11,7 @@
         $head_drawer_inner=$('.head_drawer_inner'),
         $close=$('#close '),//关闭右侧X按钮
 
-        $site_head_drawer_hide=$('.site_head_drawer_hide'),
-
         $drawer_switch=$('.drawer_switch'),
-        $drawer_item=$('.drawer_item '),
         $drawer_btn_prev=$('.drawer_btn_prev'),//右按钮
         $drawer_btn_next=$('.drawer_btn_next'),//左按钮
         $site_head_l=$('#site_head_l');
@@ -31,18 +28,9 @@
         $drawer_switch.on('click',function () {
             $head_drawer_inner_wrap.css('height','');
             $head_drawer_bait.css('height','');
-            $head_drawer_inner.css('marginTop','-230px');
+            $head_drawer_inner.css('marginTop','-120px');
             $site_head_l.addClass('site_head_drawer_hide');
         });
-
-
-        // $head_drawer_bait.on('mouseenter',function () {
-        //     $site_head_l.removeClass('site_head_drawer_hide');
-        //
-        // }).on('mouseleave',function () {
-        //     $site_head_l.addClass('site_head_drawer_hide');
-        // });
-
 
         //顶部轮播切换
         $drawer_btn_next.on('click',function () {
