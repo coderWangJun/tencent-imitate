@@ -225,7 +225,7 @@ let searchRender = (function () {
             $searchTxt.on("input", searchFn);
             //点击搜索跳转页面
             $search_btn.on("click", () => {
-                location.href = $searchTxt.data("pl")
+                location.href = location.href
             });
             //点击搜索框显示搜索
             $searchTxt.on("click", () => {
