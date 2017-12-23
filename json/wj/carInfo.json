@@ -1,0 +1,39 @@
+
+[
+  {
+    "id":1,
+    "img":"images/wj/carInfo_pic/wj_car0.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car0_b.jpg",
+    "title":"2017赛季十大经典超车对决！"
+  },
+  {
+    "id":2,
+    "img":"images/wj/carInfo_pic/wj_car1.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car1_b.jpg",
+    "title":"憨豆量身定制的幻影"
+  },
+  {
+    "id":3,
+    "img":"images/wj/carInfo_pic/wj_car2.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car2_b.jpg",
+    "title":"80%越野车都爬不上的坡"
+  },
+  {
+    "id":4,
+    "img":"images/wj/carInfo_pic/wj_car3.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car3_b.jpg",
+    "title":"堵车时谁喜欢霸占应急车道？"
+  },
+  {
+    "id":5,
+    "img":"images/wj/carInfo_pic/wj_car4.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car4_b.jpg",
+    "title":"美国体验全新Jeep牧马人"
+  },
+  {
+    "id":6,
+    "img":"images/wj/carInfo_pic/wj_car5.jpg",
+    "bigImg":"images/wj/carInfo_pic/wj_car5_b.jpg",
+    "title":"印度妹子考摩托车驾照开挂"
+  }
+]
