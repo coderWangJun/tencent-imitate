@@ -16,7 +16,7 @@
     "video_tags": "",
     "recommend_txt": "猜你喜欢和h1动物.bbch1有关的精彩视频~",
     "review_txt": "梁龙大还是阿根廷龙大呢",
-    "like": 0
+    "like": 1
   },
   {
     "id": "h1527zqr04y",
@@ -35,7 +35,7 @@
     "video_tags": "李艾/王琳/张一山",
     "recommend_txt": "h1张一山h1的作品，你看了吗？",
     "review_txt": "换人就不要来续集了别毁了金典，其实后两部换了杨紫我就没看，一部剧承载的是对人物的感情换了有毛意思",
-    "like": 0
+    "like": 1
   },
   {
     "id": "r17097793yc",
@@ -73,7 +73,7 @@
     "video_tags": "曹杨/张一山/张嘉译",
     "recommend_txt": "你可能感兴趣的h1张嘉译h1作品",
     "review_txt": "张少华老奶奶的彩蛋我最喜欢。嘿嘿。",
-    "like": 0
+    "like": 1
   },
   {
     "id": "w17666pa3ij",
@@ -311,7 +311,7 @@
     "update": "2016-07-25 期",
     "score":"6.5",
     "text":"再激情四射的爱情也有归于平淡的一天",
-    "mini": "mini16",
+    "mini": "mini17",
     "img_src": "images/yb/c1532u42377_0.jpg",
     "video_height": 133,
     "video_src": "images/yb/c1532u42377.mp4",

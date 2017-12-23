@@ -137,7 +137,6 @@ em, i, u, s, strong, b {
             color: #ff6428;
           }
         }
-
       }
     }
   }
@@ -353,6 +352,67 @@ em, i, u, s, strong, b {
           bottom: 20px;
           width: 6px;
           height: 60px;
+
+          &._animate0 .icon_thermometer {
+            -webkit-animation: hot_animate .5s ease both;
+            -o-animation: hot_animate .5s ease both;
+            -ms-animation: hot_animate .5s ease both;
+            animation: hot_animate .5s ease both;
+
+            -webkit-transform-origin:center bottom;
+            -moz-transform-origin:center bottom;
+            -o-transform-origin:center bottom;
+            -ms-transform-origin:center bottom;
+            transform-origin:center bottom;
+          }
+
+          @keyframes hot_animate {
+            0% {
+              transform: scale(1);
+            }
+            70% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+
+          .add_num {
+            position: absolute;
+            top: -25px;
+            right: -10px;
+            width: 30px;
+            text-align: center;
+            visibility: hidden;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 600;
+            color: #ff9800;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+
+            &.add_num_animate {
+              visibility: visible;
+              -webkit-animation: addMove .5s ease both;
+              animation: addMove .5s ease both;
+            }
+
+          }
+
+          @keyframes addMove {
+            0% {
+              opacity: 0;
+              transform: translateY(5px) scale(.8);
+            }
+            75% {
+              opacity: 1;
+              transform: translateY(-20px) scale(1.2);
+            }
+            100% {
+              opacity: 0;
+              transform: translateY(-20px) scale(.8);
+            }
+          }
 
           .icon_thermometer {
             position: absolute;
@@ -724,6 +784,7 @@ em, i, u, s, strong, b {
           }
 
           .z_figure_collect {
+            display: block;
 
             &:hover {
               color: #ff6428;

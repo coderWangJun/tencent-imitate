@@ -27,7 +27,7 @@ let tencentRender = (function () {
     let queryData = (data, context)=> {
         let str = ``;
         for (var i = 0; i < data.length; i++) {
-            var {id,mark,mark_msg,hot,text,collect,modidx,update,score,img_src,video_title} = data[i];
+            var {id,mark,mark_msg,hot,text,modidx,update,score,img_src,video_title} = data[i];
             str += `<li class="list_item" data-id="${id}">
                         <a href="javascript:;" class="figure figure_mark" target="_blank" data-float="${id}">
                             <img src="${img_src}" class="figure_pic" alt="${video_title.split(' ')[0]}">
@@ -43,7 +43,7 @@ let tencentRender = (function () {
                 }).join('')
                 }
                             </div>` : ``}
-                            ${hot ? `<span class="figure_mask"></span><span class="figure_thermometer _animate0">
+                            ${hot ? `<span class="figure_mask"></span><span class="figure_thermometer">
                                 <i class="icon_thermometer">
                                     <i class="icon_thermometer_ball"></i>
                                     <i class="icon_thermometer_progress" style="height: ${hot}%;">
@@ -56,12 +56,12 @@ let tencentRender = (function () {
                                 </span>
                             </span>` : ''}
                         </a>
-                        <div class="figure_detail ${collect ? 'figure_detail_collect' : ''}">
+                        <div class="figure_detail ${typeof modidx != 'undefined' ? 'figure_detail_collect' : ''}">
                             <strong class="figure_title">
                                 <a href="#" title="${video_title.split(' ')[0]}" data-id="${id}">${video_title.split(' ')[0]}</a>
                             </strong>
                             <div class="figure_desc" title="${text}">${text}</div>
-                            ${collect ? `<a href="javascript:;" class="figure_collect" title="加入看单" data-followlist="${id}" data-modidx="${modidx}">
+                            ${typeof modidx != 'undefined' ? `<a href="javascript:;" class="figure_collect" title="${modidx===0?'加入看单':'取消看单'}" data-followlist="${id}" data-modidx="${modidx}">
                             <i class="icon iconfont_yb icon_collect"></i>
                             <i class="icon iconfont_yb icon_collected"></i>
                             </a>` : ``}
@@ -73,7 +73,6 @@ let tencentRender = (function () {
             collectControl();
         }
     };
-
     // 绑定数据
     let requestFn = (url, context)=> {
         $.ajax({
@@ -133,14 +132,7 @@ tencentRender.init();
     let $plan = $.Callbacks();
     // 收藏处理
     let collectionFn = function (item) {
-        let collection = $("#" + $(item).data('bind_id')),
-            iControl = collection.parent().find('.z_figure_collect').find('i');
-        // 初始化收藏状态
-        if (!collection.data('collect')) {
-            $(iControl[0]).show().siblings().hide();
-        } else {
-            $(iControl[1]).show().siblings().hide();
-        }
+        let collection = $("#" + $(item).data('bind_id'));
         // 处理事件源，处理情况
         let likeFn = function (e) {
             let target = e.target,
@@ -149,12 +141,24 @@ tencentRender.init();
             if ($target.hasClass('icon_collect')) {
                 // 表示已经收藏过了
                 collection.data('collect', 1);
-                $target.hide().siblings().show();
+                $target.hide().siblings().show().parent().attr('title','取消看单');
+                // 强势接挡 专属事件
+                if($target.parent().attr('data-modidx') && $target.parent().attr('data-modidx') == 0){
+                    $target.parent().attr('data-modidx',1);
+                    $target.parents('.list_item').find('.add_num').addClass('add_num_animate');
+                    $target.parents('.list_item').find('.figure_thermometer').addClass('_animate0');
+                }
             }
             if ($target.hasClass('icon_collected')) {
                 // 表示已经收藏过了
                 collection.data('collect', 0);
-                $target.hide().siblings().show();
+                $target.hide().siblings().show().parent().attr('title','加入看单');
+                // 强势接挡 专属事件
+                if($target.parent().attr('data-modidx') && $target.parent().attr('data-modidx') == 1){
+                    $target.parent().attr('data-modidx',0);
+                    $target.parents('.list_item').find('.add_num').removeClass('add_num_animate');
+                    $target.parents('.list_item').find('.figure_thermometer').removeClass('_animate0');
+                }
             }
         };
         // 事件委托
@@ -162,7 +166,7 @@ tencentRender.init();
             click: likeFn
         })
     };
-    $plan.add(collectionFn);
+    collectionFn();
     // 控制视频的播放和暂停
     let videoControl = function (item) {
         let videoPause = $("#" + $(item).data('bind_id'));
@@ -273,7 +277,8 @@ tencentRender.init();
                             if (!$(item).data('bind_id')) {
                                 $(item).data({
                                     'bind_id': temp.port + temp.mini,
-                                    'index'  : i
+                                    'index'  : i,
+                                    'like' : temp.like
                                 });
                             }
                         }
@@ -361,8 +366,15 @@ tencentRender.init();
                     </div>`;
         // 追加创建的展示容器
         x_poster_card.append(str);
+        let bind_obj = $("#" + $(item).data('bind_id')).parent().parent();
+
+        if ($(item).data('like') == 0) {
+            bind_obj.find('.icon_collect').show().siblings().hide();
+        } else {
+            bind_obj.find('.icon_collected').show().siblings().hide();
+        }
         // 展示容器，追加动画效果
-        $("#" + $(item).data('bind_id')).parent().parent().addClass('ani_x_card_hover').siblings().removeClass('ani_x_card_hover');
+        bind_obj.addClass('ani_x_card_hover').siblings().removeClass('ani_x_card_hover');
         $plan.fire(item);
     };
 
@@ -381,13 +393,11 @@ tencentRender.init();
                 $(that).on({
                     'mouseover': function (e) {
                         e.stopPropagation();
-                        e.preventDefault();
                         obtain(e, data);
                     }
                     ,
                     'mousemove': (e)=> {
                         e.stopPropagation();
-                        e.preventDefault();
                         obtain(e, data);
                     }
                 })

@@ -7,6 +7,7 @@
 //导航模块
 let site_channel_render = (function () {
     let $site_channel = $(".site_channel"),
+        $site_hide_nav = $(".site_hide_nav"),
         $site_channel_render = $(".site_channel_render");
     //发布订阅
     let $plane = $.Callbacks();
@@ -76,16 +77,21 @@ let site_channel_render = (function () {
     });
     //隐藏 hideNav
     let hideNav = function () {
-
-        $(".menu_btn").click(function () {
-            $(".site_hide_nav").toggle();
+        $(".site_hide_nav").on("click", function (e) {
+            e.stopPropagation();
         });
-        $(window).on('scroll', function () {
+        $(document).on("click", function (e) {
+            let target = e.target;
+            $target = $(target);
+            if ($target[0].tagName == 'I' && $target.hasClass("icon-menu")) {
+                $(".site_hide_nav").toggle();
+                return;
+            }
             $(".site_hide_nav").hide();
-        });
+        })
     }
     //隐藏显示看过历史记录(临时-处理）
-    $(".site_quick").delegate('.look_history_box',"mouseenter", function () {
+    $(".site_quick").delegate('.look_history_box', "mouseenter", function () {
         $(this).find("u").show();
         $(".history_con").show();
         $(this).siblings("a").on("mouseenter", function () {
@@ -96,7 +102,7 @@ let site_channel_render = (function () {
         $(this).find("u").hide();
         $(".history_con").hide();
     });
-    $(".site_quick").delegate('.down_load_box',"mouseenter", function () {
+    $(".site_quick").delegate('.down_load_box', "mouseenter", function () {
         $(this).find("u").show();
         $(".down_load_con").show();
         $(this).siblings("a").on("mouseenter", function () {
@@ -107,7 +113,7 @@ let site_channel_render = (function () {
         $(this).find("u").hide();
         $(".down_load_con").hide();
     });
-    $(".site_quick").delegate('.user_boxs',"mouseenter", function () {
+    $(".site_quick").delegate('.user_boxs', "mouseenter", function () {
         $(this).find("u").show();
         $(".user_con").show();
         $(this).siblings("a").on("mouseenter", function () {
@@ -228,8 +234,10 @@ let searchRender = (function () {
                 location.href = location.href
             });
             //点击搜索框显示搜索
-            $searchTxt.on("click", () => {
+            $searchTxt.on("focus", () => {
                 $search_res_box.show();
+            }).on("blur", function () {
+                $search_res_box.hide();
             });
 
         }
