@@ -16,30 +16,32 @@
         $drawer_switch=$('.drawer_switch'),
         $drawer_item=$('.drawer_item '),
         $drawer_btn_prev=$('.drawer_btn_prev'),//右按钮
-        $drawer_btn_next=$('.drawer_btn_next');//左按钮
+        $drawer_btn_next=$('.drawer_btn_next'),//左按钮
+        $site_head_l=$('#site_head_l');
 
-        //下箭头
+    //下箭头
         $head_drawer_bait.on('click',function () {
             $(this).css('height','0');
             $head_drawer_inner.css('marginTop','-20px');
             $head_drawer_inner_wrap.css('height','372px');
-            $site_head_drawer_hide.removeClass('js_hover');
+            $site_head_l.removeClass('site_head_drawer_hide');
         });
 
         // 上箭头处理
         $drawer_switch.on('click',function () {
-            $head_drawer_inner_wrap.css('height','40px');
-            $head_drawer_bait.css('height','40px');
-            $head_drawer_inner.css('marginTop','-260px');
+            $head_drawer_inner_wrap.css('height','');
+            $head_drawer_bait.css('height','');
+            $head_drawer_inner.css('marginTop','-230px');
+            $site_head_l.addClass('site_head_drawer_hide');
         });
 
-        $head_drawer_bait.on('mouseover',function () {
-            $site_head_drawer_hide.addClass("js_hover").removeClass('js_leave');
 
-        }).on('mouseout',function () {
-            $site_head_drawer_hide.addClass('js_leave').removeClass("js_hover");
-
-        });
+        // $head_drawer_bait.on('mouseenter',function () {
+        //     $site_head_l.removeClass('site_head_drawer_hide');
+        //
+        // }).on('mouseleave',function () {
+        //     $site_head_l.addClass('site_head_drawer_hide');
+        // });
 
 
         //顶部轮播切换
